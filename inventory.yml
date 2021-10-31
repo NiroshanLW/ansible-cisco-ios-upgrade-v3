@@ -1,0 +1,2396 @@
+all:
+  children:
+    switches:
+      children:
+        Test_Sites: 
+        Prod_Sites: 
+
+    Test_Sites:
+      children:
+        test_L2: 
+        completed_L2: 
+        failed_L2:        
+      vars:
+        ansible_connection: network_cli
+        ansible_network_os: ios
+        ansible_user: niroshanw 
+        ansible_password: NLW@fort123        
+        # ansible_user: dmslsupport 
+        # ansible_password: brandix@904
+        # ansible_user: biwsupport 
+        # ansible_password: shcpajl@3679
+
+    Prod_Sites:
+      children:
+        ACC:
+        BAI:
+        BCB:
+        BCE:
+        BCR:
+        BCRG:
+        BCS:
+        BEB:
+        BEK:
+        BEKA:
+        BEN:
+        BER:
+        BERA2:
+        BI3:
+        BIAV1:
+        BIAV2:
+        BIG:
+        BIK:
+        BIM:
+        BIMR1:
+        BIMR2:
+        BIP:
+        BIW:
+        BIWH:
+        BLIB:
+        BLIN:
+        BLL:
+        TJI:
+        TJL:               
+      vars:
+        ansible_connection: network_cli
+        ansible_network_os: ios
+        ansible_user: niroshanw 
+        ansible_password: NLW@fort123   
+        # ansible_user: dmslsupport 
+        # ansible_password: brandix@904
+        
+# Test SW
+    test_L2:
+      hosts:
+        WELISARA-testswitch-00:
+          ansible_host: '10.75.246.30'
+
+
+# Production SW
+
+    ACC:
+      hosts:
+        SITE - ACC | SW - ACCENTURE-CORE | IP - 10.40.246.254:
+          ansible_host: '10.40.246.254'
+        SITE - ACC | SW - BMA-ITSTORE-SW01 | IP - 10.40.246.14:
+          ansible_host: '10.40.246.14'
+        SITE - ACC | SW - BMA-MEZANINE-SW01 | IP - 10.40.246.18:
+          ansible_host: '10.40.246.18'
+        SITE - ACC | SW - BMA-MEZANINE-SW02 | IP - 10.40.246.17:
+          ansible_host: '10.40.246.17'
+        SITE - ACC | SW - BMA-SEC-HUT2 | IP - 10.40.246.22:
+          ansible_host: '10.40.246.22'
+        SITE - ACC | SW - BMA-SVR-SW1 | IP - 10.40.246.23:
+          ansible_host: '10.40.246.23'
+        SITE - ACC | SW - BMS-ROOM | IP - 10.40.246.15:
+          ansible_host: '10.40.246.15'
+        SITE - ACC | SW - EKALA-WAN-SWITCH | IP - 10.40.246.24:
+          ansible_host: '10.40.246.24'
+        SITE - ACC | SW - HUB-ROOM1-2960 | IP - 10.40.246.13:
+          ansible_host: '10.40.246.13'
+        SITE - ACC | SW - HUB-ROOM1-2960X | IP - 10.40.246.16:
+          ansible_host: '10.40.246.16'
+        SITE - ACC | SW - HUB-ROOM1-4510 | IP - 10.40.246.11:
+          ansible_host: '10.40.246.11'
+        SITE - ACC | SW - HUB-ROOM2-2960X | IP - 10.40.246.21:
+          ansible_host: '10.40.246.21'
+        SITE - ACC | SW - HUB-ROOM2-2960X-CCTV | IP - 10.40.246.19:
+          ansible_host: '10.40.246.19'
+        SITE - ACC | SW - HUB-ROOM2-4510 | IP - 10.40.246.12:
+          ansible_host: '10.40.246.12'
+        SITE - ACC | SW - SVR-2960X-24P | IP - 10.40.246.20:
+          ansible_host: '10.40.246.20'
+
+    BAI:
+      hosts:
+        SITE - BAI | SW - B1-ICT-Room-SW1 | IP - 10.175.246.38:
+          ansible_host: '10.175.246.38'
+        SITE - BAI | SW - B1-ICT-Room-SW3 | IP - 10.175.246.31:
+          ansible_host: '10.175.246.31'
+        SITE - BAI | SW - BA12-RMR10-SW1 | IP - 10.175.246.116:
+          ansible_host: '10.175.246.116'
+        SITE - BAI | SW - BAI-3-SW-01 | IP - 10.175.246.131:
+          ansible_host: '10.175.246.131'
+        SITE - BAI | SW - BAI-3-SW-02 | IP - 10.175.246.133:
+          ansible_host: '10.175.246.133'
+        SITE - BAI | SW - BAI-3850CORE-SW | IP - 10.175.247.254:
+          ansible_host: '10.175.247.254'
+        SITE - BAI | SW - BAI-C2960SW-FGStores | IP - 10.175.246.32:
+          ansible_host: '10.175.246.32'
+        SITE - BAI | SW - BAI-C2960SW02-Stores | IP - 10.175.246.33:
+          ansible_host: '10.175.246.33'
+        SITE - BAI | SW - BAI-INT-SW | IP - 10.175.246.40:
+          ansible_host: '10.175.246.40'
+        SITE - BAI | SW - BAI1-CADR4-SW02 | IP - 10.175.246.42:
+          ansible_host: '10.175.246.42'
+        SITE - BAI | SW - BAI1-CADR4-SW03 | IP - 10.175.246.43:
+          ansible_host: '10.175.246.43'
+        SITE - BAI | SW - BAI1-CGWR7-SW01 | IP - 10.175.246.49:
+          ansible_host: '10.175.246.49'
+        SITE - BAI | SW - BAI1-CTNR8-SW01 | IP - 10.175.246.44:
+          ansible_host: '10.175.246.44'
+        SITE - BAI | SW - BAI1-CTVR6-SW01 | IP - 10.175.246.46:
+          ansible_host: '10.175.246.46'
+        SITE - BAI | SW - BAI1-CTVR6-SW02 | IP - 10.175.246.48:
+          ansible_host: '10.175.246.48'
+        SITE - BAI | SW - BAI1-CTVR6-SW03 | IP - 10.175.246.47:
+          ansible_host: '10.175.246.47'
+        SITE - BAI | SW - BAI1-FGWR5-SW02 | IP - 10.175.246.45:
+          ansible_host: '10.175.246.45'
+        SITE - BAI | SW - BAI1-ICTR1-SW02 | IP - 10.175.246.37:
+          ansible_host: '10.175.246.37'
+        SITE - BAI | SW - BAI1-ICTR1-SW05 | IP - 10.175.246.39:
+          ansible_host: '10.175.246.39'
+        SITE - BAI | SW - BAI1-ICTR3-SW01 | IP - 10.175.246.41:
+          ansible_host: '10.175.246.41'
+        SITE - BAI | SW - BAI1-QCI-Server-SW | IP - 10.175.246.51:
+          ansible_host: '10.175.246.51'
+        SITE - BAI | SW - BAI1-SECR9-SW01 | IP - 10.175.246.50:
+          ansible_host: '10.175.246.50'
+        SITE - BAI | SW - BAI1-SU5-SW1 | IP - 10.175.246.52:
+          ansible_host: '10.175.246.52'
+        SITE - BAI | SW - BAI2-CTVR1-SW01 | IP - 10.175.246.103:
+          ansible_host: '10.175.246.103'
+        SITE - BAI | SW - BAI2-CTVR1-SW02 | IP - 10.175.246.102:
+          ansible_host: '10.175.246.102'
+        SITE - BAI | SW - BAI2-FGWR1-SW01 | IP - 10.175.246.99:
+          ansible_host: '10.175.246.99'
+        SITE - BAI | SW - BAI2-ICTR1-SW01 | IP - 10.175.246.91:
+          ansible_host: '10.175.246.91'
+        SITE - BAI | SW - BAI2-ICTR1-SW02 | IP - 10.175.246.92:
+          ansible_host: '10.175.246.92'
+        SITE - BAI | SW - BAI2-ICTR1-SW03 | IP - 10.175.246.93:
+          ansible_host: '10.175.246.93'
+        SITE - BAI | SW - BAI2-ICTR1-SW04 | IP - 10.175.246.94:
+          ansible_host: '10.175.246.94'
+        SITE - BAI | SW - BAI2-ICTR1-SW05 | IP - 10.175.246.95:
+          ansible_host: '10.175.246.95'
+        SITE - BAI | SW - BAI2-ICTR1-SW06 | IP - 10.175.246.96:
+          ansible_host: '10.175.246.96'
+        SITE - BAI | SW - BAI2-N-RMR1-SW01 | IP - 10.175.246.109:
+          ansible_host: '10.175.246.109'
+        SITE - BAI | SW - BAI2-PFLR1-SW01 | IP - 10.175.246.97:
+          ansible_host: '10.175.246.97'
+        SITE - BAI | SW - BAI2-PFLR2-SW01 | IP - 10.175.246.98:
+          ansible_host: '10.175.246.98'
+        SITE - BAI | SW - BAI2-PFLR3-SW01 | IP - 10.175.246.100:
+          ansible_host: '10.175.246.100'
+        SITE - BAI | SW - BAI2-PFLR4-SW01 | IP - 10.175.246.101:
+          ansible_host: '10.175.246.101'
+        SITE - BAI | SW - BAI2-RMDR1-SW01 | IP - 10.175.246.107:
+          ansible_host: '10.175.246.107'
+        SITE - BAI | SW - BAI2-RMR11-SW1 | IP - 10.175.246.117:
+          ansible_host: '10.175.246.117'
+        SITE - BAI | SW - BAI2-SECR1-SW01 | IP - 10.175.246.108:
+          ansible_host: '10.175.246.108'
+        SITE - BAI | SW - BAI2-SECR2-SW01 | IP - 10.175.246.106:
+          ansible_host: '10.175.246.106'
+        SITE - BAI | SW - BAI2-TRNR1-SW01 | IP - 10.175.246.104:
+          ansible_host: '10.175.246.104'
+        SITE - BAI | SW - BAI2-TRNR1-SW02 | IP - 10.175.246.105:
+          ansible_host: '10.175.246.105'
+        SITE - BAI | SW - BAI3-Expo | IP - 10.175.246.130:
+          ansible_host: '10.175.246.130'
+        SITE - BAI | SW - BAI3-FABR1-SW01 | IP - 10.175.246.128:
+          ansible_host: '10.175.246.128'
+        SITE - BAI | SW - BAI3-ICT-3560SW1 | IP - 10.175.246.121:
+          ansible_host: '10.175.246.121'
+        SITE - BAI | SW - BAI3-ICT-POESW | IP - 10.175.246.122:
+          ansible_host: '10.175.246.122'
+        SITE - BAI | SW - BAI3-ICT-SW4 | IP - 10.175.246.134:
+          ansible_host: '10.175.246.134'
+        SITE - BAI | SW - BAI3-MANITANENCE | IP - 10.175.246.127:
+          ansible_host: '10.175.246.127'
+        SITE - BAI | SW - BAI3-PODU-L2SW | IP - 10.175.246.126:
+          ansible_host: '10.175.246.126'
+        SITE - BAI | SW - BAI3-RMSTORE-POESW | IP - 10.175.246.123:
+          ansible_host: '10.175.246.123'
+        SITE - BAI | SW - BAIC-CFNR1-SW03 | IP - 10.175.246.36:
+          ansible_host: '10.175.246.36'
+        SITE - BAI | SW - BC3-ICTPOE-SW2 | IP - 10.175.246.12:
+          ansible_host: '10.175.246.12'
+        SITE - BAI | SW - BC3-SW2 | IP - 10.175.246.13:
+          ansible_host: '10.175.246.13'
+        SITE - BAI | SW - BC3Switch | IP - 10.175.246.14:
+          ansible_host: '10.175.246.14'
+        SITE - BAI | SW - BETP-OFFR1-SW01 | IP - 10.175.246.82:
+          ansible_host: '10.175.246.82'
+        SITE - BAI | SW - BIAC-ICTR1-SW01 | IP - 10.175.246.11:
+          ansible_host: '10.175.246.11'
+        SITE - BAI | SW - BIAC-SRVRI-SW01 | IP - 10.175.246.83:
+          ansible_host: '10.175.246.83'
+        SITE - BAI | SW - BIAC-SRVRI-SW02 | IP - 10.175.246.84:
+          ansible_host: '10.175.246.84'
+        SITE - BAI | SW - BIAC-SRVRI-SW03 | IP - 10.175.246.85:
+          ansible_host: '10.175.246.85'
+        SITE - BAI | SW - BIAC-SRVRI-SW04 | IP - 10.175.246.86:
+          ansible_host: '10.175.246.86'
+        SITE - BAI | SW - BQCI-AQLR1-SW01 | IP - 10.175.246.68:
+          ansible_host: '10.175.246.68'
+        SITE - BAI | SW - BQCI-EXDR1-SW01 | IP - 10.175.246.70:
+          ansible_host: '10.175.246.70'
+        SITE - BAI | SW - BQCI-FGSR1-SW01 | IP - 10.175.246.69:
+          ansible_host: '10.175.246.69'
+        SITE - BAI | SW - BQCI-IEDR1-SW01 | IP - 10.175.246.66:
+          ansible_host: '10.175.246.66'
+        SITE - BAI | SW - BQCI-MRCNR-SW01 | IP - 10.175.246.72:
+          ansible_host: '10.175.246.72'
+        SITE - BAI | SW - BQCI-PDCR1-SW01 | IP - 10.175.246.65:
+          ansible_host: '10.175.246.65'
+        SITE - BAI | SW - BQCI-RMDR1-SW01 | IP - 10.175.246.67:
+          ansible_host: '10.175.246.67'
+        SITE - BAI | SW - BQCI-SRVR1-SW01 | IP - 10.175.246.61:
+          ansible_host: '10.175.246.61'
+        SITE - BAI | SW - BQCI-SRVR1-SW02 | IP - 10.175.246.62:
+          ansible_host: '10.175.246.62'
+        SITE - BAI | SW - BQCI-SRVR1-SW03 | IP - 10.175.246.63:
+          ansible_host: '10.175.246.63'
+        SITE - BAI | SW - BQCI-SRVR1-SW04 | IP - 10.175.246.64:
+          ansible_host: '10.175.246.64'
+        SITE - BAI | SW - BRANDIX_BAI_3 | IP - 10.175.246.124:
+          ansible_host: '10.175.246.124'
+        SITE - BAI | SW - BWTP-OFFR1-SW01 | IP - 10.175.246.81:
+          ansible_host: '10.175.246.81'
+        SITE - BAI | SW - Central-Finance-SW-2 | IP - 10.175.246.35:
+          ansible_host: '10.175.246.35'
+        SITE - BAI | SW - Central-Off-POE | IP - 10.175.246.34:
+          ansible_host: '10.175.246.34'
+        SITE - BAI | SW - NBAI2-CANT-R1-SW-1 | IP - 10.175.246.111:
+          ansible_host: '10.175.246.111'
+        SITE - BAI | SW - NBAI2-ENGG-R1-SW-1 | IP - 10.175.246.112:
+          ansible_host: '10.175.246.112'
+        SITE - BAI | SW - NBAI2-MD-R1-SW-02 | IP - 10.175.246.114:
+          ansible_host: '10.175.246.114'
+        SITE - BAI | SW - NBAI2-MD-R1-SW-3 | IP - 10.175.246.115:
+          ansible_host: '10.175.246.115'
+        SITE - BAI | SW - NBAI2-NFG-R1-SW-1 | IP - 10.175.246.113:
+          ansible_host: '10.175.246.113'
+        SITE - BAI | SW - NBAI2-PFL-R1-SW-2 | IP - 10.175.246.110:
+          ansible_host: '10.175.246.110'
+        SITE - BAI | SW - QCI-Canteen-SW | IP - 10.175.246.73:
+          ansible_host: '10.175.246.73'
+        SITE - BAI | SW - QCI-SW11 | IP - 10.175.246.71:
+          ansible_host: '10.175.246.71'
+
+    BCB:
+      hosts:
+        SITE - BCB | SW - BCB-Core | IP - 10.200.246.254:
+          ansible_host: '10.200.246.254'
+        SITE - BCB | SW - BCB-Finishing-SW01 | IP - 10.200.246.54:
+          ansible_host: '10.200.246.54'
+        SITE - BCB | SW - BCB-RackB-SW01 | IP - 10.200.246.50:
+          ansible_host: '10.200.246.50'
+        SITE - BCB | SW - BCB_HR_SW02 | IP - 10.200.246.72:
+          ansible_host: '10.200.246.72'
+        SITE - BCB | SW - MB1FR3-ACCESS-C9200L | IP - 10.200.246.82:
+          ansible_host: '10.200.246.82'
+        SITE - BCB | SW - MB1FR4-ACCESS-C9200L | IP - 10.200.246.84:
+          ansible_host: '10.200.246.84'
+        SITE - BCB | SW - MB2FR2-ACCESS-C9200L | IP - 10.200.246.80:
+          ansible_host: '10.200.246.80'
+        SITE - BCB | SW - MB2FSR1-CORE-STACKWISE-C9300-A | IP - 10.200.246.250:
+          ansible_host: '10.200.246.250'
+        SITE - BCB | SW - MBGFR5-ACCESS-STACK | IP - 10.200.246.86:
+          ansible_host: '10.200.246.86'
+        SITE - BCB | SW - MBGFR7-ACCESS-STACK-C9200L-A | IP - 10.200.246.90:
+          ansible_host: '10.200.246.90'
+        SITE - BCB | SW - SR03R06-ACCESS-C9200 | IP - 10.200.246.88:
+          ansible_host: '10.200.246.88'
+        SITE - BCB | SW - SecR01R10-ACCESS-C9200L-A | IP - 10.200.246.96:
+          ansible_host: '10.200.246.96'
+
+    BCE:
+      hosts:
+        SITE - BCE | SW - BAL-CMY-Core | IP - 10.100.246.230:
+          ansible_host: '10.100.246.230'
+        SITE - BCE | SW - BAL-L-BackupSW | IP - 10.100.246.213:
+          ansible_host: '10.100.246.213'
+        SITE - BCE | SW - BAL-L-R5-SW02 | IP - 10.100.246.210:
+          ansible_host: '10.100.246.210'
+        SITE - BCE | SW - BAL-L-R5-SW03 | IP - 10.100.246.212:
+          ansible_host: '10.100.246.212'
+        SITE - BCE | SW - BAL-L-R6-SW01 | IP - 10.100.246.211:
+          ansible_host: '10.100.246.211'
+        SITE - BCE | SW - BCI-CORE | IP - 10.100.246.254:
+          ansible_host: '10.100.246.254'
+        SITE - BCE | SW - BCI-ICT-RACK01-SW01 | IP - 10.100.246.11:
+          ansible_host: '10.100.246.11'
+        SITE - BCE | SW - BCI-ICT-RACK01-SW02 | IP - 10.100.246.12:
+          ansible_host: '10.100.246.12'
+        SITE - BCE | SW - BCI-ICT-RACK01-SW03 | IP - 10.100.246.13:
+          ansible_host: '10.100.246.13'
+        SITE - BCE | SW - BCI-ICT-RACK01-SW04 | IP - 10.100.246.14:
+          ansible_host: '10.100.246.14'
+        SITE - BCE | SW - BCI-ICT-RACK02-SW01 | IP - 10.100.246.21:
+          ansible_host: '10.100.246.21'
+        SITE - BCE | SW - BCI-ICT-RACK02-SW02 | IP - 10.100.246.22:
+          ansible_host: '10.100.246.22'
+        SITE - BCE | SW - BCI-ICT-RACK02-SW03 | IP - 10.100.246.23:
+          ansible_host: '10.100.246.23'
+        SITE - BCE | SW - BCI-ICT-RACK03-SW01 | IP - 10.100.246.31:
+          ansible_host: '10.100.246.31'
+        SITE - BCE | SW - BCI-ICT-RACK03-SW02 | IP - 10.100.246.32:
+          ansible_host: '10.100.246.32'
+        SITE - BCE | SW - BCI-ICT-RACK03-SW03 | IP - 10.100.246.33:
+          ansible_host: '10.100.246.33'
+        SITE - BCE | SW - BCI-ICT-RACK05-SW01 | IP - 10.100.246.51:
+          ansible_host: '10.100.246.51'
+        SITE - BCE | SW - BCI-ICT-RACK05-SW02 | IP - 10.100.246.52:
+          ansible_host: '10.100.246.52'
+        SITE - BCE | SW - BCI-ICT-RACK05-SW03 | IP - 10.100.246.53:
+          ansible_host: '10.100.246.53'
+        SITE - BCE | SW - BCI-ICT-RACK06-SW01 | IP - 10.100.246.61:
+          ansible_host: '10.100.246.61'
+        SITE - BCE | SW - BCI-ICT-RACK06-SW02 | IP - 10.100.246.62:
+          ansible_host: '10.100.246.62'
+        SITE - BCE | SW - BCI-ICT-RACK06-SW03 | IP - 10.100.246.63:
+          ansible_host: '10.100.246.63'
+        SITE - BCE | SW - BCI-VICTORY-BD-SW01 | IP - 10.100.246.91:
+          ansible_host: '10.100.246.91'
+        SITE - BCE | SW - BCI-WH-02-SW01 | IP - 10.100.246.152:
+          ansible_host: '10.100.246.152'
+        SITE - BCE | SW - BCI-WH-HR-SW02 | IP - 10.100.246.151:
+          ansible_host: '10.100.246.151'
+        SITE - BCE | SW - BCI_WH_New_SW | IP - 10.100.246.150:
+          ansible_host: '10.100.246.150'
+#BCR skipped, connectivity issue
+    BCR:
+      hosts:
+        SITE - BCR | SW - BCCT-LIB-SW01 | IP - 10.104.246.161:
+          ansible_host: '10.104.246.161'
+        SITE - BCR | SW - BCR-CORE | IP - 10.104.246.254:
+          ansible_host: '10.104.246.254'
+        SITE - BCR | SW - BCR-EDI-SW04 | IP - 10.104.246.13:
+          ansible_host: '10.104.246.13'
+        SITE - BCR | SW - BCR-FO-SW06 | IP - 10.104.246.15:
+          ansible_host: '10.104.246.15'
+        SITE - BCR | SW - BCR-HR-SW03 | IP - 10.104.246.12:
+          ansible_host: '10.104.246.12'
+        SITE - BCR | SW - BCR-HR-SW05 | IP - 10.104.246.14:
+          ansible_host: '10.104.246.14'
+        SITE - BCR | SW - BCR-MIS-SW01 | IP - 10.104.246.10:
+          ansible_host: '10.104.246.10'
+        SITE - BCR | SW - BCR-MIS-SW02 | IP - 10.104.246.11:
+          ansible_host: '10.104.246.11'
+        SITE - BCR | SW - BCR-PRO-SW08 | IP - 10.104.246.17:
+          ansible_host: '10.104.246.17'
+        SITE - BCR | SW - BCRDF-SW-01 | IP - 10.104.246.90:
+          ansible_host: '10.104.246.90'
+        SITE - BCR | SW - BCRDF-SW-02 | IP - 10.104.246.92:
+          ansible_host: '10.104.246.92'
+        SITE - BCR | SW - BCRDF-SW-1 | IP - 10.104.246.91:
+          ansible_host: '10.104.246.91'
+        SITE - BCR | SW - BFL-SW-05 | IP - 10.104.246.85:
+          ansible_host: '10.104.246.85'
+        SITE - BCR | SW - BFL-SW-06 | IP - 10.104.246.86:
+          ansible_host: '10.104.246.86'
+        SITE - BCR | SW - BFL-SW3 | IP - 10.104.246.83:
+          ansible_host: '10.104.246.83'
+        SITE - BCR | SW - BFLR-SW1 | IP - 10.104.246.81:
+          ansible_host: '10.104.246.81'
+        SITE - BCR | SW - BFLR-SW2 | IP - 10.104.246.82:
+          ansible_host: '10.104.246.82'
+        SITE - BCR | SW - BFLR-SW4 | IP - 10.104.246.84:
+          ansible_host: '10.104.246.84'
+
+    BCRG:
+      hosts:
+        SITE - BCRG | SW - BCRD-Core-SW | IP - 10.102.246.254:
+          ansible_host: '10.102.246.254'
+        SITE - BCRG | SW - BCRD_FINISHING | IP - 10.102.246.5:
+          ansible_host: '10.102.246.5'
+        SITE - BCRG | SW - BCRG_Cutting_SW1 | IP - 10.102.246.8:
+          ansible_host: '10.102.246.8'
+        SITE - BCRG | SW - BCRG_ServerRoom_SW1 | IP - 10.102.246.7:
+          ansible_host: '10.102.246.7'
+        SITE - BCRG | SW - BCRG_ServerRoom_SW2 | IP - 10.102.246.6:
+          ansible_host: '10.102.246.6'
+        SITE - BCRG | SW - Test-SW | IP - 10.102.246.10:
+          ansible_host: '10.102.246.10'
+
+    BCS:
+      hosts:
+        SITE - BCS | SW - BCS-CORE | IP - 10.101.246.254:
+          ansible_host: '10.101.246.254'
+        SITE - BCS | SW - BCS_HR_SW1 | IP - 10.101.246.10:
+          ansible_host: '10.101.246.10'
+        SITE - BCS | SW - BCS_PLANT2_SW01 | IP - 10.101.246.20:
+          ansible_host: '10.101.246.20'
+        SITE - BCS | SW - Cutting_SW1 | IP - 10.101.246.7:
+          ansible_host: '10.101.246.7'
+        SITE - BCS | SW - Finiishing_SW01 | IP - 10.101.246.25:
+          ansible_host: '10.101.246.25'
+        SITE - BCS | SW - Plant2-SW02 | IP - 10.101.246.100:
+          ansible_host: '10.101.246.100'
+        SITE - BCS | SW - ServerRoom_SW1 | IP - 10.101.246.2:
+          ansible_host: '10.101.246.2'
+        SITE - BCS | SW - ServerRoom_SW2 | IP - 10.101.246.8:
+          ansible_host: '10.101.246.8'
+
+    BEB:
+      hosts:
+        SITE - BEB | SW - BASL-E-B2-CORE | IP - 10.57.246.254:
+          ansible_host: '10.57.246.254'
+        SITE - BEB | SW - BASL-SW1 | IP - 10.57.246.10:
+          ansible_host: '10.57.246.10'
+        SITE - BEB | SW - BASL-SW18 | IP - 10.57.246.18:
+          ansible_host: '10.57.246.18'
+        SITE - BEB | SW - BASL-SW19 | IP - 10.57.246.19:
+          ansible_host: '10.57.246.19'
+        SITE - BEB | SW - BASL-SW2 | IP - 10.57.246.11:
+          ansible_host: '10.57.246.11'
+        SITE - BEB | SW - BASL-SW3 | IP - 10.57.246.12:
+          ansible_host: '10.57.246.12'
+        SITE - BEB | SW - BASL-SW5 | IP - 10.57.246.14:
+          ansible_host: '10.57.246.14'
+        SITE - BEB | SW - BASL-SW6 | IP - 10.57.246.15:
+          ansible_host: '10.57.246.15'
+        SITE - BEB | SW - BASL-SW7 | IP - 10.57.246.16:
+          ansible_host: '10.57.246.16'
+        SITE - BEB | SW - BASL-SW8 | IP - 10.57.246.17:
+          ansible_host: '10.57.246.17'
+
+    BEK:
+      hosts:
+        SITE - BEK | SW - BEK-Core | IP - 10.51.246.254:
+          ansible_host: '10.51.246.254'
+        SITE - BEK | SW - BEK-R1-SW02 | IP - 10.51.246.11:
+          ansible_host: '10.51.246.11'
+        SITE - BEK | SW - BEK-R1-SW03 | IP - 10.51.246.12:
+          ansible_host: '10.51.246.12'
+        SITE - BEK | SW - BEK-R1-SW04 | IP - 10.51.246.13:
+          ansible_host: '10.51.246.13'
+        SITE - BEK | SW - BEK-R1-SW05 | IP - 10.51.246.14:
+          ansible_host: '10.51.246.14'
+        SITE - BEK | SW - BEK-R2-SW06 | IP - 10.51.246.21:
+          ansible_host: '10.51.246.21'
+        SITE - BEK | SW - BEK-R2-SW07 | IP - 10.51.246.22:
+          ansible_host: '10.51.246.22'
+        SITE - BEK | SW - BEK-R2-SW08 | IP - 10.51.246.23:
+          ansible_host: '10.51.246.23'
+        SITE - BEK | SW - BEK-R2-SW10 | IP - 10.51.246.24:
+          ansible_host: '10.51.246.24'
+        SITE - BEK | SW - BEK-R3-SW09 | IP - 10.51.246.31:
+          ansible_host: '10.51.246.31'
+
+    BEKA:
+      hosts:
+        # SITE - BEKA | SW - BEKA-CIF-R03 | IP - 10.53.246.33:
+        #   ansible_host: '10.53.246.33'
+        # SITE - BEKA | SW - BEKA-SVR-Sw02 | IP - 10.53.246.24:
+        #   ansible_host: '10.53.246.24'
+        # SITE - BEKA | SW - BEKA_SVR_Sw01 | IP - 10.53.246.23:
+        #   ansible_host: '10.53.246.23'
+        # SITE - BEKA | SW - BEKH-Auditorium-SW | IP - 10.53.246.34:
+        #   ansible_host: '10.53.246.34'
+        # SITE - BEKA | SW - BEKH-CIF-SW02 | IP - 10.53.246.35:
+        #   ansible_host: '10.53.246.35'
+        # SITE - BEKA | SW - BEKH-OFFICE-SW | IP - 10.53.246.25:
+        #   ansible_host: '10.53.246.25'
+        # SITE - BEKA | SW - BEKH-SW-01 | IP - 10.53.246.21:
+        #   ansible_host: '10.53.246.21'
+        # SITE - BEKA | SW - BEKH-SW-03 | IP - 10.53.246.22:
+        #   ansible_host: '10.53.246.22'
+        SITE - BEKA | SW - BEKH-SW-04 | IP - 10.53.246.30:
+          ansible_host: '10.53.246.30'
+        SITE - BEKA | SW - BEKH-SW-05 | IP - 10.53.246.31:
+          ansible_host: '10.53.246.31'
+        # SITE - BEKA | SW - BEKH_CORE_SW | IP - 10.53.246.254:
+        #   ansible_host: '10.53.246.254'
+
+    BEN:
+      hosts:
+        SITE - BEN | SW - BEN-PRO-FloorSW01 | IP - 10.52.246.14:
+          ansible_host: '10.52.246.14'
+        # SITE - BEN | SW - BEN-SW-01 | IP - 10.52.246.12:
+        #   ansible_host: '10.52.246.12'
+        # SITE - BEN | SW - BEN_CORE-SW | IP - 10.52.246.254:
+        #   ansible_host: '10.52.246.254'
+        # SITE - BEN | SW - Fabric_Inc | IP - 10.52.246.17:
+        #   ansible_host: '10.52.246.17'
+        # SITE - BEN | SW - TRIM_S | IP - 10.52.246.16:
+        #   ansible_host: '10.52.246.16'
+        # SITE - BEN | SW - TS-SW1 | IP - 10.52.246.13:
+        #   ansible_host: '10.52.246.13'
+
+    BER:
+      hosts:
+        SITE - BER | SW - BER-1F-SW1 | IP - 10.50.246.13:
+          ansible_host: '10.50.246.13'
+        SITE - BER | SW - BER-1F-SW3 | IP - 10.50.246.14:
+          ansible_host: '10.50.246.14'
+        SITE - BER | SW - BER-1F-SW6 | IP - 10.50.246.17:
+          ansible_host: '10.50.246.17'
+        SITE - BER | SW - BER-2F-SW1 | IP - 10.50.246.18:
+          ansible_host: '10.50.246.18'
+        SITE - BER | SW - BER-2F-SW10 | IP - 10.50.246.22:
+          ansible_host: '10.50.246.22'
+        SITE - BER | SW - BER-2F-SW2 | IP - 10.50.246.19:
+          ansible_host: '10.50.246.19'
+        SITE - BER | SW - BER-2F-SW7 | IP - 10.50.246.20:
+          ansible_host: '10.50.246.20'
+        SITE - BER | SW - BER-2F-SW8 | IP - 10.50.246.21:
+          ansible_host: '10.50.246.21'
+        SITE - BER | SW - BER-2F-SW9 | IP - 10.50.246.231:
+          ansible_host: '10.50.246.231'
+        SITE - BER | SW - BER-GF-SW1 | IP - 10.50.246.10:
+          ansible_host: '10.50.246.10'
+        SITE - BER | SW - BER-GF-SW3 | IP - 10.50.246.12:
+          ansible_host: '10.50.246.12'
+        SITE - BER | SW - BER-GF-SW4 | IP - 10.50.246.9:
+          ansible_host: '10.50.246.9'
+        SITE - BER | SW - Core-Switch-01 | IP - 10.50.246.254:
+          ansible_host: '10.50.246.254'
+        SITE - BER | SW - WAN-Switch | IP - 10.50.246.50:
+          ansible_host: '10.50.246.50'
+
+    BERA2:
+      hosts:
+        SITE - BERA2 | SW - BERA-CANTEEN_SW1 | IP - 10.58.246.70:
+          ansible_host: '10.58.246.70'
+        SITE - BERA2 | SW - BERA-FronOffice-SW01 | IP - 10.58.246.50:
+          ansible_host: '10.58.246.50'
+        SITE - BERA2 | SW - BERA-WASTECOLLECTION_R8_SW1 | IP - 10.58.246.80:
+          ansible_host: '10.58.246.80'
+        SITE - BERA2 | SW - BERA1_Stores_SW01 | IP - 10.58.246.30:
+          ansible_host: '10.58.246.30'
+        SITE - BERA2 | SW - BERA2-Core-SW | IP - 10.58.246.254:
+          ansible_host: '10.58.246.254'
+        SITE - BERA2 | SW - BERA_Cutting_SW01 | IP - 10.58.246.20:
+          ansible_host: '10.58.246.20'
+        SITE - BERA2 | SW - BERA_GuardRoom_SW1 | IP - 10.58.246.60:
+          ansible_host: '10.58.246.60'
+        SITE - BERA2 | SW - BERA_Production_R4_SW01 | IP - 10.58.246.40:
+          ansible_host: '10.58.246.40'
+
+    BI3:
+      hosts:
+        SITE - BI3 | SW - FTD-1F-3 | IP - 10.32.246.200:
+          ansible_host: '10.32.246.200'
+        SITE - BI3 | SW - FTD-2F-3 | IP - 10.32.246.205:
+          ansible_host: '10.32.246.205'
+        SITE - BI3 | SW - FTD-Core | IP - 10.32.246.254:
+          ansible_host: '10.32.246.254'
+
+    BIAV1:
+      hosts:
+        SITE - BIAV1 | SW - BIAV-CORE-SW | IP - 10.81.246.254:
+          ansible_host: '10.81.246.254'
+        SITE - BIAV1 | SW - BIAV-SRVO-SW10 | IP - 10.81.246.23:
+          ansible_host: '10.81.246.23'
+        SITE - BIAV1 | SW - BIAV-SRVO-SW9 | IP - 10.81.246.22:
+          ansible_host: '10.81.246.22'
+        SITE - BIAV1 | SW - BIAV-SVRO-SW12 | IP - 10.81.246.19:
+          ansible_host: '10.81.246.19'
+        SITE - BIAV1 | SW - BIAV-SVRO-SW2 | IP - 10.81.246.2:
+          ansible_host: '10.81.246.2'
+        SITE - BIAV1 | SW - BIAV-SW-R2 | IP - 10.81.246.10:
+          ansible_host: '10.81.246.10'
+        SITE - BIAV1 | SW - BIAV-SW-R3 | IP - 10.81.246.11:
+          ansible_host: '10.81.246.11'
+        SITE - BIAV1 | SW - BIAV-SW-R4 | IP - 10.81.246.12:
+          ansible_host: '10.81.246.12'
+        SITE - BIAV1 | SW - BIAV-SW-R5 | IP - 10.81.246.13:
+          ansible_host: '10.81.246.13'
+        SITE - BIAV1 | SW - BIAV-SW-R6 | IP - 10.81.246.14:
+          ansible_host: '10.81.246.14'
+        SITE - BIAV1 | SW - BIAV-SW-R7 | IP - 10.81.246.15:
+          ansible_host: '10.81.246.15'
+        SITE - BIAV1 | SW - BIAV-SW-R8 | IP - 10.81.246.16:
+          ansible_host: '10.81.246.16'
+        SITE - BIAV1 | SW - BIAV-SW-R9 | IP - 10.81.246.17:
+          ansible_host: '10.81.246.17'
+
+    BIAV2:
+      hosts:
+        SITE - BIAV2 | SW - BIAV2-EMB-SW1 | IP - 10.81.246.20:
+          ansible_host: '10.81.246.20'
+
+    BIG:
+      hosts:
+        SITE - BIG | SW - BCG-CORE-SW | IP - 10.103.246.254:
+          ansible_host: '10.103.246.254'
+        SITE - BIG | SW - BCG-SW-DP2 | IP - 10.103.246.145:
+          ansible_host: '10.103.246.145'
+        SITE - BIG | SW - BCG-SW-FO | IP - 10.103.246.140:
+          ansible_host: '10.103.246.140'
+        SITE - BIG | SW - BCG-SW-STO | IP - 10.103.246.143:
+          ansible_host: '10.103.246.143'
+
+    BIK:
+      hosts:
+        # SITE - BIK | SW - BIK-CORE-SW | IP - 10.76.246.254:
+        #   ansible_host: '10.76.246.254'
+        SITE - BIK | SW - BIK-SW-FAB_INSPECTION | IP - 10.76.246.8:
+          ansible_host: '10.76.246.8'
+        SITE - BIK | SW - BIK_Cutting_SW01 | IP - 10.76.246.5:
+          ansible_host: '10.76.246.5'
+        SITE - BIK | SW - BIK_Cutting_SW02 | IP - 10.76.246.6:
+          ansible_host: '10.76.246.6'
+        SITE - BIK | SW - BIK_Cutting_SW03 | IP - 10.76.246.7:
+          ansible_host: '10.76.246.7'
+        # SITE - BIK | SW - BIK_Cutting_SW04 | IP - 10.76.246.11:
+        #   ansible_host: '10.76.246.11'
+        # SITE - BIK | SW - BIK_backup-SW | IP - 10.76.246.12:
+        #   ansible_host: '10.76.246.12'
+        SITE - BIK | SW - RACK-A-SERVER_ROOM | IP - 10.76.246.4:
+          ansible_host: '10.76.246.4'
+        SITE - BIK | SW - RACK-B-WORKSTUDY | IP - 10.76.246.2:
+          ansible_host: '10.76.246.2'
+        SITE - BIK | SW - RACK-C-PRODUCTION | IP - 10.76.246.3:
+          ansible_host: '10.76.246.3'
+        SITE - BIK | SW - RACK-D-PACKING | IP - 10.76.246.9:
+          ansible_host: '10.76.246.9'
+        SITE - BIK | SW - TRAINING-SCHOOL-SW | IP - 10.76.246.10:
+          ansible_host: '10.76.246.10'
+
+    BIM:
+      hosts:
+        SITE - BIM | SW - BIM-ADMI-SW1 | IP - 10.77.246.13:
+          ansible_host: '10.77.246.13'
+        SITE - BIM | SW - BIM-CUT-SW1 | IP - 10.77.246.8:
+          ansible_host: '10.77.246.8'
+        SITE - BIM | SW - BIM-FABIN-SW1 | IP - 10.77.246.15:
+          ansible_host: '10.77.246.15'
+        SITE - BIM | SW - BIM-METR-SW1 | IP - 10.77.246.3:
+          ansible_host: '10.77.246.3'
+        SITE - BIM | SW - BIM-MNT-SW1 | IP - 10.77.246.17:
+          ansible_host: '10.77.246.17'
+        SITE - BIM | SW - BIM-PRO02-SW01 | IP - 10.77.246.18:
+          ansible_host: '10.77.246.18'
+        SITE - BIM | SW - BIM-PROD-SW1 | IP - 10.77.246.10:
+          ansible_host: '10.77.246.10'
+        SITE - BIM | SW - BIM-PROD-SW2 | IP - 10.77.246.2:
+          ansible_host: '10.77.246.2'
+        SITE - BIM | SW - BIM-STORE-SW1 | IP - 10.77.246.11:
+          ansible_host: '10.77.246.11'
+        SITE - BIM | SW - BIM-SVRO-SW1 | IP - 10.77.246.9:
+          ansible_host: '10.77.246.9'
+        SITE - BIM | SW - BIM-SVRO-SW4 | IP - 10.77.246.12:
+          ansible_host: '10.77.246.12'
+        SITE - BIM | SW - BIM-SVRO-SW6 | IP - 10.77.246.16:
+          ansible_host: '10.77.246.16'
+        SITE - BIM | SW - BIM_Core_Switch | IP - 10.77.246.254:
+          ansible_host: '10.77.246.254'
+        SITE - BIM | SW - ServerRoom-BackupSW | IP - 10.77.246.5:
+          ansible_host: '10.77.246.5'
+
+    BIMR1:
+      hosts:
+        SITE - BIMR1 | SW - BIMR-CORE-SW | IP - 10.78.246.254:
+          ansible_host: '10.78.246.254'
+        SITE - BIMR1 | SW - BIMR-CUT-SW1 | IP - 10.78.246.5:
+          ansible_host: '10.78.246.5'
+        SITE - BIMR1 | SW - BIMR-CUT-SW2 | IP - 10.78.246.6:
+          ansible_host: '10.78.246.6'
+        SITE - BIMR1 | SW - BIMR-FSTOR-SW1 | IP - 10.78.246.9:
+          ansible_host: '10.78.246.9'
+        SITE - BIMR1 | SW - BIMR-PROD-SW1 | IP - 10.78.246.11:
+          ansible_host: '10.78.246.11'
+        SITE - BIMR1 | SW - BIMR-STOR-SW | IP - 10.78.246.7:
+          ansible_host: '10.78.246.7'
+        SITE - BIMR1 | SW - BIMR-SVRO-SW1 | IP - 10.78.246.2:
+          ansible_host: '10.78.246.2'
+        SITE - BIMR1 | SW - BIMR-SVRO-SW2 | IP - 10.78.246.3:
+          ansible_host: '10.78.246.3'
+        SITE - BIMR1 | SW - BIMR-SVRO-SW3 | IP - 10.78.246.4:
+          ansible_host: '10.78.246.4'
+        SITE - BIMR1 | SW - BIMR-SW-01 | IP - 10.78.246.8:
+          ansible_host: '10.78.246.8'
+
+    BIMR2:
+      hosts:
+        SITE - BIMR2 | SW - BIMR2-CORE-SW | IP - 10.79.246.254:
+          ansible_host: '10.79.246.254'
+        SITE - BIMR2 | SW - BIMR2-CUT-SW1 | IP - 10.79.246.6:
+          ansible_host: '10.79.246.6'
+        SITE - BIMR2 | SW - BIMR2-INSP-SW1 | IP - 10.79.246.7:
+          ansible_host: '10.79.246.7'
+        SITE - BIMR2 | SW - BIMR2-OCUT-SW1 | IP - 10.79.246.9:
+          ansible_host: '10.79.246.9'
+        SITE - BIMR2 | SW - BIMR2-SVRO-SW1 | IP - 10.79.246.5:
+          ansible_host: '10.79.246.5'
+        SITE - BIMR2 | SW - BIMR2-SVRO-SW2 | IP - 10.79.246.3:
+          ansible_host: '10.79.246.3'
+        SITE - BIMR2 | SW - BIMR2-SVRO-SW3 | IP - 10.79.246.4:
+          ansible_host: '10.79.246.4'
+        SITE - BIMR2 | SW - BIMR2-SVRO-SW4 | IP - 10.79.246.2:
+          ansible_host: '10.79.246.2'
+        SITE - BIMR2 | SW - BIMR2-TRIMS-SW1 | IP - 10.79.246.8:
+          ansible_host: '10.79.246.8'
+
+    BIP:
+      hosts:
+        SITE - BIP | SW - BIP-CADR-SW1 | IP - 10.80.246.9:
+          ansible_host: '10.80.246.9'
+        SITE - BIP | SW - BIP-CADR-SW2 | IP - 10.80.246.8:
+          ansible_host: '10.80.246.8'
+        SITE - BIP | SW - BIP-CADR-SW3 | IP - 10.80.246.7:
+          ansible_host: '10.80.246.7'
+        SITE - BIP | SW - BIP-CORE-SW | IP - 10.80.246.254:
+          ansible_host: '10.80.246.254'
+        SITE - BIP | SW - BIP-FG-SW1 | IP - 10.80.246.11:
+          ansible_host: '10.80.246.11'
+        SITE - BIP | SW - BIP-PIP-SW1 | IP - 10.80.246.13:
+          ansible_host: '10.80.246.13'
+        SITE - BIP | SW - BIP-PROD-SW1 | IP - 10.80.246.10:
+          ansible_host: '10.80.246.10'
+        SITE - BIP | SW - BIP-SVRO-SW1 | IP - 10.80.246.4:
+          ansible_host: '10.80.246.4'
+        SITE - BIP | SW - BIP-SVRO-SW2 | IP - 10.80.246.5:
+          ansible_host: '10.80.246.5'
+        SITE - BIP | SW - BIP-SVRO-SW3 | IP - 10.80.246.6:
+          ansible_host: '10.80.246.6'
+        SITE - BIP | SW - BIP-SWING-01 | IP - 10.80.246.14:
+          ansible_host: '10.80.246.14'
+        SITE - BIP | SW - FG_Warehouse_SW01 | IP - 10.80.246.16:
+          ansible_host: '10.80.246.16'
+
+    BIW:
+      hosts:
+        SITE - BIW | SW - 1F-DER-01-SW1 | IP - 10.75.246.19:
+          ansible_host: '10.75.246.19'
+        # SITE - BIW | SW - 1F-DER-01-SW2 | IP - 10.75.246.20:
+        #   ansible_host: '10.75.246.20'
+        # SITE - BIW | SW - 1F-DER-01-SW3 | IP - 10.75.246.128:
+        #   ansible_host: '10.75.246.128'
+        # SITE - BIW | SW - 1F-DER-02-SW1 | IP - 10.75.246.21:
+        #   ansible_host: '10.75.246.21'
+        # SITE - BIW | SW - 1F-DER-02-SW2 | IP - 10.75.246.22:
+        #   ansible_host: '10.75.246.22'
+        SITE - BIW | SW - 1F-DER-02-SW3 | IP - 10.75.246.129:
+          ansible_host: '10.75.246.129'
+        # SITE - BIW | SW - 2F-DER-01-SW1 | IP - 10.75.246.23:
+        #   ansible_host: '10.75.246.23'
+        # SITE - BIW | SW - 2F-DER-01-SW2 | IP - 10.75.246.131:
+        #   ansible_host: '10.75.246.131'
+        # SITE - BIW | SW - 2F-DER-02-SW1 | IP - 10.75.246.24:
+        #   ansible_host: '10.75.246.24'
+        # SITE - BIW | SW - 2F-DER-02-SW2 | IP - 10.75.246.25:
+        #   ansible_host: '10.75.246.25'
+        # SITE - BIW | SW - 2F-DER-02-SW3 | IP - 10.75.246.130:
+        #   ansible_host: '10.75.246.130'
+        # SITE - BIW | SW - AL-Sample_SW1 | IP - 10.75.246.51:
+        #   ansible_host: '10.75.246.51'
+        # SITE - BIW | SW - AL-Sample_SW2 | IP - 10.75.246.52:
+        #   ansible_host: '10.75.246.52'
+        # SITE - BIW | SW - BIW-CANTIN-SW1 | IP - 10.75.246.73:
+        #   ansible_host: '10.75.246.73'
+        # SITE - BIW | SW - BIW-CUT-SW2 | IP - 10.75.246.69:
+        #   ansible_host: '10.75.246.69'
+        # SITE - BIW | SW - BIW-Core | IP - 10.75.246.28:
+        #   ansible_host: '10.75.246.28'
+        # SITE - BIW | SW - BIW-FF-SRR1-SW3 | IP - 10.75.246.70:
+        #   ansible_host: '10.75.246.70'
+        # SITE - BIW | SW - BIW-HRD-SW1 | IP - 10.75.246.72:
+        #   ansible_host: '10.75.246.72'
+        # SITE - BIW | SW - BIW-HRD-SW2 | IP - 10.75.246.68:
+        #   ansible_host: '10.75.246.68'
+        # SITE - BIW | SW - BIW-ICT | IP - 10.75.246.30:
+        #   ansible_host: '10.75.246.30'
+        # SITE - BIW | SW - BIW-LIDL-SR-SW1 | IP - 10.75.246.67:
+        #   ansible_host: '10.75.246.67'
+        # SITE - BIW | SW - BIW-PRODUCTION-SW_C | IP - 10.75.246.58:
+        #   ansible_host: '10.75.246.58'
+        # SITE - BIW | SW - BIW-Production-SW_A | IP - 10.75.246.56:
+        #   ansible_host: '10.75.246.56'
+        # SITE - BIW | SW - BIW-Production-SW_B | IP - 10.75.246.57:
+        #   ansible_host: '10.75.246.57'
+        # SITE - BIW | SW - BIW-SRV-SW1 | IP - 10.75.246.71:
+        #   ansible_host: '10.75.246.71'
+        # SITE - BIW | SW - BIW-SW-CUTTING | IP - 10.75.246.63:
+        #   ansible_host: '10.75.246.63'
+        # SITE - BIW | SW - BIW-TRIMST-SW1 | IP - 10.75.246.66:
+        #   ansible_host: '10.75.246.66'
+        # SITE - BIW | SW - BIW2-CORE-SW | IP - 10.75.246.254:
+        #   ansible_host: '10.75.246.254'
+        # SITE - BIW | SW - BIW2-SEC-CORE-SW | IP - 10.75.246.120:
+        #   ansible_host: '10.75.246.120'
+        # SITE - BIW | SW - BIW2_Server_Core | IP - 10.75.246.26:
+        #   ansible_host: '10.75.246.26'
+        # SITE - BIW | SW - G-DER-01-SW1 | IP - 10.75.246.15:
+        #   ansible_host: '10.75.246.15'
+        # SITE - BIW | SW - G-DER-01-SW2 | IP - 10.75.246.16:
+        #   ansible_host: '10.75.246.16'
+        # SITE - BIW | SW - G-DER-01-SW3 | IP - 10.75.246.126:
+        #   ansible_host: '10.75.246.126'
+        # SITE - BIW | SW - G-DER-02-SW1 | IP - 10.75.246.17:
+        #   ansible_host: '10.75.246.17'
+        # SITE - BIW | SW - G-DER-02-SW2 | IP - 10.75.246.18:
+        #   ansible_host: '10.75.246.18'
+        # SITE - BIW | SW - G-DER-02-SW3 | IP - 10.75.246.127:
+        #   ansible_host: '10.75.246.127'
+        # SITE - BIW | SW - G-DER-02-SW3-Temp | IP - 10.75.246.31:
+        #   ansible_host: '10.75.246.31'
+        # SITE - BIW | SW - ISE-Dot1x-Test-SW | IP - 10.75.246.100:
+        #   ansible_host: '10.75.246.100'
+        # SITE - BIW | SW - LG-DER-01-SW1 | IP - 10.75.246.10:
+        #   ansible_host: '10.75.246.10'
+        # SITE - BIW | SW - LG-DER-01-SW2 | IP - 10.75.246.121:
+        #   ansible_host: '10.75.246.121'
+        # SITE - BIW | SW - LG-DER-02-SW1 | IP - 10.75.246.11:
+        #   ansible_host: '10.75.246.11'
+        # SITE - BIW | SW - LG-DER-02-SW2 | IP - 10.75.246.122:
+        #   ansible_host: '10.75.246.122'
+        # SITE - BIW | SW - LG-DER-03-SW1 | IP - 10.75.246.12:
+        #   ansible_host: '10.75.246.12'
+        # SITE - BIW | SW - LG-DER-03-SW2 | IP - 10.75.246.123:
+        #   ansible_host: '10.75.246.123'
+        # SITE - BIW | SW - LG-DER-04-SW1 | IP - 10.75.246.13:
+        #   ansible_host: '10.75.246.13'
+        # SITE - BIW | SW - LG-DER-04-SW2 | IP - 10.75.246.124:
+        #   ansible_host: '10.75.246.124'
+        # SITE - BIW | SW - LG-DER-05-SW1 | IP - 10.75.246.14:
+        #   ansible_host: '10.75.246.14'
+        # SITE - BIW | SW - LG-DER-05-SW2 | IP - 10.75.246.125:
+        #   ansible_host: '10.75.246.125'
+        # SITE - BIW | SW - LIDL-SAMPLE | IP - 10.75.246.62:
+        #   ansible_host: '10.75.246.62'
+        # SITE - BIW | SW - SRV_PABX_SW | IP - 10.75.246.27:
+        #   ansible_host: '10.75.246.27'
+        # SITE - BIW | SW - SampleRoom_R2_SW | IP - 10.75.246.64:
+        #   ansible_host: '10.75.246.64'
+        # SITE - BIW | SW - Sample_Room_Main_SW | IP - 10.75.246.53:
+        #   ansible_host: '10.75.246.53'
+        # SITE - BIW | SW - Sample_Room_SW1 | IP - 10.75.246.54:
+        #   ansible_host: '10.75.246.54'
+        # SITE - BIW | SW - Sample_Room_SW2 | IP - 10.75.246.55:
+        #   ansible_host: '10.75.246.55'
+        # SITE - BIW | SW - Sample_Room_SW3 | IP - 10.75.246.65:
+        #   ansible_host: '10.75.246.65'
+        # SITE - BIW | SW - TEMP_FOR_SHROOM | IP - 10.75.246.61:
+        #   ansible_host: '10.75.246.61'
+
+    BIWH:
+      hosts:
+        # SITE - BIWH | SW - BASL-E-WH-Core | IP - 10.84.246.4:
+        #   ansible_host: '10.84.246.4'
+        SITE - BIWH | SW - BASL-I-WH-Core | IP - 10.85.10.254:
+          ansible_host: '10.85.10.254'
+        # SITE - BIWH | SW - BASL-WH-01 | IP - 10.84.246.5:
+        #   ansible_host: '10.84.246.5'
+        # SITE - BIWH | SW - EKALA-FF-WH-CORE | IP - 10.84.254.242:
+        #   ansible_host: '10.84.254.242'
+        # SITE - BIWH | SW - EKALA-FF-WH-CORE01 | IP - 10.84.246.254:
+        #   ansible_host: '10.84.246.254'
+        # SITE - BIWH | SW - EKALA-WH-SW002 | IP - 10.84.246.2:
+        #   ansible_host: '10.84.246.2'
+        # SITE - BIWH | SW - EKALA-WH-SW02 | IP - 10.84.254.2:
+        #   ansible_host: '10.84.254.2'
+        # SITE - BIWH | SW - EKALA-WH-SW03 | IP - 10.84.254.3:
+        #   ansible_host: '10.84.254.3'
+        # SITE - BIWH | SW - EKALA-WH-SW03-01 | IP - 10.84.246.3:
+        #   ansible_host: '10.84.246.3'
+
+    BLIB:
+      hosts:
+        SITE - BLIB | SW - BLIB-ACC-SW-01 | IP - 10.151.246.30:
+          ansible_host: '10.151.246.30'
+        SITE - BLIB | SW - BLIB-ACC-SW-02 | IP - 10.151.246.31:
+          ansible_host: '10.151.246.31'
+        SITE - BLIB | SW - BLIB-ACC-SW-03 | IP - 10.151.246.32:
+          ansible_host: '10.151.246.32'
+        SITE - BLIB | SW - BLSC-Core | IP - 10.151.246.254:
+          ansible_host: '10.151.246.254'
+        SITE - BLIB | SW - BLSC-DIS-SW-01 | IP - 10.151.246.11:
+          ansible_host: '10.151.246.11'
+        SITE - BLIB | SW - BLSC-DIS-SW-02 | IP - 10.151.246.12:
+          ansible_host: '10.151.246.12'
+        SITE - BLIB | SW - BLSC-DIS-SW-03 | IP - 10.151.246.13:
+          ansible_host: '10.151.246.13'
+        SITE - BLIB | SW - BLSC-DIS-SW-04 | IP - 10.151.246.14:
+          ansible_host: '10.151.246.14'
+        SITE - BLIB | SW - BLSC-DIS-SW-05 | IP - 10.151.246.15:
+          ansible_host: '10.151.246.15'
+        SITE - BLIB | SW - BLSC-DIS-SW-06 | IP - 10.151.246.16:
+          ansible_host: '10.151.246.16'
+        SITE - BLIB | SW - BLSC-DIS-SW-07 | IP - 10.151.246.17:
+          ansible_host: '10.151.246.17'
+        SITE - BLIB | SW - BLSC-DIS-SW-08 | IP - 10.151.246.18:
+          ansible_host: '10.151.246.18'
+        SITE - BLIB | SW - BLSC-DIS-SW-09 | IP - 10.151.246.19:
+          ansible_host: '10.151.246.19'
+        SITE - BLIB | SW - BLSC-DIS-SW-10 | IP - 10.151.246.20:
+          ansible_host: '10.151.246.20'
+        SITE - BLIB | SW - BLSC-DIS-SW-11 | IP - 10.151.246.21:
+          ansible_host: '10.151.246.21'
+        SITE - BLIB | SW - BLSC-DIS-SW-12 | IP - 10.151.246.22:
+          ansible_host: '10.151.246.22'
+        SITE - BLIB | SW - BLSC-DIS-SW-13 | IP - 10.151.246.23:
+          ansible_host: '10.151.246.23'
+        SITE - BLIB | SW - BLSC-DIS-SW-14 | IP - 10.151.246.24:
+          ansible_host: '10.151.246.24'
+        SITE - BLIB | SW - BLSC-FIB-SW-01 | IP - 10.151.246.10:
+          ansible_host: '10.151.246.10'
+
+    BLIN:
+      hosts:
+        SITE - BLIN | SW - BLIN-ACC-SW-02 | IP - 10.150.246.12:
+          ansible_host: '10.150.246.12'
+        SITE - BLIN | SW - BLIN-ACC-SW-03 | IP - 10.150.246.13:
+          ansible_host: '10.150.246.13'
+        SITE - BLIN | SW - BLIN-ACC-SW-04 | IP - 10.150.246.14:
+          ansible_host: '10.150.246.14'
+        SITE - BLIN | SW - BLIN-ACC-SW-05 | IP - 10.150.246.21:
+          ansible_host: '10.150.246.21'
+        SITE - BLIN | SW - BLIN-ACC-SW-06 | IP - 10.150.246.22:
+          ansible_host: '10.150.246.22'
+        SITE - BLIN | SW - BLIN-ACC-SW-07 | IP - 10.150.246.23:
+          ansible_host: '10.150.246.23'
+        SITE - BLIN | SW - BLIN-ACC-SW-08 | IP - 10.150.246.24:
+          ansible_host: '10.150.246.24'
+        SITE - BLIN | SW - BLIN-ACC-SW-09 | IP - 10.150.246.25:
+          ansible_host: '10.150.246.25'
+        SITE - BLIN | SW - BLIN-ACC-SW-10 | IP - 10.150.246.26:
+          ansible_host: '10.150.246.26'
+        SITE - BLIN | SW - BLIN-ACC-SW-11 | IP - 10.150.246.27:
+          ansible_host: '10.150.246.27'
+        SITE - BLIN | SW - BLIN-ACC-SW-12 | IP - 10.150.246.28:
+          ansible_host: '10.150.246.28'
+        SITE - BLIN | SW - BLIN-ACC-SW-13 | IP - 10.150.246.29:
+          ansible_host: '10.150.246.29'
+        SITE - BLIN | SW - BLIN-ACC-SW-15 | IP - 10.150.246.31:
+          ansible_host: '10.150.246.31'
+        SITE - BLIN | SW - BLIN-ACC-SW-16 | IP - 10.150.246.32:
+          ansible_host: '10.150.246.32'
+        SITE - BLIN | SW - BLIN-ACC-SW-17 | IP - 10.150.246.41:
+          ansible_host: '10.150.246.41'
+        SITE - BLIN | SW - BLIN-ACC-SW-18 | IP - 10.150.246.42:
+          ansible_host: '10.150.246.42'
+        SITE - BLIN | SW - BLIN-ACC-SW-19 | IP - 10.150.246.43:
+          ansible_host: '10.150.246.43'
+        SITE - BLIN | SW - BLIN-ACC-SW-20 | IP - 10.150.246.44:
+          ansible_host: '10.150.246.44'
+        SITE - BLIN | SW - BLIN-ACC-SW-22 | IP - 10.150.246.51:
+          ansible_host: '10.150.246.51'
+        SITE - BLIN | SW - BLIN-ACC-SW-23 | IP - 10.150.246.52:
+          ansible_host: '10.150.246.52'
+        SITE - BLIN | SW - BLIN-ACC-SW-24 | IP - 10.150.246.53:
+          ansible_host: '10.150.246.53'
+        SITE - BLIN | SW - BLIN-ACC-SW-25 | IP - 10.150.246.55:
+          ansible_host: '10.150.246.55'
+        SITE - BLIN | SW - BLIN-ACC-SW-27 | IP - 10.150.246.57:
+          ansible_host: '10.150.246.57'
+        SITE - BLIN | SW - BLIN-ACC-SW-28 | IP - 10.150.246.58:
+          ansible_host: '10.150.246.58'
+        SITE - BLIN | SW - BLIN-ACC-SW-29 | IP - 10.150.246.59:
+          ansible_host: '10.150.246.59'
+        SITE - BLIN | SW - BLIN-ACC-SW-30 | IP - 10.150.246.60:
+          ansible_host: '10.150.246.60'
+        SITE - BLIN | SW - BLIN-ACC-SW-31 | IP - 10.150.246.61:
+          ansible_host: '10.150.246.61'
+        SITE - BLIN | SW - BLIN-ACC-SW-32 | IP - 10.150.246.62:
+          ansible_host: '10.150.246.62'
+        SITE - BLIN | SW - BLIN-BONDING | IP - 10.150.246.76:
+          ansible_host: '10.150.246.76'
+        SITE - BLIN | SW - BLIN-Core | IP - 10.150.246.254:
+          ansible_host: '10.150.246.254'
+        SITE - BLIN | SW - BLIN-SW | IP - 10.150.246.70:
+          ansible_host: '10.150.246.70'
+
+    BLL:
+      hosts:
+        SITE - BLL | SW - BAL-1F-SW01 | IP - 10.10.246.11:
+          ansible_host: '10.10.246.11'
+        SITE - BLL | SW - BAL-1F-SW03 | IP - 10.10.246.12:
+          ansible_host: '10.10.246.12'
+        SITE - BLL | SW - BAL-2F-SW01 | IP - 10.10.246.21:
+          ansible_host: '10.10.246.21'
+        SITE - BLL | SW - BAL-3F-SW01 | IP - 10.10.246.31:
+          ansible_host: '10.10.246.31'
+        SITE - BLL | SW - BAL-3F-SW03 | IP - 10.10.246.32:
+          ansible_host: '10.10.246.32'
+        SITE - BLL | SW - BAL-4F-SW01 | IP - 10.10.246.41:
+          ansible_host: '10.10.246.41'
+        SITE - BLL | SW - BAL-4F-SW03 | IP - 10.10.246.42:
+          ansible_host: '10.10.246.42'
+        SITE - BLL | SW - BAL-5F-SW01 | IP - 10.10.246.51:
+          ansible_host: '10.10.246.51'
+        SITE - BLL | SW - BAL-5F-SW03 | IP - 10.10.246.52:
+          ansible_host: '10.10.246.52'
+        SITE - BLL | SW - BAL-6F-SW01 | IP - 10.10.246.61:
+          ansible_host: '10.10.246.61'
+        SITE - BLL | SW - BAL-6F-SW03 | IP - 10.10.246.62:
+          ansible_host: '10.10.246.62'
+        SITE - BLL | SW - BAL-7F-SW01 | IP - 10.10.246.71:
+          ansible_host: '10.10.246.71'
+        SITE - BLL | SW - BAL-7F-SW03 | IP - 10.10.246.72:
+          ansible_host: '10.10.246.72'
+        SITE - BLL | SW - BAL-GF-SW03 | IP - 10.10.246.9:
+          ansible_host: '10.10.246.9'
+        SITE - BLL | SW - BAL24-GF-SW01 | IP - 10.10.246.82:
+          ansible_host: '10.10.246.82'
+        SITE - BLL | SW - BAL24-SW-03 | IP - 10.10.246.83:
+          ansible_host: '10.10.246.83'
+        SITE - BLL | SW - BLL-WAN-3850 | IP - 10.10.0.11:
+          ansible_host: '10.10.0.11'
+        SITE - BLL | SW - Bi3GD-409-GF-01 | IP - 10.10.246.91:
+          ansible_host: '10.10.246.91'
+        SITE - BLL | SW - COL-DC-I-2960 | IP - 10.10.248.81:
+          ansible_host: '10.10.248.81'
+        SITE - BLL | SW - COL-DC-M-2960 | IP - 10.10.248.91:
+          ansible_host: '10.10.248.91'
+        SITE - BLL | SW - COL-DMZ-D-2960 | IP - 10.10.248.71:
+          ansible_host: '10.10.248.71'
+        SITE - BLL | SW - EKA-DC-I-2960 | IP - 10.20.248.81:
+          ansible_host: '10.20.248.81'
+        SITE - BLL | SW - EKA-DC-M-2960 | IP - 10.20.248.91:
+          ansible_host: '10.20.248.91'
+        SITE - BLL | SW - EKA-DC-WAN-3850 | IP - 10.20.248.254:
+          ansible_host: '10.20.248.254'
+        SITE - BLL | SW - EKA-DMZ-D-2960 | IP - 10.20.248.71:
+          ansible_host: '10.20.248.71'
+
+    TJI:
+      hosts:
+        SITE - TJI | SW - TJI-ADMIN-26 | IP - 10.190.246.26:
+          ansible_host: '10.190.246.26'
+        SITE - TJI | SW - TJI-ADMIN-29 | IP - 10.190.246.29:
+          ansible_host: '10.190.246.29'
+        SITE - TJI | SW - TJI-ADMIN-30 | IP - 10.190.246.30:
+          ansible_host: '10.190.246.30'
+        SITE - TJI | SW - TJI-ADMIN-31 | IP - 10.190.246.31:
+          ansible_host: '10.190.246.31'
+        SITE - TJI | SW - TJI-ADMIN-32 | IP - 10.190.246.32:
+          ansible_host: '10.190.246.32'
+        SITE - TJI | SW - TJI-ADMIN-62 | IP - 10.190.246.62:
+          ansible_host: '10.190.246.62'
+        SITE - TJI | SW - TJI-ADMIN-63 | IP - 10.190.246.63:
+          ansible_host: '10.190.246.63'
+        SITE - TJI | SW - TJI-ADMIN-64 | IP - 10.190.246.64:
+          ansible_host: '10.190.246.64'
+        SITE - TJI | SW - TJI-ADMIN-65 | IP - 10.190.246.65:
+          ansible_host: '10.190.246.65'
+        SITE - TJI | SW - TJI-CAT-CCTV-35 | IP - 10.190.246.35:
+          ansible_host: '10.190.246.35'
+        SITE - TJI | SW - TJI-CAT-CCTV-50 | IP - 10.190.246.50:
+          ansible_host: '10.190.246.50'
+        SITE - TJI | SW - TJI-CCTV-73 | IP - 10.190.246.73:
+          ansible_host: '10.190.246.73'
+        SITE - TJI | SW - TJI-CCTV-74 | IP - 10.190.246.74:
+          ansible_host: '10.190.246.74'
+        SITE - TJI | SW - TJI-Core-Switch | IP - 10.190.246.254:
+          ansible_host: '10.190.246.254'
+        SITE - TJI | SW - TJI-DYE-43 | IP - 10.190.246.43:
+          ansible_host: '10.190.246.43'
+        SITE - TJI | SW - TJI-DYE-44 | IP - 10.190.246.44:
+          ansible_host: '10.190.246.44'
+        SITE - TJI | SW - TJI-EM-76 | IP - 10.190.246.76:
+          ansible_host: '10.190.246.76'
+        SITE - TJI | SW - TJI-EMSTORE-68 | IP - 10.190.246.68:
+          ansible_host: '10.190.246.68'
+        SITE - TJI | SW - TJI-FFSW-75 | IP - 10.190.246.75:
+          ansible_host: '10.190.246.75'
+        SITE - TJI | SW - TJI-FSG1-CCTV-46 | IP - 10.190.246.46:
+          ansible_host: '10.190.246.46'
+        SITE - TJI | SW - TJI-FSG2-CCTV-47 | IP - 10.190.246.47:
+          ansible_host: '10.190.246.47'
+        SITE - TJI | SW - TJI-GRG-49 | IP - 10.190.246.49:
+          ansible_host: '10.190.246.49'
+        SITE - TJI | SW - TJI-GRG-CCTV-42 | IP - 10.190.246.42:
+          ansible_host: '10.190.246.42'
+        SITE - TJI | SW - TJI-IWAN-1 | IP - 10.190.246.21:
+          ansible_host: '10.190.246.21'
+        SITE - TJI | SW - TJI-KNIT-CCTV-40 | IP - 10.190.246.40:
+          ansible_host: '10.190.246.40'
+        SITE - TJI | SW - TJI-KNIT-CCTV-67 | IP - 10.190.246.67:
+          ansible_host: '10.190.246.67'
+        SITE - TJI | SW - TJI-KNITT-39 | IP - 10.190.246.39:
+          ansible_host: '10.190.246.39'
+        SITE - TJI | SW - TJI-MMINET-58 | IP - 10.190.246.58:
+          ansible_host: '10.190.246.58'
+        SITE - TJI | SW - TJI-PRINT-78 | IP - 10.190.246.78:
+          ansible_host: '10.190.246.78'
+        SITE - TJI | SW - TJI-PRINT-CCTV-48 | IP - 10.190.246.48:
+          ansible_host: '10.190.246.48'
+        SITE - TJI | SW - TJI-QC1-60 | IP - 10.190.246.60:
+          ansible_host: '10.190.246.60'
+        SITE - TJI | SW - TJI-QC2-61 | IP - 10.190.246.61:
+          ansible_host: '10.190.246.61'
+        SITE - TJI | SW - TJI-SEC-77 | IP - 10.190.246.77:
+          ansible_host: '10.190.246.77'
+        SITE - TJI | SW - TJI-SRV-25 | IP - 10.190.246.25:
+          ansible_host: '10.190.246.25'
+        SITE - TJI | SW - TJI-SRV-53 | IP - 10.190.246.53:
+          ansible_host: '10.190.246.53'
+        SITE - TJI | SW - TJI-SRV-54 | IP - 10.190.246.54:
+          ansible_host: '10.190.246.54'
+        SITE - TJI | SW - TJI-SRV-66 | IP - 10.190.246.66:
+          ansible_host: '10.190.246.66'
+        SITE - TJI | SW - TJI-SRV-70 | IP - 10.190.246.70:
+          ansible_host: '10.190.246.70'
+        SITE - TJI | SW - TJI-Sec-admin-59 | IP - 10.190.246.59:
+          ansible_host: '10.190.246.59'
+
+    TJL:
+      hosts:
+        SITE - TJL | SW - ADMIN_SW_1 | IP - 10.41.246.36:
+          ansible_host: '10.41.246.36'
+        SITE - TJL | SW - ADMIN_SW_2 | IP - 10.41.246.31:
+          ansible_host: '10.41.246.31'
+        SITE - TJL | SW - DC1-LCORE-C4K-01 | IP - 10.41.246.254:
+          ansible_host: '10.41.246.254'
+        SITE - TJL | SW - DMS_BAckup_copy | IP - 10.41.246.54:
+          ansible_host: '10.41.246.54'
+        SITE - TJL | SW - DNF_SW_1 | IP - 10.41.246.16:
+          ansible_host: '10.41.246.16'
+        SITE - TJL | SW - DNF_SW_2 | IP - 10.41.246.17:
+          ansible_host: '10.41.246.17'
+        SITE - TJL | SW - MCH_SW_2 | IP - 10.41.246.38:
+          ansible_host: '10.41.246.38'
+        SITE - TJL | SW - QLP_CAD_SW | IP - 10.41.246.43:
+          ansible_host: '10.41.246.43'
+        SITE - TJL | SW - QLP_CLR_SW | IP - 10.41.246.45:
+          ansible_host: '10.41.246.45'
+        SITE - TJL | SW - QLP_QLY_SW | IP - 10.41.246.44:
+          ansible_host: '10.41.246.44'
+        SITE - TJL | SW - QLP_WH_SW | IP - 10.41.246.46:
+          ansible_host: '10.41.246.46'
+        SITE - TJL | SW - TJL_AREL1 | IP - 10.41.246.21:
+          ansible_host: '10.41.246.21'
+        SITE - TJL | SW - TJL_AREL3 | IP - 10.41.246.41:
+          ansible_host: '10.41.246.41'
+        SITE - TJL | SW - TJL_CL_SW | IP - 10.41.246.14:
+          ansible_host: '10.41.246.14'
+        SITE - TJL | SW - TJL_CMB_SW | IP - 10.42.246.254:
+          ansible_host: '10.42.246.254'
+        SITE - TJL | SW - TJL_CP_SW | IP - 10.41.246.58:
+          ansible_host: '10.41.246.58'
+        SITE - TJL | SW - TJL_EO_SW | IP - 10.41.246.19:
+          ansible_host: '10.41.246.19'
+        SITE - TJL | SW - TJL_FG_WH | IP - 10.41.246.57:
+          ansible_host: '10.41.246.57'
+        SITE - TJL | SW - TJL_KO_SW | IP - 10.41.246.23:
+          ansible_host: '10.41.246.23'
+        SITE - TJL | SW - TJL_QO_SW | IP - 10.41.246.15:
+          ansible_host: '10.41.246.15'
+        SITE - TJL | SW - TJL_SANTEX_SW | IP - 10.41.246.13:
+          ansible_host: '10.41.246.13'
+        SITE - TJL | SW - TJL_YW_SW | IP - 10.41.246.24:
+          ansible_host: '10.41.246.24'
+        SITE - TJL | SW - TJP_SVR_SW1 | IP - 10.41.246.42:
+          ansible_host: '10.41.246.42'
+        SITE - TJL | SW - TJP_SVR_SW3 | IP - 10.41.246.55:
+          ansible_host: '10.41.246.55'
+        SITE - TJL | SW - TJ_HR_SW | IP - 10.41.246.40:
+          ansible_host: '10.41.246.40'
+
+
+# completed_L2:
+#   hosts:
+#     SITE - ACC | SW - SVR-2960X-24P | IP - 10.40.246.20:
+#       ansible_host: '10.40.246.20'
+#     SITE - BAI | SW - BA12-RMR10-SW1 | IP - 10.175.246.116:
+#       ansible_host: '10.175.246.116'
+#     SITE - BAI | SW - BAI-3-SW-02 | IP - 10.175.246.133:
+#       ansible_host: '10.175.246.133'
+#     SITE - BAI | SW - BAI2-RMR11-SW1 | IP - 10.175.246.117:
+#       ansible_host: '10.175.246.117'
+#     SITE - BAI | SW - BAI3-ICT-POESW | IP - 10.175.246.122:
+#       ansible_host: '10.175.246.122'
+#     SITE - BAI | SW - BAI3-RMSTORE-POESW | IP - 10.175.246.123:
+#       ansible_host: '10.175.246.123'
+#     SITE - BAI | SW - BIAC-SRVRI-SW02 | IP - 10.175.246.84:
+#       ansible_host: '10.175.246.84'
+#     SITE - BAI | SW - BQCI-SRVR1-SW04 | IP - 10.175.246.64:
+#       ansible_host: '10.175.246.64'
+#     SITE - BAI | SW - Central-Off-POE | IP - 10.175.246.34:
+#       ansible_host: '10.175.246.34'
+#     SITE - BAI | SW - NBAI2-NFG-R1-SW-1 | IP - 10.175.246.113:
+#       ansible_host: '10.175.246.113'
+#     SITE - BCB | SW - BCB-Finishing-SW01 | IP - 10.200.246.54:
+#       ansible_host: '10.200.246.54'
+#     SITE - BCB | SW - BCB-RackB-SW01 | IP - 10.200.246.50:
+#       ansible_host: '10.200.246.50'
+#     SITE - BCB | SW - BCB_HR_SW02 | IP - 10.200.246.72:
+#       ansible_host: '10.200.246.72'
+#     SITE - BCE | SW - BAL-L-R5-SW03 | IP - 10.100.246.212:
+#       ansible_host: '10.100.246.212'
+#     SITE - BCR | SW - BCR-EDI-SW04 | IP - 10.104.246.13:
+#       ansible_host: '10.104.246.13'
+#     SITE - BEKA | SW - BEKA-CIF-R03 | IP - 10.53.246.33:
+#       ansible_host: '10.53.246.33'
+#     SITE - BER | SW - BER-GF-SW4 | IP - 10.50.246.9:
+#       ansible_host: '10.50.246.9'
+#     SITE - BER | SW - WAN-Switch | IP - 10.50.246.50:
+#       ansible_host: '10.50.246.50'
+#     SITE - BIAV1 | SW - BIAV-SVRO-SW12 | IP - 10.81.246.19:
+#       ansible_host: '10.81.246.19'
+#     SITE - BIAV1 | SW - BIAV-SW-R3 | IP - 10.81.246.11:
+#       ansible_host: '10.81.246.11'
+#     SITE - BIK | SW - RACK-B-WORKSTUDY | IP - 10.76.246.2:
+#       ansible_host: '10.76.246.2'
+#     SITE - BIK | SW - RACK-C-PRODUCTION | IP - 10.76.246.3:
+#       ansible_host: '10.76.246.3'
+#     SITE - BIK | SW - RACK-D-PACKING | IP - 10.76.246.9:
+#       ansible_host: '10.76.246.9'
+#     SITE - BIK | SW - TRAINING-SCHOOL-SW | IP - 10.76.246.10:
+#       ansible_host: '10.76.246.10'
+#     SITE - BIM | SW - BIM-ADMI-SW1 | IP - 10.77.246.13:
+#       ansible_host: '10.77.246.13'
+#     SITE - BIM | SW - BIM-MNT-SW1 | IP - 10.77.246.17:
+#       ansible_host: '10.77.246.17'
+#     SITE - BIW | SW - 1F-DER-01-SW1 | IP - 10.75.246.19:
+#       ansible_host: '10.75.246.19'
+#     SITE - BIW | SW - 1F-DER-01-SW2 | IP - 10.75.246.20:
+#       ansible_host: '10.75.246.20'
+#     SITE - BIW | SW - 1F-DER-02-SW1 | IP - 10.75.246.21:
+#       ansible_host: '10.75.246.21'
+#     SITE - BIW | SW - 1F-DER-02-SW2 | IP - 10.75.246.22:
+#       ansible_host: '10.75.246.22'
+#     SITE - BIW | SW - 2F-DER-01-SW1 | IP - 10.75.246.23:
+#       ansible_host: '10.75.246.23'
+#     SITE - BIW | SW - 2F-DER-02-SW1 | IP - 10.75.246.24:
+#       ansible_host: '10.75.246.24'
+#     SITE - BIW | SW - AL-Sample_SW1 | IP - 10.75.246.51:
+#       ansible_host: '10.75.246.51'
+#     SITE - BIW | SW - AL-Sample_SW2 | IP - 10.75.246.52:
+#       ansible_host: '10.75.246.52'
+#     SITE - BIW | SW - BIW-CUT-SW2 | IP - 10.75.246.69:
+#       ansible_host: '10.75.246.69'
+#     SITE - BIW | SW - BIW-Core | IP - 10.75.246.28:
+#       ansible_host: '10.75.246.28'
+#     SITE - BIW | SW - BIW-HRD-SW1 | IP - 10.75.246.72:
+#       ansible_host: '10.75.246.72'
+#     SITE - BIW | SW - BIW-HRD-SW2 | IP - 10.75.246.68:
+#       ansible_host: '10.75.246.68'
+#     SITE - BIW | SW - BIW-ICT | IP - 10.75.246.30:
+#       ansible_host: '10.75.246.30'
+#     SITE - BIW | SW - BIW-LIDL-SR-SW1 | IP - 10.75.246.67:
+#       ansible_host: '10.75.246.67'
+#     SITE - BIW | SW - BIW-PRODUCTION-SW_C | IP - 10.75.246.58:
+#       ansible_host: '10.75.246.58'
+#     SITE - BIW | SW - BIW-Production-SW_A | IP - 10.75.246.56:
+#       ansible_host: '10.75.246.56'
+#     SITE - BIW | SW - BIW-Production-SW_B | IP - 10.75.246.57:
+#       ansible_host: '10.75.246.57'
+#     SITE - BIW | SW - BIW-SRV-SW1 | IP - 10.75.246.71:
+#       ansible_host: '10.75.246.71'
+#     SITE - BIW | SW - BIW-SW-CUTTING | IP - 10.75.246.63:
+#       ansible_host: '10.75.246.63'
+#     SITE - BIW | SW - BIW-TRIMST-SW1 | IP - 10.75.246.66:
+#       ansible_host: '10.75.246.66'
+#     SITE - BIW | SW - G-DER-01-SW1 | IP - 10.75.246.15:
+#       ansible_host: '10.75.246.15'
+#     SITE - BIW | SW - G-DER-01-SW2 | IP - 10.75.246.16:
+#       ansible_host: '10.75.246.16'
+#     SITE - BIW | SW - G-DER-02-SW1 | IP - 10.75.246.17:
+#       ansible_host: '10.75.246.17'
+#     SITE - BIW | SW - G-DER-02-SW3-Temp | IP - 10.75.246.31:
+#       ansible_host: '10.75.246.31'
+#     SITE - BIW | SW - LG-DER-01-SW1 | IP - 10.75.246.10:
+#       ansible_host: '10.75.246.10'
+#     SITE - BIW | SW - LG-DER-02-SW1 | IP - 10.75.246.11:
+#       ansible_host: '10.75.246.11'
+#     SITE - BIW | SW - SRV_PABX_SW | IP - 10.75.246.27:
+#       ansible_host: '10.75.246.27'
+#     SITE - BIW | SW - Sample_Room_Main_SW | IP - 10.75.246.53:
+#       ansible_host: '10.75.246.53'
+#     SITE - BIW | SW - Sample_Room_SW1 | IP - 10.75.246.54:
+#       ansible_host: '10.75.246.54'
+#     SITE - BIW | SW - TEMP_FOR_SHROOM | IP - 10.75.246.61:
+#       ansible_host: '10.75.246.61'
+#     SITE - BIWH | SW - BASL-E-WH-Core | IP - 10.84.246.4:
+#       ansible_host: '10.84.246.4'
+#     SITE - BIWH | SW - BASL-I-WH-Core | IP - 10.85.10.254:
+#       ansible_host: '10.85.10.254'
+#     SITE - BIWH | SW - EKALA-FF-WH-CORE | IP - 10.84.254.242:
+#       ansible_host: '10.84.254.242'
+#     SITE - BIWH | SW - EKALA-WH-SW002 | IP - 10.84.246.2:
+#       ansible_host: '10.84.246.2'
+#     SITE - BIWH | SW - EKALA-WH-SW03-01 | IP - 10.84.246.3:
+#       ansible_host: '10.84.246.3'
+#     SITE - BLL | SW - BAL-1F-SW01 | IP - 10.10.246.11:
+#       ansible_host: '10.10.246.11'
+#     SITE - BLL | SW - BAL-2F-SW01 | IP - 10.10.246.21:
+#       ansible_host: '10.10.246.21'
+#     SITE - BLL | SW - BAL-3F-SW01 | IP - 10.10.246.31:
+#       ansible_host: '10.10.246.31'
+#     SITE - BLL | SW - BAL-4F-SW01 | IP - 10.10.246.41:
+#       ansible_host: '10.10.246.41'
+#     SITE - BLL | SW - BAL-5F-SW01 | IP - 10.10.246.51:
+#       ansible_host: '10.10.246.51'
+#     SITE - BLL | SW - BAL-6F-SW01 | IP - 10.10.246.61:
+#       ansible_host: '10.10.246.61'
+#     SITE - BLL | SW - BAL-7F-SW01 | IP - 10.10.246.71:
+#       ansible_host: '10.10.246.71'
+#     SITE - BLL | SW - Bi3GD-409-GF-01 | IP - 10.10.246.91:
+#       ansible_host: '10.10.246.91'
+#     SITE - TJL | SW - QLP_CLR_SW | IP - 10.41.246.45:
+#       ansible_host: '10.41.246.45'
+#     SITE - TJL | SW - TJL_EO_SW | IP - 10.41.246.19:
+#       ansible_host: '10.41.246.19'
+#     SITE - TJL | SW - TJL_SANTEX_SW | IP - 10.41.246.13:
+#       ansible_host: '10.41.246.13'
+#     SITE - TJL | SW - TJP_SVR_SW3 | IP - 10.41.246.55:
+#       ansible_host: '10.41.246.55'
+#     SITE - TJL | SW - TJ_HR_SW | IP - 10.41.246.40:
+#       ansible_host: '10.41.246.40'
+
+
+# failed_L2:
+#   hosts:
+#     SITE - BMA-MEZANINE-SW02 | SW - ACC | IP - 10.40.246.17:
+#       ansible_host: '10.40.246.17'
+#     SITE - BMA-MEZANINE-SW01 | SW - ACC | IP - 10.40.246.18:
+#       ansible_host: '10.40.246.18'
+#     SITE - HUB-ROOM2-2960X | SW - ACC | IP - 10.40.246.21:
+#       ansible_host: '10.40.246.21'
+#     SITE - SVR-2960X-24P | SW - ACC | IP - 10.40.246.20:
+#       ansible_host: '10.40.246.20'
+#     SITE - BAI1-CTNR8-SW01 | SW - BAI | IP - 10.175.246.44:
+#       ansible_host: '10.175.246.44'
+#     SITE - BAI1-CTVR6-SW01 | SW - BAI | IP - 10.175.246.46:
+#       ansible_host: '10.175.246.46'
+#     SITE - BAI2-N-RMR1-SW01 | SW - BAI | IP - 10.175.246.109:
+#       ansible_host: '10.175.246.109'
+#     SITE - BAI2-RMDR1-SW01 | SW - BAI | IP - 10.175.246.107:
+#       ansible_host: '10.175.246.107'
+#     SITE - BAI3-MANITANENCE | SW - BAI | IP - 10.175.246.127:
+#       ansible_host: '10.175.246.127'
+#     SITE - BC3Switch | SW - BAI | IP - 10.175.246.14:
+#       ansible_host: '10.175.246.14'
+#     SITE - BCB-Finishing-SW01 | SW - BCB | IP - 10.200.246.54:
+#       ansible_host: '10.200.246.54'
+#     SITE - BCB_HR_SW02 | SW - BCB | IP - 10.200.246.72:
+#       ansible_host: '10.200.246.72'
+#     SITE - BCB-RackB-SW01 | SW - BCB | IP - 10.200.246.50:
+#       ansible_host: '10.200.246.50'
+#     SITE - BAL-L-BackupSW | SW - BCE | IP - 10.100.246.213:
+#       ansible_host: '10.100.246.213'
+#     SITE - BAL-L-R5-SW03 | SW - BCE | IP - 10.100.246.212:
+#       ansible_host: '10.100.246.212'
+#     SITE - BAL-L-R6-SW01 | SW - BCE | IP - 10.100.246.211:
+#       ansible_host: '10.100.246.211'
+#     SITE - BCI-ICT-RACK01-SW01 | SW - BCE | IP - 10.100.246.11:
+#       ansible_host: '10.100.246.11'
+#     SITE - BCI-ICT-RACK01-SW02 | SW - BCE | IP - 10.100.246.12:
+#       ansible_host: '10.100.246.12'
+#     SITE - BCI-ICT-RACK01-SW03 | SW - BCE | IP - 10.100.246.13:
+#       ansible_host: '10.100.246.13'
+#     SITE - BCI-VICTORY-BD-SW01 | SW - BCE | IP - 10.100.246.91:
+#       ansible_host: '10.100.246.91'
+#     SITE - BCR-EDI-SW04 | SW - BCR | IP - 10.104.246.13:
+#       ansible_host: '10.104.246.13'
+#     SITE - BCR-FO-SW06 | SW - BCR | IP - 10.104.246.15:
+#       ansible_host: '10.104.246.15'
+#     SITE - BCR-MIS-SW01 | SW - BCR | IP - 10.104.246.10:
+#       ansible_host: '10.104.246.10'
+#     SITE - BCR-HR-SW03 | SW - BCR | IP - 10.104.246.12:
+#       ansible_host: '10.104.246.12'
+#     SITE - BCR-HR-SW05 | SW - BCR | IP - 10.104.246.14:
+#       ansible_host: '10.104.246.14'
+#     SITE - BCR-MIS-SW02 | SW - BCR | IP - 10.104.246.11:
+#       ansible_host: '10.104.246.11'
+#     SITE - BCRDF-SW-01 | SW - BCR | IP - 10.104.246.90:
+#       ansible_host: '10.104.246.90'
+#     SITE - BCR-PRO-SW08 | SW - BCR | IP - 10.104.246.17:
+#       ansible_host: '10.104.246.17'
+#     SITE - BFL-SW-05 | SW - BCR | IP - 10.104.246.85:
+#       ansible_host: '10.104.246.85'
+#     SITE - BFL-SW3 | SW - BCR | IP - 10.104.246.83:
+#       ansible_host: '10.104.246.83'
+#     SITE - BFL-SW-06 | SW - BCR | IP - 10.104.246.86:
+#       ansible_host: '10.104.246.86'
+#     SITE - BFLR-SW1 | SW - BCR | IP - 10.104.246.81:
+#       ansible_host: '10.104.246.81'
+#     SITE - BAI-3-SW-02 | SW - BAI | IP - 10.175.246.133:
+#       ansible_host: '10.175.246.133'
+#     SITE - BA12-RMR10-SW1 | SW - BAI | IP - 10.175.246.116:
+#       ansible_host: '10.175.246.116'
+#     SITE - BAI2-RMR11-SW1 | SW - BAI | IP - 10.175.246.117:
+#       ansible_host: '10.175.246.117'
+#     SITE - BAI3-ICT-POESW | SW - BAI | IP - 10.175.246.122:
+#       ansible_host: '10.175.246.122'
+#     SITE - BAI3-RMSTORE-POESW | SW - BAI | IP - 10.175.246.123:
+#       ansible_host: '10.175.246.123'
+#     SITE - BIAC-SRVRI-SW02 | SW - BAI | IP - 10.175.246.84:
+#       ansible_host: '10.175.246.84'
+#     SITE - BQCI-SRVR1-SW04 | SW - BAI | IP - 10.175.246.64:
+#       ansible_host: '10.175.246.64'
+#     SITE - Central-Off-POE | SW - BAI | IP - 10.175.246.34:
+#       ansible_host: '10.175.246.34'
+#     SITE - NBAI2-NFG-R1-SW-1 | SW - BAI | IP - 10.175.246.113:
+#       ansible_host: '10.175.246.113'
+#     SITE - BCS_HR_SW1 | SW - BCS | IP - 10.101.246.10:
+#       ansible_host: '10.101.246.10'
+#     SITE - BCS-CORE | SW - BCS | IP - 10.101.246.254:
+#       ansible_host: '10.101.246.254'
+#     SITE - BCS_PLANT2_SW01 | SW - BCS | IP - 10.101.246.20:
+#       ansible_host: '10.101.246.20'
+#     SITE - Cutting_SW1 | SW - BCS | IP - 10.101.246.7:
+#       ansible_host: '10.101.246.7'
+#     SITE - Finiishing_SW01 | SW - BCS | IP - 10.101.246.25:
+#       ansible_host: '10.101.246.25'
+#     SITE - Plant2-SW02 | SW - BCS | IP - 10.101.246.100:
+#       ansible_host: '10.101.246.100'
+#     SITE - ServerRoom_SW2 | SW - BCS | IP - 10.101.246.8:
+#       ansible_host: '10.101.246.8'
+#     SITE - ServerRoom_SW1 | SW - BCS | IP - 10.101.246.2:
+#       ansible_host: '10.101.246.2'
+#     SITE - BASL-SW18 | SW - BEB | IP - 10.57.246.18:
+#       ansible_host: '10.57.246.18'
+#     SITE - BASL-SW1 | SW - BEB | IP - 10.57.246.10:
+#       ansible_host: '10.57.246.10'
+#     SITE - BASL-SW19 | SW - BEB | IP - 10.57.246.19:
+#       ansible_host: '10.57.246.19'
+#     SITE - BASL-SW3 | SW - BEB | IP - 10.57.246.12:
+#       ansible_host: '10.57.246.12'
+#     SITE - BASL-SW2 | SW - BEB | IP - 10.57.246.11:
+#       ansible_host: '10.57.246.11'
+#     SITE - BASL-SW5 | SW - BEB | IP - 10.57.246.14:
+#       ansible_host: '10.57.246.14'
+#     SITE - BASL-SW7 | SW - BEB | IP - 10.57.246.16:
+#       ansible_host: '10.57.246.16'
+#     SITE - BASL-SW6 | SW - BEB | IP - 10.57.246.15:
+#       ansible_host: '10.57.246.15'
+#     SITE - BASL-SW8 | SW - BEB | IP - 10.57.246.17:
+#       ansible_host: '10.57.246.17'
+#     SITE - BEK-R1-SW04 | SW - BEK | IP - 10.51.246.13:
+#       ansible_host: '10.51.246.13'
+#     SITE - BEK-R2-SW10 | SW - BEK | IP - 10.51.246.24:
+#       ansible_host: '10.51.246.24'
+#     SITE - BEK-R2-SW08 | SW - BEK | IP - 10.51.246.23:
+#       ansible_host: '10.51.246.23'
+#     SITE - BEKA-SVR-Sw02 | SW - BEKA | IP - 10.53.246.24:
+#       ansible_host: '10.53.246.24'
+#     SITE - BEKA_SVR_Sw01 | SW - BEKA | IP - 10.53.246.23:
+#       ansible_host: '10.53.246.23'
+#     SITE - BEKH-SW-03 | SW - BEKA | IP - 10.53.246.22:
+#       ansible_host: '10.53.246.22'
+#     SITE - BEKH-SW-05 | SW - BEKA | IP - 10.53.246.31:
+#       ansible_host: '10.53.246.31'
+#     SITE - BEKH-SW-04 | SW - BEKA | IP - 10.53.246.30:
+#       ansible_host: '10.53.246.30'
+#     SITE - BEN-PRO-FloorSW01 | SW - BEN | IP - 10.52.246.14:
+#       ansible_host: '10.52.246.14'
+#     SITE - BER-1F-SW3 | SW - BER | IP - 10.50.246.14:
+#       ansible_host: '10.50.246.14'
+#     SITE - TS-SW1 | SW - BEN | IP - 10.52.246.13:
+#       ansible_host: '10.52.246.13'
+#     SITE - BER-1F-SW6 | SW - BER | IP - 10.50.246.17:
+#       ansible_host: '10.50.246.17'
+#     SITE - BER-2F-SW10 | SW - BER | IP - 10.50.246.22:
+#       ansible_host: '10.50.246.22'
+#     SITE - BER-2F-SW9 | SW - BER | IP - 10.50.246.231:
+#       ansible_host: '10.50.246.231'
+#     SITE - BER-GF-SW4 | SW - BER | IP - 10.50.246.9:
+#       ansible_host: '10.50.246.9'
+#     SITE - WAN-Switch | SW - BER | IP - 10.50.246.50:
+#       ansible_host: '10.50.246.50'
+#     SITE - BERA-WASTECOLLECTION_R8_SW1 | SW - BERA2 | IP - 10.58.246.80:
+#       ansible_host: '10.58.246.80'
+#     SITE - FTD-1F-3 | SW - BI3 | IP - 10.32.246.200:
+#       ansible_host: '10.32.246.200'
+#     SITE - FTD-2F-3 | SW - BI3 | IP - 10.32.246.205:
+#       ansible_host: '10.32.246.205'
+#     SITE - FTD-Core | SW - BI3 | IP - 10.32.246.254:
+#       ansible_host: '10.32.246.254'
+#     SITE - BIAV-SRVO-SW9 | SW - BIAV1 | IP - 10.81.246.22:
+#       ansible_host: '10.81.246.22'
+#     SITE - BERA_GuardRoom_SW1 | SW - BERA2 | IP - 10.58.246.60:
+#       ansible_host: '10.58.246.60'
+#     SITE - BIAV-SRVO-SW10 | SW - BIAV1 | IP - 10.81.246.23:
+#       ansible_host: '10.81.246.23'
+#     SITE - BIAV-SVRO-SW2 | SW - BIAV1 | IP - 10.81.246.2:
+#       ansible_host: '10.81.246.2'
+#     SITE - BIAV-SW-R2 | SW - BIAV1 | IP - 10.81.246.10:
+#       ansible_host: '10.81.246.10'
+#     SITE - BIAV-SW-R4 | SW - BIAV1 | IP - 10.81.246.12:
+#       ansible_host: '10.81.246.12'
+#     SITE - BIAV-SW-R5 | SW - BIAV1 | IP - 10.81.246.13:
+#       ansible_host: '10.81.246.13'
+#     SITE - BIAV-SW-R6 | SW - BIAV1 | IP - 10.81.246.14:
+#       ansible_host: '10.81.246.14'
+#     SITE - BIAV-SW-R7 | SW - BIAV1 | IP - 10.81.246.15:
+#       ansible_host: '10.81.246.15'
+#     SITE - BIAV-SW-R8 | SW - BIAV1 | IP - 10.81.246.16:
+#       ansible_host: '10.81.246.16'
+#     SITE - BIAV-SW-R9 | SW - BIAV1 | IP - 10.81.246.17:
+#       ansible_host: '10.81.246.17'
+#     SITE - BCG-SW-DP2 | SW - BIG | IP - 10.103.246.145:
+#       ansible_host: '10.103.246.145'
+#     SITE - BIAV2-EMB-SW1 | SW - BIAV2 | IP - 10.81.246.20:
+#       ansible_host: '10.81.246.20'
+#     SITE - BCG-SW-STO | SW - BIG | IP - 10.103.246.143:
+#       ansible_host: '10.103.246.143'
+#     SITE - BIK-SW-FAB_INSPECTION | SW - BIK | IP - 10.76.246.8:
+#       ansible_host: '10.76.246.8'
+#     SITE - BIK_Cutting_SW02 | SW - BIK | IP - 10.76.246.6:
+#       ansible_host: '10.76.246.6'
+#     SITE - BIK_Cutting_SW01 | SW - BIK | IP - 10.76.246.5:
+#       ansible_host: '10.76.246.5'
+#     SITE - BIK_Cutting_SW03 | SW - BIK | IP - 10.76.246.7:
+#       ansible_host: '10.76.246.7'
+#     SITE - BCG-SW-FO | SW - BIG | IP - 10.103.246.140:
+#       ansible_host: '10.103.246.140'
+#     SITE - BIK_Cutting_SW04 | SW - BIK | IP - 10.76.246.11:
+#       ansible_host: '10.76.246.11'
+#     SITE - BIK_backup-SW | SW - BIK | IP - 10.76.246.12:
+#       ansible_host: '10.76.246.12'
+#     SITE - TRAINING-SCHOOL-SW | SW - BIK | IP - 10.76.246.10:
+#       ansible_host: '10.76.246.10'
+#     SITE - BIM-CUT-SW1 | SW - BIM | IP - 10.77.246.8:
+#       ansible_host: '10.77.246.8'
+#     SITE - BIM-FABIN-SW1 | SW - BIM | IP - 10.77.246.15:
+#       ansible_host: '10.77.246.15'
+#     SITE - RACK-A-SERVER_ROOM | SW - BIK | IP - 10.76.246.4:
+#       ansible_host: '10.76.246.4'
+#     SITE - RACK-C-PRODUCTION | SW - BIK | IP - 10.76.246.3:
+#       ansible_host: '10.76.246.3'
+#     SITE - RACK-B-WORKSTUDY | SW - BIK | IP - 10.76.246.2:
+#       ansible_host: '10.76.246.2'
+#     SITE - RACK-D-PACKING | SW - BIK | IP - 10.76.246.9:
+#       ansible_host: '10.76.246.9'
+#     SITE - BIM-MNT-SW1 | SW - BIM | IP - 10.77.246.17:
+#       ansible_host: '10.77.246.17'
+#     SITE - BIM-PROD-SW1 | SW - BIM | IP - 10.77.246.10:
+#       ansible_host: '10.77.246.10'
+#     SITE - BIM-PROD-SW2 | SW - BIM | IP - 10.77.246.2:
+#       ansible_host: '10.77.246.2'
+#     SITE - BIM-STORE-SW1 | SW - BIM | IP - 10.77.246.11:
+#       ansible_host: '10.77.246.11'
+#     SITE - BIM-SVRO-SW4 | SW - BIM | IP - 10.77.246.12:
+#       ansible_host: '10.77.246.12'
+#     SITE - BIM-SVRO-SW6 | SW - BIM | IP - 10.77.246.16:
+#       ansible_host: '10.77.246.16'
+#     SITE - BIM-METR-SW1 | SW - BIM | IP - 10.77.246.3:
+#       ansible_host: '10.77.246.3'
+#     SITE - BIM-PRO02-SW01 | SW - BIM | IP - 10.77.246.18:
+#       ansible_host: '10.77.246.18'
+#     SITE - BIM-SVRO-SW1 | SW - BIM | IP - 10.77.246.9:
+#       ansible_host: '10.77.246.9'
+#     SITE - BIMR-CUT-SW2 | SW - BIMR1 | IP - 10.78.246.6:
+#       ansible_host: '10.78.246.6'
+#     SITE - ServerRoom-BackupSW | SW - BIM | IP - 10.77.246.5:
+#       ansible_host: '10.77.246.5'
+#     SITE - BIMR-CUT-SW1 | SW - BIMR1 | IP - 10.78.246.5:
+#       ansible_host: '10.78.246.5'
+#     SITE - BIMR-PROD-SW1 | SW - BIMR1 | IP - 10.78.246.11:
+#       ansible_host: '10.78.246.11'
+#     SITE - BIMR-FSTOR-SW1 | SW - BIMR1 | IP - 10.78.246.9:
+#       ansible_host: '10.78.246.9'
+#     SITE - BIMR-STOR-SW | SW - BIMR1 | IP - 10.78.246.7:
+#       ansible_host: '10.78.246.7'
+#     SITE - BIMR-SVRO-SW2 | SW - BIMR1 | IP - 10.78.246.3:
+#       ansible_host: '10.78.246.3'
+#     SITE - BIMR-SVRO-SW3 | SW - BIMR1 | IP - 10.78.246.4:
+#       ansible_host: '10.78.246.4'
+#     SITE - BIMR2-TRIMS-SW1 | SW - BIMR2 | IP - 10.79.246.8:
+#       ansible_host: '10.79.246.8'
+#     SITE - BIMR-SW-01 | SW - BIMR1 | IP - 10.78.246.8:
+#       ansible_host: '10.78.246.8'
+#     SITE - BIMR2-INSP-SW1 | SW - BIMR2 | IP - 10.79.246.7:
+#       ansible_host: '10.79.246.7'
+#     SITE - BIMR2-CUT-SW1 | SW - BIMR2 | IP - 10.79.246.6:
+#       ansible_host: '10.79.246.6'
+#     SITE - BIMR2-SVRO-SW1 | SW - BIMR2 | IP - 10.79.246.5:
+#       ansible_host: '10.79.246.5'
+#     SITE - BIMR2-SVRO-SW2 | SW - BIMR2 | IP - 10.79.246.3:
+#       ansible_host: '10.79.246.3'
+#     SITE - BIMR2-SVRO-SW3 | SW - BIMR2 | IP - 10.79.246.4:
+#       ansible_host: '10.79.246.4'
+#     SITE - BIMR2-SVRO-SW4 | SW - BIMR2 | IP - 10.79.246.2:
+#       ansible_host: '10.79.246.2'
+#     SITE - BIP-CADR-SW2 | SW - BIP | IP - 10.80.246.8:
+#       ansible_host: '10.80.246.8'
+#     SITE - BIP-CADR-SW1 | SW - BIP | IP - 10.80.246.9:
+#       ansible_host: '10.80.246.9'
+#     SITE - BIP-FG-SW1 | SW - BIP | IP - 10.80.246.11:
+#       ansible_host: '10.80.246.11'
+#     SITE - BIP-SVRO-SW1 | SW - BIP | IP - 10.80.246.4:
+#       ansible_host: '10.80.246.4'
+#     SITE - BIP-PROD-SW1 | SW - BIP | IP - 10.80.246.10:
+#       ansible_host: '10.80.246.10'
+#     SITE - BIP-SVRO-SW2 | SW - BIP | IP - 10.80.246.5:
+#       ansible_host: '10.80.246.5'
+#     SITE - BIP-SVRO-SW3 | SW - BIP | IP - 10.80.246.6:
+#       ansible_host: '10.80.246.6'
+#     SITE - BIP-SWING-01 | SW - BIP | IP - 10.80.246.14:
+#       ansible_host: '10.80.246.14'
+#     SITE - FG_Warehouse_SW01 | SW - BIP | IP - 10.80.246.16:
+#       ansible_host: '10.80.246.16'
+#     SITE - EKALA-WH-SW02 | SW - BIWH | IP - 10.84.254.2:
+#       ansible_host: '10.84.254.2'
+#     SITE - EKALA-WH-SW03 | SW - BIWH | IP - 10.84.254.3:
+#       ansible_host: '10.84.254.3'
+#     SITE - EKALA-FF-WH-CORE01 | SW - BIWH | IP - 10.84.246.254:
+#       ansible_host: '10.84.246.254'
+#     SITE - BASL-E-WH-Core | SW - BIWH | IP - 10.84.246.4:
+#       ansible_host: '10.84.246.4'
+#     SITE - BASL-I-WH-Core | SW - BIWH | IP - 10.85.10.254:
+#       ansible_host: '10.85.10.254'
+#     SITE - EKALA-FF-WH-CORE | SW - BIWH | IP - 10.84.254.242:
+#       ansible_host: '10.84.254.242'
+#     SITE - EKALA-WH-SW002 | SW - BIWH | IP - 10.84.246.2:
+#       ansible_host: '10.84.246.2'
+#     SITE - BLSC-DIS-SW-04 | SW - BLIB | IP - 10.151.246.14:
+#       ansible_host: '10.151.246.14'
+#     SITE - BLSC-DIS-SW-05 | SW - BLIB | IP - 10.151.246.15:
+#       ansible_host: '10.151.246.15'
+#     SITE - BLSC-DIS-SW-01 | SW - BLIB | IP - 10.151.246.11:
+#       ansible_host: '10.151.246.11'
+#     SITE - BLSC-DIS-SW-02 | SW - BLIB | IP - 10.151.246.12:
+#       ansible_host: '10.151.246.12'
+#     SITE - BLSC-DIS-SW-03 | SW - BLIB | IP - 10.151.246.13:
+#       ansible_host: '10.151.246.13'
+#     SITE - EKALA-WH-SW03-01 | SW - BIWH | IP - 10.84.246.3:
+#       ansible_host: '10.84.246.3'
+#     SITE - BLIB-ACC-SW-02 | SW - BLIB | IP - 10.151.246.31:
+#       ansible_host: '10.151.246.31'
+#     SITE - BLIB-ACC-SW-01 | SW - BLIB | IP - 10.151.246.30:
+#       ansible_host: '10.151.246.30'
+#     SITE - BLIB-ACC-SW-03 | SW - BLIB | IP - 10.151.246.32:
+#       ansible_host: '10.151.246.32'
+#     SITE - BLSC-DIS-SW-06 | SW - BLIB | IP - 10.151.246.16:
+#       ansible_host: '10.151.246.16'
+#     SITE - BLSC-DIS-SW-08 | SW - BLIB | IP - 10.151.246.18:
+#       ansible_host: '10.151.246.18'
+#     SITE - BLSC-DIS-SW-07 | SW - BLIB | IP - 10.151.246.17:
+#       ansible_host: '10.151.246.17'
+#     SITE - BLSC-DIS-SW-10 | SW - BLIB | IP - 10.151.246.20:
+#       ansible_host: '10.151.246.20'
+#     SITE - BLSC-DIS-SW-09 | SW - BLIB | IP - 10.151.246.19:
+#       ansible_host: '10.151.246.19'
+#     SITE - BLSC-DIS-SW-11 | SW - BLIB | IP - 10.151.246.21:
+#       ansible_host: '10.151.246.21'
+#     SITE - BLSC-DIS-SW-13 | SW - BLIB | IP - 10.151.246.23:
+#       ansible_host: '10.151.246.23'
+#     SITE - BLSC-FIB-SW-01 | SW - BLIB | IP - 10.151.246.10:
+#       ansible_host: '10.151.246.10'
+#     SITE - BLSC-DIS-SW-12 | SW - BLIB | IP - 10.151.246.22:
+#       ansible_host: '10.151.246.22'
+#     SITE - BLSC-DIS-SW-14 | SW - BLIB | IP - 10.151.246.24:
+#       ansible_host: '10.151.246.24'
+#     SITE - BLIN-ACC-SW-04 | SW - BLIN | IP - 10.150.246.14:
+#       ansible_host: '10.150.246.14'
+#     SITE - BLIN-ACC-SW-02 | SW - BLIN | IP - 10.150.246.12:
+#       ansible_host: '10.150.246.12'
+#     SITE - BLIN-ACC-SW-05 | SW - BLIN | IP - 10.150.246.21:
+#       ansible_host: '10.150.246.21'
+#     SITE - BLIN-ACC-SW-03 | SW - BLIN | IP - 10.150.246.13:
+#       ansible_host: '10.150.246.13'
+#     SITE - BLIN-ACC-SW-07 | SW - BLIN | IP - 10.150.246.23:
+#       ansible_host: '10.150.246.23'
+#     SITE - BLIN-ACC-SW-08 | SW - BLIN | IP - 10.150.246.24:
+#       ansible_host: '10.150.246.24'
+#     SITE - BLIN-ACC-SW-06 | SW - BLIN | IP - 10.150.246.22:
+#       ansible_host: '10.150.246.22'
+#     SITE - BLIN-ACC-SW-09 | SW - BLIN | IP - 10.150.246.25:
+#       ansible_host: '10.150.246.25'
+#     SITE - BLIN-ACC-SW-10 | SW - BLIN | IP - 10.150.246.26:
+#       ansible_host: '10.150.246.26'
+#     SITE - BLIN-ACC-SW-11 | SW - BLIN | IP - 10.150.246.27:
+#       ansible_host: '10.150.246.27'
+#     SITE - BLIN-ACC-SW-12 | SW - BLIN | IP - 10.150.246.28:
+#       ansible_host: '10.150.246.28'
+#     SITE - BLIN-ACC-SW-13 | SW - BLIN | IP - 10.150.246.29:
+#       ansible_host: '10.150.246.29'
+#     SITE - BLIN-ACC-SW-15 | SW - BLIN | IP - 10.150.246.31:
+#       ansible_host: '10.150.246.31'
+#     SITE - BLIN-ACC-SW-16 | SW - BLIN | IP - 10.150.246.32:
+#       ansible_host: '10.150.246.32'
+#     SITE - BLIN-ACC-SW-18 | SW - BLIN | IP - 10.150.246.42:
+#       ansible_host: '10.150.246.42'
+#     SITE - BLIN-ACC-SW-17 | SW - BLIN | IP - 10.150.246.41:
+#       ansible_host: '10.150.246.41'
+#     SITE - BLIN-ACC-SW-19 | SW - BLIN | IP - 10.150.246.43:
+#       ansible_host: '10.150.246.43'
+#     SITE - BLIN-ACC-SW-20 | SW - BLIN | IP - 10.150.246.44:
+#       ansible_host: '10.150.246.44'
+#     SITE - BLIN-ACC-SW-22 | SW - BLIN | IP - 10.150.246.51:
+#       ansible_host: '10.150.246.51'
+#     SITE - BLIN-ACC-SW-23 | SW - BLIN | IP - 10.150.246.52:
+#       ansible_host: '10.150.246.52'
+#     SITE - BLIN-ACC-SW-24 | SW - BLIN | IP - 10.150.246.53:
+#       ansible_host: '10.150.246.53'
+#     SITE - BLIN-ACC-SW-25 | SW - BLIN | IP - 10.150.246.55:
+#       ansible_host: '10.150.246.55'
+#     SITE - BLIN-ACC-SW-27 | SW - BLIN | IP - 10.150.246.57:
+#       ansible_host: '10.150.246.57'
+#     SITE - BLIN-ACC-SW-29 | SW - BLIN | IP - 10.150.246.59:
+#       ansible_host: '10.150.246.59'
+#     SITE - BLIN-ACC-SW-30 | SW - BLIN | IP - 10.150.246.60:
+#       ansible_host: '10.150.246.60'
+#     SITE - BLIN-ACC-SW-31 | SW - BLIN | IP - 10.150.246.61:
+#       ansible_host: '10.150.246.61'
+#     SITE - BLIN-ACC-SW-32 | SW - BLIN | IP - 10.150.246.62:
+#       ansible_host: '10.150.246.62'
+#     SITE - BLIN-BONDING | SW - BLIN | IP - 10.150.246.76:
+#       ansible_host: '10.150.246.76'
+#     SITE - BLIN-Core | SW - BLIN | IP - 10.150.246.254:
+#       ansible_host: '10.150.246.254'
+#     SITE - BLIN-ACC-SW-28 | SW - BLIN | IP - 10.150.246.58:
+#       ansible_host: '10.150.246.58'
+#     SITE - BLIN-SW | SW - BLIN | IP - 10.150.246.70:
+#       ansible_host: '10.150.246.70'
+#     SITE - BAL24-GF-SW01 | SW - BLL | IP - 10.10.246.82:
+#       ansible_host: '10.10.246.82'
+#     SITE - BAL24-SW-03 | SW - BLL | IP - 10.10.246.83:
+#       ansible_host: '10.10.246.83'
+#     SITE - TJI-ADMIN-26 | SW - TJI | IP - 10.190.246.26:
+#       ansible_host: '10.190.246.26'
+#     SITE - TJI-ADMIN-29 | SW - TJI | IP - 10.190.246.29:
+#       ansible_host: '10.190.246.29'
+#     SITE - TJI-ADMIN-30 | SW - TJI | IP - 10.190.246.30:
+#       ansible_host: '10.190.246.30'
+#     SITE - TJI-ADMIN-31 | SW - TJI | IP - 10.190.246.31:
+#       ansible_host: '10.190.246.31'
+#     SITE - TJI-ADMIN-32 | SW - TJI | IP - 10.190.246.32:
+#       ansible_host: '10.190.246.32'
+#     SITE - TJI-ADMIN-62 | SW - TJI | IP - 10.190.246.62:
+#       ansible_host: '10.190.246.62'
+#     SITE - TJI-ADMIN-63 | SW - TJI | IP - 10.190.246.63:
+#       ansible_host: '10.190.246.63'
+#     SITE - TJI-ADMIN-64 | SW - TJI | IP - 10.190.246.64:
+#       ansible_host: '10.190.246.64'
+#     SITE - TJI-ADMIN-65 | SW - TJI | IP - 10.190.246.65:
+#       ansible_host: '10.190.246.65'
+#     SITE - TJI-CAT-CCTV-35 | SW - TJI | IP - 10.190.246.35:
+#       ansible_host: '10.190.246.35'
+#     SITE - TJI-CAT-CCTV-50 | SW - TJI | IP - 10.190.246.50:
+#       ansible_host: '10.190.246.50'
+#     SITE - TJI-CCTV-74 | SW - TJI | IP - 10.190.246.74:
+#       ansible_host: '10.190.246.74'
+#     SITE - TJI-Core-Switch | SW - TJI | IP - 10.190.246.254:
+#       ansible_host: '10.190.246.254'
+#     SITE - TJI-DYE-43 | SW - TJI | IP - 10.190.246.43:
+#       ansible_host: '10.190.246.43'
+#     SITE - TJI-DYE-44 | SW - TJI | IP - 10.190.246.44:
+#       ansible_host: '10.190.246.44'
+#     SITE - TJI-EM-76 | SW - TJI | IP - 10.190.246.76:
+#       ansible_host: '10.190.246.76'
+#     SITE - TJI-EMSTORE-68 | SW - TJI | IP - 10.190.246.68:
+#       ansible_host: '10.190.246.68'
+#     SITE - TJI-FFSW-75 | SW - TJI | IP - 10.190.246.75:
+#       ansible_host: '10.190.246.75'
+#     SITE - TJI-FSG1-CCTV-46 | SW - TJI | IP - 10.190.246.46:
+#       ansible_host: '10.190.246.46'
+#     SITE - TJI-FSG2-CCTV-47 | SW - TJI | IP - 10.190.246.47:
+#       ansible_host: '10.190.246.47'
+#     SITE - TJI-GRG-49 | SW - TJI | IP - 10.190.246.49:
+#       ansible_host: '10.190.246.49'
+#     SITE - TJI-GRG-CCTV-42 | SW - TJI | IP - 10.190.246.42:
+#       ansible_host: '10.190.246.42'
+#     SITE - TJI-IWAN-1 | SW - TJI | IP - 10.190.246.21:
+#       ansible_host: '10.190.246.21'
+#     SITE - TJI-KNIT-CCTV-40 | SW - TJI | IP - 10.190.246.40:
+#       ansible_host: '10.190.246.40'
+#     SITE - TJI-KNITT-39 | SW - TJI | IP - 10.190.246.39:
+#       ansible_host: '10.190.246.39'
+#     SITE - TJI-KNIT-CCTV-67 | SW - TJI | IP - 10.190.246.67:
+#       ansible_host: '10.190.246.67'
+#     SITE - TJI-CCTV-73 | SW - TJI | IP - 10.190.246.73:
+#       ansible_host: '10.190.246.73'
+#     SITE - TJI-MMINET-58 | SW - TJI | IP - 10.190.246.58:
+#       ansible_host: '10.190.246.58'
+#     SITE - TJI-PRINT-78 | SW - TJI | IP - 10.190.246.78:
+#       ansible_host: '10.190.246.78'
+#     SITE - TJI-PRINT-CCTV-48 | SW - TJI | IP - 10.190.246.48:
+#       ansible_host: '10.190.246.48'
+#     SITE - TJI-QC1-60 | SW - TJI | IP - 10.190.246.60:
+#       ansible_host: '10.190.246.60'
+#     SITE - TJI-QC2-61 | SW - TJI | IP - 10.190.246.61:
+#       ansible_host: '10.190.246.61'
+#     SITE - TJI-SEC-77 | SW - TJI | IP - 10.190.246.77:
+#       ansible_host: '10.190.246.77'
+#     SITE - TJI-SRV-53 | SW - TJI | IP - 10.190.246.53:
+#       ansible_host: '10.190.246.53'
+#     SITE - TJI-SRV-25 | SW - TJI | IP - 10.190.246.25:
+#       ansible_host: '10.190.246.25'
+#     SITE - TJI-SRV-54 | SW - TJI | IP - 10.190.246.54:
+#       ansible_host: '10.190.246.54'
+#     SITE - TJI-SRV-66 | SW - TJI | IP - 10.190.246.66:
+#       ansible_host: '10.190.246.66'
+#     SITE - TJI-SRV-70 | SW - TJI | IP - 10.190.246.70:
+#       ansible_host: '10.190.246.70'
+#     SITE - TJI-Sec-admin-59 | SW - TJI | IP - 10.190.246.59:
+#       ansible_host: '10.190.246.59'
+#     SITE - DMS_BAckup_copy | SW - TJL | IP - 10.41.246.54:
+#       ansible_host: '10.41.246.54'
+#     SITE - TJL_KO_SW | SW - TJL | IP - 10.41.246.23:
+#       ansible_host: '10.41.246.23'
+#     SITE - BAL-1F-SW01 | SW - BLL | IP - 10.10.246.11:
+#       ansible_host: '10.10.246.11'
+#     SITE - BAL-2F-SW01 | SW - BLL | IP - 10.10.246.21:
+#       ansible_host: '10.10.246.21'
+#     SITE - BAL-3F-SW01 | SW - BLL | IP - 10.10.246.31:
+#       ansible_host: '10.10.246.31'
+#     SITE - BAL-4F-SW01 | SW - BLL | IP - 10.10.246.41:
+#       ansible_host: '10.10.246.41'
+#     SITE - BAL-5F-SW01 | SW - BLL | IP - 10.10.246.51:
+#       ansible_host: '10.10.246.51'
+#     SITE - BAL-6F-SW01 | SW - BLL | IP - 10.10.246.61:
+#       ansible_host: '10.10.246.61'
+#     SITE - BAL-7F-SW01 | SW - BLL | IP - 10.10.246.71:
+#       ansible_host: '10.10.246.71'
+#     SITE - Bi3GD-409-GF-01 | SW - BLL | IP - 10.10.246.91:
+#       ansible_host: '10.10.246.91'
+#     SITE - QLP_WH_SW | SW - TJL | IP - 10.41.246.46:
+#       ansible_host: '10.41.246.46'
+#     SITE - QLP_CAD_SW | SW - TJL | IP - 10.41.246.43:
+#       ansible_host: '10.41.246.43'
+#     SITE - BIW2_Server_Core | SW - BIW | IP - 10.75.246.26:
+#       ansible_host: '10.75.246.26'
+#     SITE - 1F-DER-01-SW1 | SW - BIW | IP - 10.75.246.19:
+#       ansible_host: '10.75.246.19'
+#     SITE - 2F-DER-02-SW2 | SW - BIW | IP - 10.75.246.25:
+#       ansible_host: '10.75.246.25'
+#     SITE - G-DER-01-SW1 | SW - BIW | IP - 10.75.246.15:
+#       ansible_host: '10.75.246.15'
+#     SITE - G-DER-01-SW2 | SW - BIW | IP - 10.75.246.16:
+#       ansible_host: '10.75.246.16'
+#     SITE - G-DER-02-SW1 | SW - BIW | IP - 10.75.246.17:
+#       ansible_host: '10.75.246.17'
+#     SITE - LG-DER-02-SW1 | SW - BIW | IP - 10.75.246.11:
+#       ansible_host: '10.75.246.11'
+#     SITE - SRV_PABX_SW | SW - BIW | IP - 10.75.246.27:
+#       ansible_host: '10.75.246.27'
+#     SITE - Sample_Room_Main_SW | SW - BIW | IP - 10.75.246.53:
+#       ansible_host: '10.75.246.53'
+#     SITE - 1F-DER-02-SW2 | SW - BIW | IP - 10.75.246.22:
+#       ansible_host: '10.75.246.22'
+#     SITE - 1F-DER-02-SW1 | SW - BIW | IP - 10.75.246.21:
+#       ansible_host: '10.75.246.21'
+#     SITE - BIW-Core | SW - BIW | IP - 10.75.246.28:
+#       ansible_host: '10.75.246.28'
+#     SITE - G-DER-02-SW3-Temp | SW - BIW | IP - 10.75.246.31:
+#       ansible_host: '10.75.246.31'
+#     SITE - AL-Sample_SW1 | SW - BIW | IP - 10.75.246.51:
+#       ansible_host: '10.75.246.51'
+#     SITE - AL-Sample_SW2 | SW - BIW | IP - 10.75.246.52:
+#       ansible_host: '10.75.246.52'
+#     SITE - BIW-CANTIN-SW1 | SW - BIW | IP - 10.75.246.73:
+#       ansible_host: '10.75.246.73'
+#     SITE - BIW-FF-SRR1-SW3 | SW - BIW | IP - 10.75.246.70:
+#       ansible_host: '10.75.246.70'
+#     SITE - BIW-LIDL-SR-SW1 | SW - BIW | IP - 10.75.246.67:
+#       ansible_host: '10.75.246.67'
+#     SITE - LG-DER-03-SW1 | SW - BIW | IP - 10.75.246.12:
+#       ansible_host: '10.75.246.12'
+#     SITE - ISE-Dot1x-Test-SW | SW - BIW | IP - 10.75.246.100:
+#       ansible_host: '10.75.246.100'
+#     SITE - LIDL-SAMPLE | SW - BIW | IP - 10.75.246.62:
+#       ansible_host: '10.75.246.62'
+#     SITE - SampleRoom_R2_SW | SW - BIW | IP - 10.75.246.64:
+#       ansible_host: '10.75.246.64'
+#     SITE - Sample_Room_SW2 | SW - BIW | IP - 10.75.246.55:
+#       ansible_host: '10.75.246.55'
+#     SITE - Sample_Room_SW3 | SW - BIW | IP - 10.75.246.65:
+#       ansible_host: '10.75.246.65'
+#     SITE - TEMP_FOR_SHROOM | SW - BIW | IP - 10.75.246.61:
+#       ansible_host: '10.75.246.61'
+#     SITE - 1F-DER-01-SW2 | SW - BIW | IP - 10.75.246.20:
+#       ansible_host: '10.75.246.20'
+#     SITE - 2F-DER-01-SW1 | SW - BIW | IP - 10.75.246.23:
+#       ansible_host: '10.75.246.23'
+#     SITE - 2F-DER-02-SW1 | SW - BIW | IP - 10.75.246.24:
+#       ansible_host: '10.75.246.24'
+#     SITE - BIW-CUT-SW2 | SW - BIW | IP - 10.75.246.69:
+#       ansible_host: '10.75.246.69'
+#     SITE - BIW-HRD-SW1 | SW - BIW | IP - 10.75.246.72:
+#       ansible_host: '10.75.246.72'
+#     SITE - BIW-HRD-SW2 | SW - BIW | IP - 10.75.246.68:
+#       ansible_host: '10.75.246.68'
+#     SITE - BIW-ICT | SW - BIW | IP - 10.75.246.30:
+#       ansible_host: '10.75.246.30'
+#     SITE - BIW-PRODUCTION-SW_C | SW - BIW | IP - 10.75.246.58:
+#       ansible_host: '10.75.246.58'
+#     SITE - BIW-Production-SW_A | SW - BIW | IP - 10.75.246.56:
+#       ansible_host: '10.75.246.56'
+#     SITE - BIW-Production-SW_B | SW - BIW | IP - 10.75.246.57:
+#       ansible_host: '10.75.246.57'
+#     SITE - BIW-SRV-SW1 | SW - BIW | IP - 10.75.246.71:
+#       ansible_host: '10.75.246.71'
+#     SITE - BIW-SW-CUTTING | SW - BIW | IP - 10.75.246.63:
+#       ansible_host: '10.75.246.63'
+#     SITE - Sample_Room_SW1 | SW - BIW | IP - 10.75.246.54:
+#       ansible_host: '10.75.246.54'
+
+p2_failed:
+  hosts:
+    SITE - ACC | SW - HUB-ROOM2-2960X | IP - 10.40.246.21:
+      ansible_host: '10.40.246.21'
+    SITE - BAI | SW - BAI1-CTNR8-SW01 | IP - 10.175.246.44:
+      ansible_host: '10.175.246.44'
+    SITE - BAI | SW - BAI1-CTVR6-SW01 | IP - 10.175.246.46:
+      ansible_host: '10.175.246.46'
+    SITE - BAI | SW - BAI2-N-RMR1-SW01 | IP - 10.175.246.109:
+      ansible_host: '10.175.246.109'
+    SITE - BAI | SW - BAI2-RMDR1-SW01 | IP - 10.175.246.107:
+      ansible_host: '10.175.246.107'
+    SITE - BAI | SW - BAI3-MANITANENCE | IP - 10.175.246.127:
+      ansible_host: '10.175.246.127'
+    SITE - BAI | SW - BC3Switch | IP - 10.175.246.14:
+      ansible_host: '10.175.246.14'
+    SITE - BAI | SW - BQCI-MRCNR-SW01 | IP - 10.175.246.72:
+      ansible_host: '10.175.246.72'
+    SITE - BAI | SW - BIAC-SRVRI-SW04 | IP - 10.175.246.86:
+      ansible_host: '10.175.246.86'
+    SITE - BAI | SW - BRANDIX_BAI_3 | IP - 10.175.246.124:
+      ansible_host: '10.175.246.124'
+    SITE - BCE | SW - BAL-L-BackupSW | IP - 10.100.246.213:
+      ansible_host: '10.100.246.213'
+    SITE - BCE | SW - BAL-L-R6-SW01 | IP - 10.100.246.211:
+      ansible_host: '10.100.246.211'
+    SITE - BCE | SW - BCI-VICTORY-BD-SW01 | IP - 10.100.246.91:
+      ansible_host: '10.100.246.91'
+    SITE - BCR | SW - BCR-FO-SW06 | IP - 10.104.246.15:
+      ansible_host: '10.104.246.15'
+    SITE - BCR | SW - BCR-HR-SW03 | IP - 10.104.246.12:
+      ansible_host: '10.104.246.12'
+    SITE - BCR | SW - BCR-HR-SW05 | IP - 10.104.246.14:
+      ansible_host: '10.104.246.14'
+    SITE - BCR | SW - BCR-MIS-SW01 | IP - 10.104.246.10:
+      ansible_host: '10.104.246.10'
+    SITE - BCR | SW - BCCT-LIB-SW01 | IP - 10.104.246.161:
+      ansible_host: '10.104.246.161'
+    SITE - BCE | SW - BCI-ICT-RACK06-SW03 | IP - 10.100.246.63:
+      ansible_host: '10.100.246.63'
+    SITE - BCE | SW - BCI-WH-HR-SW02 | IP - 10.100.246.151:
+      ansible_host: '10.100.246.151'
+    SITE - BCE | SW - BCI-WH-02-SW01 | IP - 10.100.246.152:
+      ansible_host: '10.100.246.152'
+    SITE - BCR | SW - BFL-SW3 | IP - 10.104.246.83:
+      ansible_host: '10.104.246.83'
+    SITE - BCR | SW - BCR-MIS-SW02 | IP - 10.104.246.11:
+      ansible_host: '10.104.246.11'
+    SITE - BCR | SW - BCR-PRO-SW08 | IP - 10.104.246.17:
+      ansible_host: '10.104.246.17'
+    SITE - BCR | SW - BCRDF-SW-01 | IP - 10.104.246.90:
+      ansible_host: '10.104.246.90'
+    SITE - BCRG | SW - Test-SW | IP - 10.102.246.10:
+      ansible_host: '10.102.246.10'
+    SITE - BCS | SW - BCS-CORE | IP - 10.101.246.254:
+      ansible_host: '10.101.246.254'
+    SITE - BCS | SW - BCS_HR_SW1 | IP - 10.101.246.10:
+      ansible_host: '10.101.246.10'
+    SITE - BCS | SW - BCS_PLANT2_SW01 | IP - 10.101.246.20:
+      ansible_host: '10.101.246.20'
+    SITE - BCS | SW - Cutting_SW1 | IP - 10.101.246.7:
+      ansible_host: '10.101.246.7'
+    SITE - BCS | SW - Finiishing_SW01 | IP - 10.101.246.25:
+      ansible_host: '10.101.246.25'
+    SITE - BCS | SW - Plant2-SW02 | IP - 10.101.246.100:
+      ansible_host: '10.101.246.100'
+    SITE - BCS | SW - ServerRoom_SW1 | IP - 10.101.246.2:
+      ansible_host: '10.101.246.2'
+    SITE - BCS | SW - ServerRoom_SW2 | IP - 10.101.246.8:
+      ansible_host: '10.101.246.8'
+    SITE - BER | SW - BER-1F-SW3 | IP - 10.50.246.14:
+      ansible_host: '10.50.246.14'
+    SITE - BER | SW - BER-2F-SW8 | IP - 10.50.246.21:
+      ansible_host: '10.50.246.21'
+    SITE - BER | SW - BER-2F-SW9 | IP - 10.50.246.231:
+      ansible_host: '10.50.246.231'
+    SITE - BIAV1 | SW - BIAV-SVRO-SW2 | IP - 10.81.246.2:
+      ansible_host: '10.81.246.2'
+    SITE - BIAV1 | SW - BIAV-SRVO-SW9 | IP - 10.81.246.22:
+      ansible_host: '10.81.246.22'
+    SITE - BIK | SW - BIK_Cutting_SW04 | IP - 10.76.246.11:
+      ansible_host: '10.76.246.11'
+    SITE - BIK | SW - BIK_backup-SW | IP - 10.76.246.12:
+      ansible_host: '10.76.246.12'
+    SITE - BIM | SW - BIM-CUT-SW1 | IP - 10.77.246.8:
+      ansible_host: '10.77.246.8'
+    SITE - BIM | SW - BIM-SVRO-SW4 | IP - 10.77.246.12:
+      ansible_host: '10.77.246.12'
+    SITE - BIM | SW - BIM-SVRO-SW6 | IP - 10.77.246.16:
+      ansible_host: '10.77.246.16'
+    SITE - BIMR1 | SW - BIMR-CUT-SW2 | IP - 10.78.246.6:
+      ansible_host: '10.78.246.6'
+    SITE - BIMR2 | SW - BIMR2-TRIMS-SW1 | IP - 10.79.246.8:
+      ansible_host: '10.79.246.8'
+    SITE - BIP | SW - FG_Warehouse_SW01 | IP - 10.80.246.16:
+      ansible_host: '10.80.246.16'
+    SITE - BIP | SW - BIP-SWING-01 | IP - 10.80.246.14:
+      ansible_host: '10.80.246.14'
+    SITE - BIW | SW - BIW-CANTIN-SW1 | IP - 10.75.246.73:
+      ansible_host: '10.75.246.73'
+    SITE - BIW | SW - BIW-FF-SRR1-SW3 | IP - 10.75.246.70:
+      ansible_host: '10.75.246.70'
+    SITE - BIW | SW - AL-Sample_SW1 | IP - 10.75.246.51:
+      ansible_host: '10.75.246.51'
+    SITE - BIW | SW - AL-Sample_SW2 | IP - 10.75.246.52:
+      ansible_host: '10.75.246.52'
+    SITE - BIW | SW - BIW2_Server_Core | IP - 10.75.246.26:
+      ansible_host: '10.75.246.26'
+    SITE - BIW | SW - BIW-LIDL-SR-SW1 | IP - 10.75.246.67:
+      ansible_host: '10.75.246.67'
+    SITE - BIW | SW - ISE-Dot1x-Test-SW | IP - 10.75.246.100:
+      ansible_host: '10.75.246.100'
+    SITE - BIW | SW - LG-DER-03-SW1 | IP - 10.75.246.12:
+      ansible_host: '10.75.246.12'
+    SITE - BIW | SW - LIDL-SAMPLE | IP - 10.75.246.62:
+      ansible_host: '10.75.246.62'
+    SITE - BIW | SW - SampleRoom_R2_SW | IP - 10.75.246.64:
+      ansible_host: '10.75.246.64'
+    SITE - BIW | SW - Sample_Room_SW2 | IP - 10.75.246.55:
+      ansible_host: '10.75.246.55'
+    SITE - BIW | SW - LG-DER-03-SW2 | IP - 10.75.246.123:
+      ansible_host: '10.75.246.123'
+    SITE - BIW | SW - Sample_Room_SW3 | IP - 10.75.246.65:
+      ansible_host: '10.75.246.65'
+    SITE - BIWH | SW - EKALA-WH-SW02 | IP - 10.84.254.2:
+      ansible_host: '10.84.254.2'
+    SITE - BIWH | SW - EKALA-WH-SW03 | IP - 10.84.254.3:
+      ansible_host: '10.84.254.3'
+    SITE - BLIB | SW - BLSC-DIS-SW-04 | IP - 10.151.246.14:
+      ansible_host: '10.151.246.14'
+    SITE - BLIB | SW - BLSC-DIS-SW-05 | IP - 10.151.246.15:
+      ansible_host: '10.151.246.15'
+    SITE - BLIB | SW - BLSC-DIS-SW-06 | IP - 10.151.246.16:
+      ansible_host: '10.151.246.16'
+    SITE - BLIB | SW - BLSC-DIS-SW-07 | IP - 10.151.246.17:
+      ansible_host: '10.151.246.17'
+    SITE - BLIB | SW - BLSC-DIS-SW-08 | IP - 10.151.246.18:
+      ansible_host: '10.151.246.18'
+    SITE - BLIB | SW - BLSC-DIS-SW-09 | IP - 10.151.246.19:
+      ansible_host: '10.151.246.19'
+    SITE - BLIB | SW - BLSC-DIS-SW-01 | IP - 10.151.246.11:
+      ansible_host: '10.151.246.11'
+    SITE - BLIB | SW - BLSC-DIS-SW-02 | IP - 10.151.246.12:
+      ansible_host: '10.151.246.12'
+    SITE - BLIB | SW - BLSC-DIS-SW-03 | IP - 10.151.246.13:
+      ansible_host: '10.151.246.13'
+    SITE - BLIB | SW - BLSC-DIS-SW-10 | IP - 10.151.246.20:
+      ansible_host: '10.151.246.20'
+    SITE - BLIB | SW - BLSC-DIS-SW-11 | IP - 10.151.246.21:
+      ansible_host: '10.151.246.21'
+    SITE - BLIB | SW - BLSC-DIS-SW-13 | IP - 10.151.246.23:
+      ansible_host: '10.151.246.23'
+    SITE - BLIB | SW - BLSC-FIB-SW-01 | IP - 10.151.246.10:
+      ansible_host: '10.151.246.10'
+    SITE - BLIN | SW - BLIN-ACC-SW-04 | IP - 10.150.246.14:
+      ansible_host: '10.150.246.14'
+    SITE - BLIB | SW - BLSC-DIS-SW-12 | IP - 10.151.246.22:
+      ansible_host: '10.151.246.22'
+    SITE - BLIN | SW - BLIN-ACC-SW-12 | IP - 10.150.246.28:
+      ansible_host: '10.150.246.28'
+    SITE - BLIN | SW - BLIN-ACC-SW-13 | IP - 10.150.246.29:
+      ansible_host: '10.150.246.29'
+    SITE - BLIN | SW - BLIN-ACC-SW-10 | IP - 10.150.246.26:
+      ansible_host: '10.150.246.26'
+    SITE - BLIN | SW - BLIN-ACC-SW-11 | IP - 10.150.246.27:
+      ansible_host: '10.150.246.27'
+    SITE - BLIN | SW - BLIN-ACC-SW-15 | IP - 10.150.246.31:
+      ansible_host: '10.150.246.31'
+    SITE - BLIN | SW - BLIN-ACC-SW-16 | IP - 10.150.246.32:
+      ansible_host: '10.150.246.32'
+    SITE - BLIN | SW - BLIN-ACC-SW-24 | IP - 10.150.246.53:
+      ansible_host: '10.150.246.53'
+    SITE - BLIN | SW - BLIN-ACC-SW-25 | IP - 10.150.246.55:
+      ansible_host: '10.150.246.55'
+    SITE - BLIN | SW - BLIN-ACC-SW-27 | IP - 10.150.246.57:
+      ansible_host: '10.150.246.57'
+    SITE - BLIN | SW - BLIN-ACC-SW-28 | IP - 10.150.246.58:
+      ansible_host: '10.150.246.58'
+    SITE - BLIN | SW - BLIN-ACC-SW-29 | IP - 10.150.246.59:
+      ansible_host: '10.150.246.59'
+    SITE - BLIN | SW - BLIN-ACC-SW-30 | IP - 10.150.246.60:
+      ansible_host: '10.150.246.60'
+    SITE - BLIN | SW - BLIN-ACC-SW-31 | IP - 10.150.246.61:
+      ansible_host: '10.150.246.61'
+    SITE - BLIN | SW - BLIN-ACC-SW-32 | IP - 10.150.246.62:
+      ansible_host: '10.150.246.62'
+    SITE - BLIN | SW - BLIN-SW | IP - 10.150.246.70:
+      ansible_host: '10.150.246.70'
+    SITE - BLL | SW - BAL-6F-SW03 | IP - 10.10.246.62:
+      ansible_host: '10.10.246.62'
+    SITE - BLL | SW - BAL24-GF-SW01 | IP - 10.10.246.82:
+      ansible_host: '10.10.246.82'
+    SITE - BLL | SW - BAL24-SW-03 | IP - 10.10.246.83:
+      ansible_host: '10.10.246.83'
+    # SITE - TJI | SW - TJI-ADMIN-29 | IP - 10.190.246.29:
+    #   ansible_host: '10.190.246.29'
+    # SITE - TJI | SW - TJI-ADMIN-26 | IP - 10.190.246.26:
+    #   ansible_host: '10.190.246.26'
+    # SITE - TJI | SW - TJI-ADMIN-62 | IP - 10.190.246.62:
+    #   ansible_host: '10.190.246.62'
+    # SITE - TJI | SW - TJI-ADMIN-64 | IP - 10.190.246.64:
+    #   ansible_host: '10.190.246.64'
+    # SITE - TJI | SW - TJI-ADMIN-63 | IP - 10.190.246.63:
+    #   ansible_host: '10.190.246.63'
+    # SITE - TJI | SW - TJI-ADMIN-65 | IP - 10.190.246.65:
+    #   ansible_host: '10.190.246.65'
+    # SITE - TJI | SW - TJI-CAT-CCTV-35 | IP - 10.190.246.35:
+    #   ansible_host: '10.190.246.35'
+    # SITE - TJI | SW - TJI-DYE-43 | IP - 10.190.246.43:
+    #   ansible_host: '10.190.246.43'
+    # SITE - TJI | SW - TJI-CAT-CCTV-50 | IP - 10.190.246.50:
+    #   ansible_host: '10.190.246.50'
+    # SITE - TJI | SW - TJI-CCTV-74 | IP - 10.190.246.74:
+    #   ansible_host: '10.190.246.74'
+    # SITE - TJI | SW - TJI-FSG1-CCTV-46 | IP - 10.190.246.46:
+    #   ansible_host: '10.190.246.46'
+    # SITE - TJI | SW - TJI-FSG2-CCTV-47 | IP - 10.190.246.47:
+    #   ansible_host: '10.190.246.47'
+    # SITE - TJI | SW - TJI-EMSTORE-68 | IP - 10.190.246.68:
+    #   ansible_host: '10.190.246.68'
+    # SITE - TJI | SW - TJI-GRG-49 | IP - 10.190.246.49:
+    #   ansible_host: '10.190.246.49'
+    # SITE - TJI | SW - TJI-CCTV-73 | IP - 10.190.246.73:
+    #   ansible_host: '10.190.246.73'
+    # SITE - TJI | SW - TJI-DYE-44 | IP - 10.190.246.44:
+    #   ansible_host: '10.190.246.44'
+    # SITE - TJI | SW - TJI-KNIT-CCTV-40 | IP - 10.190.246.40:
+    #   ansible_host: '10.190.246.40'
+    # SITE - TJI | SW - TJI-PRINT-CCTV-48 | IP - 10.190.246.48:
+    #   ansible_host: '10.190.246.48'
+    # SITE - TJI | SW - TJI-GRG-CCTV-42 | IP - 10.190.246.42:
+    #   ansible_host: '10.190.246.42'
+    # SITE - TJI | SW - TJI-KNIT-CCTV-67 | IP - 10.190.246.67:
+    #   ansible_host: '10.190.246.67'
+    # SITE - TJI | SW - TJI-MMINET-58 | IP - 10.190.246.58:
+    #   ansible_host: '10.190.246.58'
+    # SITE - TJI | SW - TJI-IWAN-1 | IP - 10.190.246.21:
+    #   ansible_host: '10.190.246.21'
+    # SITE - TJI | SW - TJI-QC2-61 | IP - 10.190.246.61:
+    #   ansible_host: '10.190.246.61'
+    # SITE - TJI | SW - TJI-KNITT-39 | IP - 10.190.246.39:
+    #   ansible_host: '10.190.246.39'
+    # SITE - TJI | SW - TJI-QC1-60 | IP - 10.190.246.60:
+    #   ansible_host: '10.190.246.60'
+    # SITE - TJI | SW - TJI-SRV-25 | IP - 10.190.246.25:
+    #   ansible_host: '10.190.246.25'
+    # SITE - TJI | SW - TJI-Sec-admin-59 | IP - 10.190.246.59:
+    #   ansible_host: '10.190.246.59'
+    # SITE - TJL | SW - DMS_BAckup_copy | IP - 10.41.246.54:
+    #   ansible_host: '10.41.246.54'
+    # SITE - TJI | SW - TJI-SRV-66 | IP - 10.190.246.66:
+    #   ansible_host: '10.190.246.66'
+    # SITE - TJI | SW - TJI-SRV-53 | IP - 10.190.246.53:
+    #   ansible_host: '10.190.246.53'
+    # SITE - TJI | SW - TJI-SRV-54 | IP - 10.190.246.54:
+    #   ansible_host: '10.190.246.54'
+    # SITE - TJL | SW - TJL_KO_SW | IP - 10.41.246.23:
+    #   ansible_host: '10.41.246.23'
+    # SITE - TJL | SW - QLP_CAD_SW | IP - 10.41.246.43:
+    #   ansible_host: '10.41.246.43'
+    # SITE - TJL | SW - QLP_WH_SW | IP - 10.41.246.46:
+    #   ansible_host: '10.41.246.46'
+    # SITE - TJL | SW - TJ_HR_SW | IP - 10.41.246.40:
+    #   ansible_host: '10.41.246.40'
+
+
+p2_passed:
+  hosts:
+    # SITE - BAI | SW - BQCI-RMDR1-SW01 | IP - 10.175.246.67:
+    #   ansible_host: '10.175.246.67'
+    # SITE - BAI | SW - BQCI-SRVR1-SW03 | IP - 10.175.246.63:
+    #   ansible_host: '10.175.246.63'
+    # SITE - BAI | SW - BQCI-SRVR1-SW02 | IP - 10.175.246.62:
+    #   ansible_host: '10.175.246.62'
+    # SITE - BAI | SW - QCI-Canteen-SW | IP - 10.175.246.73:
+    #   ansible_host: '10.175.246.73'
+    # SITE - BCE | SW - BCI-ICT-RACK02-SW02 | IP - 10.100.246.22:
+    #   ansible_host: '10.100.246.22'
+    # SITE - BCE | SW - BCI-ICT-RACK01-SW04 | IP - 10.100.246.14:
+    #   ansible_host: '10.100.246.14'
+    # SITE - BCE | SW - BCI-ICT-RACK02-SW01 | IP - 10.100.246.21:
+    #   ansible_host: '10.100.246.21'
+    # SITE - BCE | SW - BCI-ICT-RACK02-SW03 | IP - 10.100.246.23:
+    #   ansible_host: '10.100.246.23'
+    # SITE - BCE | SW - BCI-ICT-RACK03-SW01 | IP - 10.100.246.31:
+    #   ansible_host: '10.100.246.31'
+    # SITE - BCE | SW - BCI-ICT-RACK03-SW03 | IP - 10.100.246.33:
+    #   ansible_host: '10.100.246.33'
+    # SITE - BCE | SW - BCI-ICT-RACK05-SW02 | IP - 10.100.246.52:
+    #   ansible_host: '10.100.246.52'
+    # SITE - BCE | SW - BCI-ICT-RACK03-SW02 | IP - 10.100.246.32:
+    #   ansible_host: '10.100.246.32'
+    # SITE - BCE | SW - BCI-ICT-RACK05-SW03 | IP - 10.100.246.53:
+    #   ansible_host: '10.100.246.53'
+    # SITE - BCE | SW - BCI-ICT-RACK06-SW01 | IP - 10.100.246.61:
+    #   ansible_host: '10.100.246.61'
+    # SITE - BCE | SW - BCI_WH_New_SW | IP - 10.100.246.150:
+    #   ansible_host: '10.100.246.150'
+    # SITE - BER | SW - BER-2F-SW1 | IP - 10.50.246.18:
+    #   ansible_host: '10.50.246.18'
+    # SITE - BER | SW - BER-GF-SW3 | IP - 10.50.246.12:
+    #   ansible_host: '10.50.246.12'
+    # SITE - BI3 | SW - FTD-1F-3 | IP - 10.32.246.200:
+    #   ansible_host: '10.32.246.200'
+    # SITE - BI3 | SW - FTD-2F-3 | IP - 10.32.246.205:
+    #   ansible_host: '10.32.246.205'
+    # SITE - BIG | SW - BCG-SW-FO | IP - 10.103.246.140:
+    #   ansible_host: '10.103.246.140'
+    # SITE - BIM | SW - BIM-FABIN-SW1 | IP - 10.77.246.15:
+    #   ansible_host: '10.77.246.15'
+    # SITE - BIW | SW - 1F-DER-01-SW3 | IP - 10.75.246.128:
+    #   ansible_host: '10.75.246.128'
+    # SITE - BIW | SW - 1F-DER-02-SW3 | IP - 10.75.246.129:
+    #   ansible_host: '10.75.246.129'
+    # SITE - BIW | SW - 2F-DER-01-SW2 | IP - 10.75.246.131:
+    #   ansible_host: '10.75.246.131'
+    # SITE - BIW | SW - 2F-DER-02-SW3 | IP - 10.75.246.130:
+    #   ansible_host: '10.75.246.130'
+    # SITE - BIW | SW - G-DER-01-SW3 | IP - 10.75.246.126:
+    #   ansible_host: '10.75.246.126'
+    # SITE - BIW | SW - G-DER-02-SW3 | IP - 10.75.246.127:
+    #   ansible_host: '10.75.246.127'
+    # SITE - BIW | SW - LG-DER-01-SW2 | IP - 10.75.246.121:
+    #   ansible_host: '10.75.246.121'
+    # SITE - BIW | SW - LG-DER-02-SW2 | IP - 10.75.246.122:
+    #   ansible_host: '10.75.246.122'
+    # SITE - BIW | SW - LG-DER-03-SW2 | IP - 10.75.246.123:
+    #   ansible_host: '10.75.246.123'
+    # SITE - BIW | SW - LG-DER-04-SW2 | IP - 10.75.246.124:
+    #   ansible_host: '10.75.246.124'
+    # SITE - BIW | SW - LG-DER-05-SW2 | IP - 10.75.246.125:
+    #   ansible_host: '10.75.246.125'
+    SITE - BLIN | SW - BLIN-ACC-SW-09 | IP - 10.150.246.25:
+      ansible_host: '10.150.246.25'
+    # SITE - BLIN | SW - BLIN-ACC-SW-23 | IP - 10.150.246.52:
+    #   ansible_host: '10.150.246.52'
+    # SITE - BLIN | SW - BLIN-BONDING | IP - 10.150.246.76:
+    #   ansible_host: '10.150.246.76'
+    # SITE - BLL | SW - BAL-3F-SW03 | IP - 10.10.246.32:
+    #   ansible_host: '10.10.246.32'
+    # SITE - BLL | SW - BAL-5F-SW03 | IP - 10.10.246.52:
+    #   ansible_host: '10.10.246.52'
+    # SITE - BLL | SW - BAL-6F-SW03 | IP - 10.10.246.62:
+    #   ansible_host: '10.10.246.62'
+    # SITE - TJL | SW - DNF_SW_1 | IP - 10.41.246.16:
+    #   ansible_host: '10.41.246.16'
+    # SITE - TJL | SW - TJL_CMB_SW | IP - 10.42.246.254:
+    #   ansible_host: '10.42.246.254'
+    # SITE - TJL | SW - TJL_QO_SW | IP - 10.41.246.15:
+    #   ansible_host: '10.41.246.15'
+    # SITE - BAI | SW - BAI1-CGWR7-SW01 | IP - 10.175.246.49:
+    #   ansible_host: '10.175.246.49'
+    # SITE - BAI | SW - BAI3-Expo | IP - 10.175.246.130:
+    #   ansible_host: '10.175.246.130'
+    # SITE - BAI | SW - BAI3-FABR1-SW01 | IP - 10.175.246.128:
+    #   ansible_host: '10.175.246.128'
+    # SITE - BAI | SW - BAI2-PFLR1-SW01 | IP - 10.175.246.97:
+    #   ansible_host: '10.175.246.97'
+    # SITE - BAI | SW - BAI3-PODU-L2SW | IP - 10.175.246.126:
+    #   ansible_host: '10.175.246.126'
+    # SITE - BAI | SW - BC3-SW2 | IP - 10.175.246.13:
+    #   ansible_host: '10.175.246.13'
+    # SITE - BAI | SW - BAI-C2960SW-FGStores | IP - 10.175.246.32:
+    #   ansible_host: '10.175.246.32'
+    # SITE - BAI | SW - B1-ICT-Room-SW3 | IP - 10.175.246.31:
+    #   ansible_host: '10.175.246.31'
+    # SITE - BAI | SW - BAI-C2960SW02-Stores | IP - 10.175.246.33:
+    #   ansible_host: '10.175.246.33'
+
+nospace:
+  hosts:
+    SITE - ACC | SW - BMA-MEZANINE-SW02 | IP - 10.40.246.17:
+      ansible_host: '10.40.246.17'
+    SITE - ACC | SW - BMA-ITSTORE-SW01 | IP - 10.40.246.14:
+      ansible_host: '10.40.246.14'
+    SITE - ACC | SW - HUB-ROOM1-2960 | IP - 10.40.246.13:
+      ansible_host: '10.40.246.13'
+    SITE - BAI | SW - BAI-3-SW-01 | IP - 10.175.246.131:
+      ansible_host: '10.175.246.131'
+    SITE - BAI | SW - B1-ICT-Room-SW1 | IP - 10.175.246.38:
+      ansible_host: '10.175.246.38'
+    SITE - BAI | SW - BAI-INT-SW | IP - 10.175.246.40:
+      ansible_host: '10.175.246.40'
+    SITE - BAI | SW - BAI1-ICTR3-SW01 | IP - 10.175.246.41:
+      ansible_host: '10.175.246.41'
+    SITE - BAI | SW - BAI1-CADR4-SW02 | IP - 10.175.246.42:
+      ansible_host: '10.175.246.42'
+    SITE - BAI | SW - BAI1-CADR4-SW03 | IP - 10.175.246.43:
+      ansible_host: '10.175.246.43'
+    SITE - BAI | SW - BAI1-CTVR6-SW03 | IP - 10.175.246.47:
+      ansible_host: '10.175.246.47'
+    SITE - BAI | SW - BAI1-FGWR5-SW02 | IP - 10.175.246.45:
+      ansible_host: '10.175.246.45'
+    SITE - BAI | SW - BAI1-ICTR1-SW02 | IP - 10.175.246.37:
+      ansible_host: '10.175.246.37'
+    SITE - BAI | SW - BAI2-CTVR1-SW01 | IP - 10.175.246.103:
+      ansible_host: '10.175.246.103'
+    SITE - BAI | SW - BAI2-FGWR1-SW01 | IP - 10.175.246.99:
+      ansible_host: '10.175.246.99'
+    SITE - BAI | SW - BAI2-ICTR1-SW01 | IP - 10.175.246.91:
+      ansible_host: '10.175.246.91'
+    SITE - BAI | SW - BAI2-ICTR1-SW04 | IP - 10.175.246.94:
+      ansible_host: '10.175.246.94'
+    SITE - BAI | SW - BAI2-ICTR1-SW05 | IP - 10.175.246.95:
+      ansible_host: '10.175.246.95'
+    SITE - BAI | SW - BAI2-ICTR1-SW06 | IP - 10.175.246.96:
+      ansible_host: '10.175.246.96'
+    SITE - BAI | SW - BAI2-PFLR3-SW01 | IP - 10.175.246.100:
+      ansible_host: '10.175.246.100'
+    SITE - BAI | SW - BAI2-PFLR2-SW01 | IP - 10.175.246.98:
+      ansible_host: '10.175.246.98'
+    SITE - BAI | SW - BAI2-PFLR4-SW01 | IP - 10.175.246.101:
+      ansible_host: '10.175.246.101'
+    SITE - BAI | SW - BAI2-SECR2-SW01 | IP - 10.175.246.106:
+      ansible_host: '10.175.246.106'
+    SITE - BAI | SW - BAI2-TRNR1-SW01 | IP - 10.175.246.104:
+      ansible_host: '10.175.246.104'
+    SITE - BAI | SW - BAI2-TRNR1-SW02 | IP - 10.175.246.105:
+      ansible_host: '10.175.246.105'
+    SITE - BAI | SW - BAIC-CFNR1-SW03 | IP - 10.175.246.36:
+      ansible_host: '10.175.246.36'
+    SITE - BAI | SW - BAI3-ICT-SW4 | IP - 10.175.246.134:
+      ansible_host: '10.175.246.134'
+    SITE - BAI | SW - BETP-OFFR1-SW01 | IP - 10.175.246.82:
+      ansible_host: '10.175.246.82'
+    SITE - BAI | SW - BIAC-SRVRI-SW01 | IP - 10.175.246.83:
+      ansible_host: '10.175.246.83'
+    SITE - BAI | SW - BIAC-SRVRI-SW03 | IP - 10.175.246.85:
+      ansible_host: '10.175.246.85'
+    SITE - BAI | SW - BWTP-OFFR1-SW01 | IP - 10.175.246.81:
+      ansible_host: '10.175.246.81'
+    SITE - BAI | SW - Central-Finance-SW-2 | IP - 10.175.246.35:
+      ansible_host: '10.175.246.35'
+    SITE - BAI | SW - NBAI2-CANT-R1-SW-1 | IP - 10.175.246.111:
+      ansible_host: '10.175.246.111'
+    SITE - BAI | SW - NBAI2-ENGG-R1-SW-1 | IP - 10.175.246.112:
+      ansible_host: '10.175.246.112'
+    SITE - BAI | SW - NBAI2-MD-R1-SW-02 | IP - 10.175.246.114:
+      ansible_host: '10.175.246.114'
+    SITE - BAI | SW - NBAI2-MD-R1-SW-3 | IP - 10.175.246.115:
+      ansible_host: '10.175.246.115'
+    SITE - BAI | SW - NBAI2-PFL-R1-SW-2 | IP - 10.175.246.110:
+      ansible_host: '10.175.246.110'
+    SITE - BCE | SW - BCI-ICT-RACK05-SW01 | IP - 10.100.246.51:
+      ansible_host: '10.100.246.51'
+    SITE - BCRG | SW - BCRD_FINISHING | IP - 10.102.246.5:
+      ansible_host: '10.102.246.5'
+    SITE - BEKA | SW - BEKH-CIF-SW02 | IP - 10.53.246.35:
+      ansible_host: '10.53.246.35'
+    SITE - BLL | SW - BAL-1F-SW03 | IP - 10.10.246.12:
+      ansible_host: '10.10.246.12'
+    SITE - BLL | SW - BAL-4F-SW03 | IP - 10.10.246.42:
+      ansible_host: '10.10.246.42'
+    SITE - BLL | SW - BAL-7F-SW03 | IP - 10.10.246.72:
+      ansible_host: '10.10.246.72'
+    SITE - BLL | SW - BAL-GF-SW03 | IP - 10.10.246.9:
+      ansible_host: '10.10.246.9'
+    SITE - TJL | SW - TJL_AREL1 | IP - 10.41.246.21:
+      ansible_host: '10.41.246.21'
+    SITE - TJL | SW - TJL_AREL3 | IP - 10.41.246.41:
+      ansible_host: '10.41.246.41'
+    SITE - TJL | SW - TJL_CP_SW | IP - 10.41.246.58:
+      ansible_host: '10.41.246.58'
+    SITE - TJL | SW - TJL_FG_WH | IP - 10.41.246.57:
+      ansible_host: '10.41.246.57'
+
+pass_p3:
+  hosts:
+
+    SITE - BAI | SW - BQCI-MRCNR-SW01 | IP - 10.175.246.72:
+      ansible_host: '10.175.246.72'
+    SITE - BCE | SW - BCI-WH-HR-SW02 | IP - 10.100.246.151:
+      ansible_host: '10.100.246.151'
+    SITE - BCE | SW - BCI-ICT-RACK06-SW03 | IP - 10.100.246.63:
+      ansible_host: '10.100.246.63'
+    SITE - BCE | SW - BCI-WH-02-SW01 | IP - 10.100.246.152:
+      ansible_host: '10.100.246.152'
+    SITE - BIM | SW - BIM-SVRO-SW6 | IP - 10.77.246.16:
+      ansible_host: '10.77.246.16'
+    SITE - BLIN | SW - BLIN-ACC-SW-30 | IP - 10.150.246.60:
+      ansible_host: '10.150.246.60'
+    SITE - BLIN | SW - BLIN-ACC-SW-29 | IP - 10.150.246.59:
+      ansible_host: '10.150.246.59'
+    SITE - BLIN | SW - BLIN-ACC-SW-32 | IP - 10.150.246.62:
+      ansible_host: '10.150.246.62'
+    SITE - BLIN | SW - BLIN-ACC-SW-31 | IP - 10.150.246.61:
+      ansible_host: '10.150.246.61'

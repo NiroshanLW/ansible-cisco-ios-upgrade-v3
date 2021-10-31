@@ -1,0 +1,559 @@
+---
+####################
+### INSTRUCTIONS ###
+####################
+
+# 01. Open Ubuntu Subsystem
+
+# 02. Run below command to move to automation folder
+#        cd /mnt/c/Users/Public/2960-upgrade-automation/2960upgrade_v2
+
+# 03. Run below command to play upgrade script
+#        ansible-playbook 2960upgrade.yml -i inventory.yml | tee activity_copy_05102021_2150_DMS.log
+
+###################
+##### UPGRADE #####
+###################
+
+# Create a config backup folder for today at "/mnt/c/Users/Public/2960-upgrade-automation/backups"
+
+- hosts: localhost
+
+  tasks:
+    - name: Get ansible date/time facts
+      setup:
+        filter: "ansible_date_time"
+        gather_subset: "!all"
+
+    - name: Store DTG as fact
+      set_fact:
+        DTG: "{{ ansible_date_time.date }}"
+
+    - name: Create a config backup folder
+      file:
+        path: /mnt/c/Users/Public/2960-upgrade-automation/backups/{{hostvars.localhost.DTG}}
+        state: directory
+      run_once: true
+
+# Start Cisco 2960 Upgrade Process 
+
+- name: Main Play for Cisco IOS Upgrade
+  hosts: BIK
+  serial: 1
+  gather_facts: false
+  connection: local
+
+  vars_files:    
+    - ["vars/{{ ansible_net_model }}.yml"]
+ 
+  tasks:
+
+# Collect IOS facts
+    
+    - name: Collect IOS facts
+      ios_facts:
+
+# Backup switch running config
+
+    - name: Backup switch running config  
+      ios_command:
+        commands: show run  
+      register: config
+
+    - name: Save output to /mnt/c/Users/Public/2960-upgrade-automation/backups/
+      copy:
+        content: "{{config.stdout[0]}}"
+        dest: "/mnt/c/Users/Public/2960-upgrade-automation/backups/{{hostvars.localhost.DTG}}/{{ ansible_host }}-{{hostvars.localhost.DTG}}-runningconfig.txt"
+      tags:
+        - runconfig
+
+# Backup switch startup config
+
+    - name: Backup switch startup config  
+      ios_command:
+        commands: show start  
+      register: config
+
+    - name: Save output to /mnt/c/Users/Public/2960-upgrade-automation/backups/
+      copy:
+        content: "{{config.stdout[0]}}"
+        dest: "/mnt/c/Users/Public/2960-upgrade-automation/backups/{{hostvars.localhost.DTG}}/{{ ansible_host }}-{{hostvars.localhost.DTG}}-startupconfig.txt"
+      tags:
+        - startconfig
+
+# Save the running config 
+
+    - name: Save running config 
+      ios_config:
+        save_when: always
+      vars:
+        ansible_command_timeout: 120
+
+# Check boot path
+
+    - name: Check boot path
+      ios_command:
+        commands: 'show boot | i BOOT'
+      register: bootvar
+      tags:
+        - bootvar
+
+    - name: Main Block - Copy/Verify/Reboot when switch IOS version is non-compliant
+      block:
+
+# Check availability of flashs
+
+      - name: Check availability of flashs
+        ios_command:
+          commands: "show file systems | include flash"
+        register: flash_values
+
+# Check whether IOS is already in flash
+
+      - name: Check if IOS is already present on the flash
+        ios_command:
+          commands: 'show flash: | include {{ ios_file }}'
+        register: ios_in_flash0
+        when:   
+          - '"{{ ios_file }}" not in bootvar.stdout[0]'
+          - '"flash:"  in flash_values.stdout[0]'                  
+        tags:
+          - availabilityofios
+
+      - name: Check if IOS is already present on the flash1
+        ios_command:
+          commands: 'show flash1: | include {{ ios_file }}'
+        register: ios_in_flash1
+        when:   
+          - '"{{ ios_file }}" not in bootvar.stdout[0]'  
+          - '"flash1:"  in flash_values.stdout[0]'                              
+        tags:
+          - availabilityofios
+
+      - name: Check if IOS is already present on the flash2
+        ios_command:
+          commands: 'show flash2: | include {{ ios_file }}'
+        register: ios_in_flash2
+        when:   
+          - '"{{ ios_file }}" not in bootvar.stdout[0]' 
+          - '"flash2:"  in flash_values.stdout[0]'                                
+        tags:
+          - availabilityofios
+
+      - name: Check if IOS is already present on the flash3
+        ios_command:
+          commands: 'show flash3: | include {{ ios_file }}'
+        register: ios_in_flash3
+        when:   
+          - '"{{ ios_file }}" not in bootvar.stdout[0]'
+          - '"flash3:"  in flash_values.stdout[0]'                              
+        tags:
+          - availabilityofios
+
+      - name: Check if IOS is already present on the flash4
+        ios_command:
+          commands: 'show flash4: | include {{ ios_file }}'
+        register: ios_in_flash4
+        when:   
+          - '"{{ ios_file }}" not in bootvar.stdout[0]' 
+          - '"flash4:"  in flash_values.stdout[0]'                              
+        tags:
+          - availabilityofios
+
+# Delete the current IOS if current space is not sufficient 
+
+      # - name: Delete the current IOS if current space is not sufficient 
+      #   cli_command: 
+      #     command: "delete /force {{ ansible_net_image }}"
+      #   when:   
+      #     - ansible_net_filesystems_info['flash:']['spacefree_kb'] < {{ ios_size }}
+      #     - '"{{ ios_file }}" not in ios_in_flash0.stdout[0]'
+
+# Assert availability of enough space if ios is not in flash already
+
+      - name: Assert that there is enough flash space for upload
+        assert:
+          that:
+            - ansible_net_filesystems_info['flash:']['spacefree_kb'] > {{ ios_size }}
+          msg: "There is not enough space left on the device's flash...stopping the upgrade!!!"
+        when:
+          - '"{{ ios_file }}" not in bootvar.stdout[0]' 
+          - '"{{ ios_file }}" not in ios_in_flash0.stdout[0]'
+        tags:
+          - enoughflashspace         
+
+# Copy new IOS to target device using ftp 
+
+      - name: Copy new IOS to target device flash - This could take up to 4 minutes 
+        block:
+        - name: Copy new IOS to target device flash - This could take up to 4 minutes 
+          ios_command: 
+            commands: 
+              - command: copy ftp://10.10.249.225/{{ ios_file }} flash:/{{ ios_file }}
+                prompt: '{{ ios_file }}'
+                answer: "\r"
+          vars:
+              ansible_command_timeout: 3600
+          when:
+            - '"{{ ios_file }}" not in ios_in_flash0.stdout[0]'  
+        when:
+          - '"flash:"  in flash_values.stdout[0]'                                             
+        tags:
+          - copyiostoflash 
+
+      - name: Copy new IOS to target device flash1 - This could take up to 4 minutes 
+        block:
+        - name: Copy new IOS to target device flash1 - This could take up to 4 minutes 
+          ios_command: 
+            commands: 
+              - command: copy ftp://10.10.249.225/{{ ios_file }} flash1:/{{ ios_file }}
+                prompt: '{{ ios_file }}'
+                answer: "\r"
+          vars:
+              ansible_command_timeout: 3600
+          when:
+            - '"{{ ios_file }}" not in ios_in_flash1.stdout[0]'  
+        when:
+          - '"flash1:"  in flash_values.stdout[0]'                                             
+        tags:
+          - copyiostoflash 
+
+      - name: Copy new IOS to target device flash2 - This could take up to 4 minutes 
+        block:
+        - name: Copy new IOS to target device flash2 - This could take up to 4 minutes 
+          ios_command: 
+            commands: 
+              - command: copy ftp://10.10.249.225/{{ ios_file }} flash2:/{{ ios_file }}
+                prompt: '{{ ios_file }}'
+                answer: "\r"
+          vars:
+              ansible_command_timeout: 3600
+          when:
+            - '"{{ ios_file }}" not in ios_in_flash2.stdout[0]'  
+        when:
+          - '"flash2:"  in flash_values.stdout[0]'                                             
+        tags:
+          - copyiostoflash 
+
+      - name: Copy new IOS to target device flash3 - This could take up to 4 minutes 
+        block:
+        - name: Copy new IOS to target device flash3 - This could take up to 4 minutes 
+          ios_command: 
+            commands: 
+              - command: copy ftp://10.10.249.225/{{ ios_file }} flash3:/{{ ios_file }}
+                prompt: '{{ ios_file }}'
+                answer: "\r"
+          vars:
+              ansible_command_timeout: 3600
+          when:
+            - '"{{ ios_file }}" not in ios_in_flash3.stdout[0]'  
+        when:
+          - '"flash3:"  in flash_values.stdout[0]'                                             
+        tags:
+          - copyiostoflash 
+
+      - name: Copy new IOS to target device flash4 - This could take up to 4 minutes 
+        block:
+        - name: Copy new IOS to target device flash4 - This could take up to 4 minutes 
+          ios_command: 
+            commands: 
+              - command: copy ftp://10.10.249.225/{{ ios_file }} flash4:/{{ ios_file }}
+                prompt: '{{ ios_file }}'
+                answer: "\r"
+          vars:
+              ansible_command_timeout: 3600
+          when:
+            - '"{{ ios_file }}" not in ios_in_flash4.stdout[0]'  
+        when:
+          - '"flash4:"  in flash_values.stdout[0]'                                             
+        tags:
+          - copyiostoflash 
+
+# Check whether IOS is now available in flash
+
+      - name: Check if IOS is now present on the flash
+        ios_command:
+          commands: 'show flash: | include {{ ios_file }}'
+        register: ios_in_flash0
+        when:   
+          - '"{{ ios_file }}" not in bootvar.stdout[0]'
+          - '"flash:"  in flash_values.stdout[0]'                  
+        tags:
+          - availabilityofios
+
+      - name: Check if IOS is now present on the flash1
+        ios_command:
+          commands: 'show flash1: | include {{ ios_file }}'
+        register: ios_in_flash1
+        when:   
+          - '"{{ ios_file }}" not in bootvar.stdout[0]'  
+          - '"flash1:"  in flash_values.stdout[0]'                              
+        tags:
+          - availabilityofios
+
+      - name: Check if IOS is now present on the flash2
+        ios_command:
+          commands: 'show flash2: | include {{ ios_file }}'
+        register: ios_in_flash2
+        when:   
+          - '"{{ ios_file }}" not in bootvar.stdout[0]' 
+          - '"flash2:"  in flash_values.stdout[0]'                                
+        tags:
+          - availabilityofios
+
+      - name: Check if IOS is now present on the flash3
+        ios_command:
+          commands: 'show flash3: | include {{ ios_file }}'
+        register: ios_in_flash3
+        when:   
+          - '"{{ ios_file }}" not in bootvar.stdout[0]'
+          - '"flash3:"  in flash_values.stdout[0]'                              
+        tags:
+          - availabilityofios
+
+      - name: Check if IOS is now present on the flash4
+        ios_command:
+          commands: 'show flash4: | include {{ ios_file }}'
+        register: ios_in_flash4
+        when:   
+          - '"{{ ios_file }}" not in bootvar.stdout[0]'
+          - '"flash4:"  in flash_values.stdout[0]'                              
+        tags:
+          - availabilityofios
+
+# Assert that the new IOS is now available in flash
+
+      - name: Assert that the new IOS is now available in flash
+        assert:
+          that:
+            - '"{{ ios_file }}" in ios_in_flash0.stdout[0]'
+          msg: "New ios is not available in flash...stopping the upgrade!!!"
+        when:   
+          - '"flash:"  in flash_values.stdout[0]'             
+          - '"{{ ios_file }}" not in bootvar.stdout[0]'
+
+      - name: Assert that the new IOS is now available in flash1
+        assert:
+          that:
+            - '"{{ ios_file }}" in ios_in_flash1.stdout[0]'
+          msg: "New ios is not available in flash1...stopping the upgrade!!!"
+        when:   
+          - '"flash1:"  in flash_values.stdout[0]'            
+          - '"{{ ios_file }}" not in bootvar.stdout[0]'
+
+      - name: Assert that the new IOS is now available in flash2
+        assert:
+          that:
+            - '"{{ ios_file }}" in ios_in_flash2.stdout[0]'
+          msg: "New ios is not available in flash2...stopping the upgrade!!!"
+        when:   
+          - '"flash2:"  in flash_values.stdout[0]'
+          - '"{{ ios_file }}" not in bootvar.stdout[0]'
+
+      - name: Assert that the new IOS is now available in flash3
+        assert:
+          that:
+            - '"{{ ios_file }}" in ios_in_flash3.stdout[0]'
+          msg: "New ios is not available in flash3...stopping the upgrade!!!"            
+        when:   
+          - '"flash3:"  in flash_values.stdout[0]'
+          - '"{{ ios_file }}" not in bootvar.stdout[0]'
+
+      - name: Assert that the new IOS is now available in flash4
+        assert:
+          that:
+            - '"{{ ios_file }}" in ios_in_flash4.stdout[0]'
+          msg: "New ios is not available in flash3...stopping the upgrade!!!"            
+        when:   
+          - '"flash4:"  in flash_values.stdout[0]'
+          - '"{{ ios_file }}" not in bootvar.stdout[0]'
+
+# Check MD5 of copied IOS file
+
+      - name: Check MD5 value of copied IOS in flash
+        ios_command:
+          commands: "verify /md5 flash:{{ ios_file }}"
+        vars:
+          ansible_command_timeout: 3600
+        register: var_ios_md5_final0 
+        when:
+          - '"flash:"  in flash_values.stdout[0]'
+          - '"{{ ios_file }}" not in bootvar.stdout[0]'
+
+      - name: Check MD5 value of copied IOS in flash1
+        ios_command:
+          commands: "verify /md5 flash1:{{ ios_file }}"
+        vars:
+          ansible_command_timeout: 3600
+        register: var_ios_md5_final1 
+        when:
+          - '"flash1:"  in flash_values.stdout[0]'
+          - '"{{ ios_file }}" not in bootvar.stdout[0]'
+
+      - name: Check MD5 value of copied IOS in flash2
+        ios_command:
+          commands: "verify /md5 flash2:{{ ios_file }}"
+        vars:
+          ansible_command_timeout: 3600
+        register: var_ios_md5_final2 
+        when:
+          - '"flash2:"  in flash_values.stdout[0]'
+          - '"{{ ios_file }}" not in bootvar.stdout[0]'
+
+      - name: Check MD5 value of copied IOS in flash3
+        ios_command:
+          commands: "verify /md5 flash3:{{ ios_file }}"
+        vars:
+          ansible_command_timeout: 3600
+        register: var_ios_md5_final3 
+        when:
+          - '"flash3:"  in flash_values.stdout[0]'
+          - '"{{ ios_file }}" not in bootvar.stdout[0]'
+
+      - name: Check MD5 value of copied IOS in flash4
+        ios_command:
+          commands: "verify /md5 flash4:{{ ios_file }}"
+        vars:
+          ansible_command_timeout: 3600
+        register: var_ios_md5_final4 
+        when:
+          - '"flash4:"  in flash_values.stdout[0]'
+          - '"{{ ios_file }}" not in bootvar.stdout[0]'
+
+# Verify that MD5 is correct
+
+      - name: Verify MD5 is matching with original IOS - flash
+        assert:
+          that:
+            - {{ ios_md5 }} == var_ios_md5_final0.stdout[0].split(' = ')[1]
+          msg: "MD5 is not matching with original...stopping the upgrade!!!"
+        when:
+          - '"flash:"  in flash_values.stdout[0]'
+          - '"{{ ios_file }}" not in bootvar.stdout[0]'
+
+      - name: Verify MD5 is matching with original IOS - flash1
+        assert:
+          that:
+            - {{ ios_md5 }} == var_ios_md5_final1.stdout[0].split(' = ')[1]
+          msg: "MD5 is not matching with original...stopping the upgrade!!!"
+        when:
+          - '"flash1:"  in flash_values.stdout[0]'
+          - '"{{ ios_file }}" not in bootvar.stdout[0]'
+
+      - name: Verify MD5 is matching with original IOS - flash2
+        assert:
+          that:
+            - {{ ios_md5 }} == var_ios_md5_final2.stdout[0].split(' = ')[1]
+          msg: "MD5 is not matching with original...stopping the upgrade!!!"
+        when:
+          - '"flash2:"  in flash_values.stdout[0]'
+          - '"{{ ios_file }}" not in bootvar.stdout[0]'
+
+      - name: Verify MD5 is matching with original IOS - flash3
+        assert:
+          that:
+            - {{ ios_md5 }} == var_ios_md5_final3.stdout[0].split(' = ')[1]
+          msg: "MD5 is not matching with original...stopping the upgrade!!!"            
+        when:
+          - '"flash3:"  in flash_values.stdout[0]'
+          - '"{{ ios_file }}" not in bootvar.stdout[0]'
+
+      - name: Verify MD5 is matching with original IOS - flash3
+        assert:
+          that:
+            - {{ ios_md5 }} == var_ios_md5_final4.stdout[0].split(' = ')[1]
+          msg: "MD5 is not matching with original...stopping the upgrade!!!" 
+        when:
+          - '"flash4:"  in flash_values.stdout[0]' 
+          - '"{{ ios_file }}" not in bootvar.stdout[0]'
+
+# Change the boot path
+
+      - name: Change boot variable to new image 
+        ios_config: 
+          commands: 
+            - "boot system flash:{{ ios_file }}"
+          save_when: always 
+        vars:
+          ansible_command_timeout: 120
+        when: 
+          - ansible_net_version != "{{ ios_version }}"  
+          - '"{{ ios_file }}" not in bootvar.stdout[0]' 
+
+# Check th updated boot path
+
+      - name: Check Boot path
+        ios_command:
+          commands: 'show boot | i BOOT'
+        register: bootvar
+        when: 
+          - ansible_net_version != "{{ ios_version }}"  
+        tags:
+          - bootvar
+
+# Verify the boot path after changing
+
+      - name: Assert that the boot path is set to the new IOS
+        assert:
+          that:
+            - '"{{ ios_file }}" in bootvar.stdout[0]'
+          msg: "Boot path is not set to the new image...stopping the upgrade!!!"
+        when: 
+          - ansible_net_version != "{{ ios_version }}"          
+        tags:
+          - bootvar
+
+# Reload the switch
+
+      - name: Reload the Device 
+        cli_command: 
+          command: reload
+          prompt: 
+            - confirm
+          answer: 
+            - 'y'
+        when: 
+          - ansible_net_version != "{{ ios_version }}" 
+  
+# Wait for Reachability to the device 
+
+      - name: Reset connection to the switch
+        meta: reset_connection
+
+      - name: Wait for device to come back online
+        wait_for:
+          host: "{{ ansible_host }}"
+          port: 22
+          delay: 240
+          timeout: 1800
+        delegate_to: localhost
+        connection: local
+
+# Collect IOS facts
+      
+      - name: Collect IOS facts
+        ios_facts:
+
+# Check image version after the reboot 
+
+      - name: Check image version after the reboot    
+        ios_facts:
+
+      - name: Assure that version is correct     
+        assert:
+          that:
+            - ios_version == ansible_net_version
+
+      - debug: 
+          msg: 
+          - "SOFTWARE UPGRADE IS SUCCESSFULLY COMPLETED!!!"
+          - "HOSTNAME      - {{ ansible_net_hostname }}"
+          - "IP ADDRESS    - {{ ansible_net_all_ipv4_addresses }}"
+          - "MODEL         - {{ ansible_net_model }}"
+          - "SERIAL NUMBER - {{ ansible_net_stacked_serialnums }}"
+          - "IOS VERSION   - {{ ansible_net_version }}"
+          - "IMAGE USED    - {{ ansible_net_image }}"
+
+      when: 
+        - ansible_net_model == "WS-C2960X-24PS-L" or ansible_net_model == "C1-C2960X-24PS-L" or ansible_net_model == "C1-C2960X-24TD-L"	or ansible_net_model == "WS-C2960X-24TS-L" or ansible_net_model == "WS-C2960X-24TS-LL"	or ansible_net_model == "WS-C2960X-48FPS-L"	or ansible_net_model == "WS-C2960X-48TS-L" or "WS-C2960-24TC-L" or ansible_net_model == "WS-C2960-24TT-L" or ansible_net_model == "WS-C2960-48TT-L" or "WS-C2960+24PC-L" or ansible_net_model == "WS-C2960+24TC-S" or "WS-C2960-24TC-S"	or ansible_net_model == "WS-C2960-48TC-S" or ansible_net_model == "WS-C2960-48TT-S" or "WS-C2960S-24PS-L" or ansible_net_model == "WS-C2960S-24TS-L"	or ansible_net_model == "WS-C2960S-24TS-S"	or ansible_net_model == "WS-C2960S-48TS-S"
+  
