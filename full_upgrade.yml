@@ -3,19 +3,14 @@
 ### INSTRUCTIONS ###
 ####################
 
-# 01. Open Ubuntu Subsystem
-
-# 02. Run below command to move to automation folder
-#        cd /mnt/c/Users/Public/2960-upgrade-automation/2960upgrade_v2
-
-# 03. Run below command to play upgrade script
-#        ansible-playbook 2960upgrade.yml -i inventory.yml | tee activity_copy_05102021_2150_DMS.log
+# 01. Run below command to play upgrade script
+#        ansible-playbook full_upgrade.yml -i inventory.yml | tee activity_copy_05102021_2150_NLW.log
 
 ###################
 ##### UPGRADE #####
 ###################
 
-# Create a config backup folder for today at "/mnt/c/Users/Public/2960-upgrade-automation/backups"
+# Create a config backup folder for today at "/mnt/c/Users/Public/ios-upgrade-automation/backups"
 
 - hosts: localhost
 
@@ -31,15 +26,15 @@
 
     - name: Create a config backup folder
       file:
-        path: /mnt/c/Users/Public/2960-upgrade-automation/backups/{{hostvars.localhost.DTG}}
+        path: /mnt/c/Users/Public/ios-upgrade-automation/backups/{{hostvars.localhost.DTG}}
         state: directory
       run_once: true
 
 # Start Cisco 2960 Upgrade Process 
 
 - name: Main Play for Cisco IOS Upgrade
-  hosts: BIK
-  serial: 1
+  hosts: # Enter Site Code Here
+  serial: 1 
   gather_facts: false
   connection: local
 
@@ -60,10 +55,10 @@
         commands: show run  
       register: config
 
-    - name: Save output to /mnt/c/Users/Public/2960-upgrade-automation/backups/
+    - name: Save output to /mnt/c/Users/Public/ios-upgrade-automation/backups/
       copy:
         content: "{{config.stdout[0]}}"
-        dest: "/mnt/c/Users/Public/2960-upgrade-automation/backups/{{hostvars.localhost.DTG}}/{{ ansible_host }}-{{hostvars.localhost.DTG}}-runningconfig.txt"
+        dest: "/mnt/c/Users/Public/ios-upgrade-automation/backups/{{hostvars.localhost.DTG}}/{{ ansible_host }}-{{hostvars.localhost.DTG}}-runningconfig.txt"
       tags:
         - runconfig
 
@@ -74,10 +69,10 @@
         commands: show start  
       register: config
 
-    - name: Save output to /mnt/c/Users/Public/2960-upgrade-automation/backups/
+    - name: Save output to /mnt/c/Users/Public/ios-upgrade-automation/backups/
       copy:
         content: "{{config.stdout[0]}}"
-        dest: "/mnt/c/Users/Public/2960-upgrade-automation/backups/{{hostvars.localhost.DTG}}/{{ ansible_host }}-{{hostvars.localhost.DTG}}-startupconfig.txt"
+        dest: "/mnt/c/Users/Public/ios-upgrade-automation/backups/{{hostvars.localhost.DTG}}/{{ ansible_host }}-{{hostvars.localhost.DTG}}-startupconfig.txt"
       tags:
         - startconfig
 
@@ -162,12 +157,12 @@
 
 # Delete the current IOS if current space is not sufficient 
 
-      # - name: Delete the current IOS if current space is not sufficient 
-      #   cli_command: 
-      #     command: "delete /force {{ ansible_net_image }}"
-      #   when:   
-      #     - ansible_net_filesystems_info['flash:']['spacefree_kb'] < {{ ios_size }}
-      #     - '"{{ ios_file }}" not in ios_in_flash0.stdout[0]'
+      - name: Delete the current IOS if current space is not sufficient 
+        cli_command: 
+          command: "delete /force {{ ansible_net_image }}"
+        when:   
+          - ansible_net_filesystems_info['flash:']['spacefree_kb'] < {{ ios_size }}
+          - '"{{ ios_file }}" not in ios_in_flash0.stdout[0]'
 
 # Assert availability of enough space if ios is not in flash already
 
@@ -189,7 +184,7 @@
         - name: Copy new IOS to target device flash - This could take up to 4 minutes 
           ios_command: 
             commands: 
-              - command: copy ftp://10.10.249.225/{{ ios_file }} flash:/{{ ios_file }}
+              - command: copy ftp://10.X.X.X/{{ ios_file }} flash:/{{ ios_file }}
                 prompt: '{{ ios_file }}'
                 answer: "\r"
           vars:
@@ -206,7 +201,7 @@
         - name: Copy new IOS to target device flash1 - This could take up to 4 minutes 
           ios_command: 
             commands: 
-              - command: copy ftp://10.10.249.225/{{ ios_file }} flash1:/{{ ios_file }}
+              - command: copy ftp://10.X.X.X/{{ ios_file }} flash1:/{{ ios_file }}
                 prompt: '{{ ios_file }}'
                 answer: "\r"
           vars:
@@ -223,7 +218,7 @@
         - name: Copy new IOS to target device flash2 - This could take up to 4 minutes 
           ios_command: 
             commands: 
-              - command: copy ftp://10.10.249.225/{{ ios_file }} flash2:/{{ ios_file }}
+              - command: copy ftp://10.X.X.X/{{ ios_file }} flash2:/{{ ios_file }}
                 prompt: '{{ ios_file }}'
                 answer: "\r"
           vars:
@@ -240,7 +235,7 @@
         - name: Copy new IOS to target device flash3 - This could take up to 4 minutes 
           ios_command: 
             commands: 
-              - command: copy ftp://10.10.249.225/{{ ios_file }} flash3:/{{ ios_file }}
+              - command: copy ftp://10.X.X.X/{{ ios_file }} flash3:/{{ ios_file }}
                 prompt: '{{ ios_file }}'
                 answer: "\r"
           vars:
@@ -257,7 +252,7 @@
         - name: Copy new IOS to target device flash4 - This could take up to 4 minutes 
           ios_command: 
             commands: 
-              - command: copy ftp://10.10.249.225/{{ ios_file }} flash4:/{{ ios_file }}
+              - command: copy ftp://10.X.X.X/{{ ios_file }} flash4:/{{ ios_file }}
                 prompt: '{{ ios_file }}'
                 answer: "\r"
           vars:
@@ -555,5 +550,5 @@
           - "IMAGE USED    - {{ ansible_net_image }}"
 
       when: 
-        - ansible_net_model == "WS-C2960X-24PS-L" or ansible_net_model == "C1-C2960X-24PS-L" or ansible_net_model == "C1-C2960X-24TD-L"	or ansible_net_model == "WS-C2960X-24TS-L" or ansible_net_model == "WS-C2960X-24TS-LL"	or ansible_net_model == "WS-C2960X-48FPS-L"	or ansible_net_model == "WS-C2960X-48TS-L" or "WS-C2960-24TC-L" or ansible_net_model == "WS-C2960-24TT-L" or ansible_net_model == "WS-C2960-48TT-L" or "WS-C2960+24PC-L" or ansible_net_model == "WS-C2960+24TC-S" or "WS-C2960-24TC-S"	or ansible_net_model == "WS-C2960-48TC-S" or ansible_net_model == "WS-C2960-48TT-S" or "WS-C2960S-24PS-L" or ansible_net_model == "WS-C2960S-24TS-L"	or ansible_net_model == "WS-C2960S-24TS-S"	or ansible_net_model == "WS-C2960S-48TS-S"
+        - ansible_net_model == "WS-C2960S-24TS-L"	or ansible_net_model == "WS-C2960S-24TS-S"	or ansible_net_model == "WS-C2960S-48TS-S"
   
