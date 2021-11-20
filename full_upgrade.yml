@@ -1,10 +1,4 @@
 ---
-####################
-### INSTRUCTIONS ###
-####################
-
-# 01. Run below command to play upgrade script
-#        ansible-playbook full_upgrade.yml -i inventory.yml | tee activity_copy_05102021_2150_NLW.log
 
 ###################
 ##### UPGRADE #####
@@ -549,6 +543,4 @@
           - "IOS VERSION   - {{ ansible_net_version }}"
           - "IMAGE USED    - {{ ansible_net_image }}"
 
-      when: 
-        - ansible_net_model == "WS-C2960S-24TS-L"	or ansible_net_model == "WS-C2960S-24TS-S"	or ansible_net_model == "WS-C2960S-48TS-S"
   
