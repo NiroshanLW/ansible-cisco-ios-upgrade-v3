@@ -4,7 +4,7 @@
 ##### UPGRADE #####
 ###################
 
-# Create a config backup folder for today at "/mnt/c/Users/Public/ios-upgrade-automation/backups"
+# Create a config backup folder for today at "/mnt/c/Users/ios-upgrade-automation/backups"
 
 - hosts: localhost
 
