@@ -1,6 +1,6 @@
 Challenge
 
-Upgrading 1-15 switches can be done manually. But what about 250+ switches including different models and versions? it will be challenging and time consuming. A simple humane error can cause troubleshooting of many hours. In this case, we were previously using manual upgrades for all of these 250+ switches. This post will explain the procedure and steps to automate this process using Ansible. At the end of this implementation, following benefits can be achieved,
+Upgrading 1-15 switches can be done manually. But what about 250+ switches including different models and versions? it is challenging and time consuming. A simple humane error can cause troubleshooting of many hours. This post will explain the procedure and steps to automate this process using Ansible. At the end of this implementation, following benefits can be achieved,
 
 Automated verifications
 
@@ -54,14 +54,14 @@ all:
         SITE - GHI | SW - GHI-SW2 | IP - 10.10.30.2:
           ansible_host: '10.10.30.2'
 
-First we define a branch to define our production switches.
+First we create a branch to define our production switches.
 
   children:
     switches:
       children: 
         Prod_Sites: 
 
-Then credentials and variables common for all switches are defined under Prod_Sites. Prod_Sites includes many sites as shown here - ABC, DEF - these are site codes… In our case, we are having 35+ sites.
+Then credentials and variables common for all switches have been defined under Prod_Sites. Prod_Sites includes many sites as shown below - ABC, DEF - these are example site codes… In our case, we are having 40+ sites.
 
     Prod_Sites:
       children:
@@ -74,13 +74,13 @@ Then credentials and variables common for all switches are defined under Prod_Si
         ansible_user: XXXXXX 
         ansible_password: XXXXXX  
 
-Following variables are defined here in addition to the SSH credentials.
+Following variables have been defined here in addition to the SSH credentials.
 
 Connection Method - ansible_connection
 
 OS of the connected host - ansible_network_os
 
-Next we define host IPs of each site switch, site code, switch host name and IP have been added for easy identification.
+Next we define host IPs of each switch. Site code, switch host name and IP have been added for easy reference.
 
     ABC:
       hosts:
@@ -89,23 +89,23 @@ Next we define host IPs of each site switch, site code, switch host name and IP 
         SITE - ABC | SW - ABC-SW2 | IP - 10.10.10.2:
           ansible_host: '10.10.10.2'
 
-If you only have 10-20 switches, yes you can easily create this inventory in YAML format. But what about if you have 250+ switches? or 1000+? this is not practical. There is an easy way to populate your inventory YAML file using another simple ansible script. Try out this blog post. It simply explain how you can convert your infrastructure inventory into YAML.
+If you only have 10-20 switches, yes you can easily create this inventory in YAML format. But what about if you have 250+ switches? or 1000+? this is not practical. There is an easy way to populate your inventory YAML file using another simple ansible script. Read this blog post. It simply explains how you can convert your infrastructure CSV inventory into YAML.
 
-Then…
+Folder Structure…
 
-Now inventory has been populated for all sites with around 250+ switches. Let’s start understanding the part of Ansible playbook for real upgrade. Before that here is my folder structure, this is my upgrade folder. 
+Now inventory has been populated for all sites with 250+ switches. Let’s understand the folder structure, this is my upgrade folder. 
 
-There is a sub-folder called “vars”. It has set of YAML files renamed by each switch model. In our case, there are around 15+ different models and there is a different YAML file in vars folder for each model. Content of each YAML file will be explained in next steps.
+There is a sub-folder called vars. It has a set of YAML files renamed by each switch model. In our case, there are around 15+ different models and there is a different YAML file in vars folder for each model. Content of each YAML file will be explained in next steps.
 
 Next… upgrade script…
 
-Now, let’s start the upgrade script - again written in Ansible.
+Now, let’s start the upgrade script…
 
-1st Step - Create Backup Folder
+Create Backup Folder
 
 These tasks will be run on localhost.
 
-Task 01 - Get ansible date/time facts
+Get ansible date/time facts
 
 - hosts: localhost
 
@@ -115,17 +115,17 @@ Task 01 - Get ansible date/time facts
         filter: "ansible_date_time"
         gather_subset: "!all"
 
-Here we collect date and time information from localhost. In next step, we save it as a variable.
+Here, date and time information have been collected from localhost. In next step, we save it as a variable.
 
-Task 02 - Store DTG as fact
+Store DTG as fact
 
     - name: Store DTG as fact
       set_fact:
         DTG: "{{ ansible_date_time.date }}"
 
-Task 02 - Store DTG as fact
+Create a config backup folder
 
-Next we create a folder to backup the switch configurations. Folder will be named form current date.
+Next a folder is created to backup the switch configurations. Folder will be named by current date.
 
     - name: Create a config backup folder
       file:
@@ -133,7 +133,7 @@ Next we create a folder to backup the switch configurations. Folder will be name
         state: directory
       run_once: true
 
-2nd Step - Configuration Backup
+Configuration Backup
 
 - name: Main Play for Cisco IOS Upgrade
   hosts: # Enter Site Code Here
@@ -144,24 +144,24 @@ Next we create a folder to backup the switch configurations. Folder will be name
   vars_files:    
     - ["vars/{{ ansible_net_model }}.yml"]
 
-These tasks will be run on each cisco switch. There are few key parameters that should be properly defined.
+These tasks will be run on each cisco switch. There are few key parameters to be defined.
 
 hosts:
 
-Here site code should be defined. As per our inventory, it can be ABC, DEF or GHI. Script will only run in entered site.
+Site code should be defined. As per our inventory, it can be ABC, DEF or GHI. Script will only run in entered site.
 
 serial:
 
-This is used to serialize the code execution. If this is removed, script will be run on all switches in the site in parallels. If we define 1 here, automation will run on single switch first. Once it is successfully completed, it will run on next switch in the inventory.
+This is used to serialize the code execution. If this is removed, script will be run on all switches at the site in parallels. If 1 is defined here, automation will run on single switch first. Once it is successfully completed, it will run on the next switch in the inventory.
 
 In the same way, if we enter 2 or 3 here, it will run on 2 or 3 switches first, once all completed it will move to next 2 or 3.
 
   vars_files:    
     - ["vars/{{ ansible_net_model }}.yml"]
 
-As mentioned, there are few different models in the infrastructure. IOS file, upgrade version and MD5 value of IOS file vary depend on switch model.
+As mentioned above, there are few different models in our infrastructure. IOS file, upgrade version and MD5 value of IOS file vary depend on switch model.
 
-Here we get model specific variable values from the YAML files stored in “vars” folder mentioned previously. Content of each YAML file is as below, for different models, these values will vary.
+Model specific variable values will be retrieved from the YAML files stored in vars folder. Content of each YAML file is as below. Values will be changed based on the switch model.
 
 ---
 ios_version: 15.XXXX
@@ -169,17 +169,15 @@ ios_file: c2960s-universalk9XXXXX.bin
 ios_md5: ea604d030b378b6c5c3xxxxxxxxxxx
 ios_size: 20000
 
-Task 02 - Store DTG as fact.
+Backup switch running config
 
-Next set of tasks will run inside a task block. 
+Next, set of tasks will run inside a task block. 
 
-First subtask will collect cisco ios facts. 
+First subtask will collect Cisco IOS facts. 
 
-In next step, it backup switch running configuration using ansible module and register it to a varible called ‘config’ - ios_command
+Then it backup switch running configuration using ios_command and register it to a variable called config.
 
-Then the registered output is saved to a file in previously configured backup folder. File is named using IP address of the switch and date.
-
- 
+After that, the registered output is saved to a file in previously configured backup folder. File is renamed using the IP address of the switch and date.
 
   tasks:
 
@@ -202,11 +200,11 @@ Then the registered output is saved to a file in previously configured backup fo
       tags:
         - runconfig
 
-Task 02 - Store DTG as fact
+Backup switch startup config
 
-Next it saves startup config using the same steps.
+Next, it saves startup config.
 
-Once it is done, config will be saved again using ansible module - ios_config
+Once it is done, config will be saved using ios_config and save_when.
 
     - name: Backup switch startup config  
       ios_command:
@@ -228,9 +226,9 @@ Once it is done, config will be saved again using ansible module - ios_config
       vars:
         ansible_command_timeout: 120
 
-Next we come to our first verification point, boot variable is checked using 'show boot | i BOOT' command and registered the output to a variable called “bootvar”. We later use this output to exclude switches where boot variable is already set to new ios file.
+Next, we come to our first verification, boot variable is checked using 'show boot | i BOOT' command and registered the output to a variable called bootvar. This will be later used to exclude switches where boot variable is already set to new IOS file.
 
-Task 02 - Store DTG as fact
+Check boot path
 
     - name: Check boot path
       ios_command:
@@ -239,10 +237,16 @@ Task 02 - Store DTG as fact
       tags:
         - bootvar
 
+This is the output when this command is run on switch CLI.
+
 X-XXX-01-SW1#show boot | i BOOT
 BOOT path-list      : flash:cxxxx-universalk9-mz.xxxx.xx.bin;flash2:cxxxx-universalk9-mz.xxxx.xx.bin
 
-Next we start main upgrade block which checks free space, copy ios, set boot variable and upgrade. In the first part, output of "show file systems | include flash" is saved to a variable called flash_values. This also will be used in next steps of the code to make some logics.
+Identify Stack Switches
+
+Next we start main upgrade block which checks free space, copy ios, set boot variable and upgrade. First, output of "show file systems | include flash" is saved to a variable called flash_values. This will be used in next steps of the script to evaluate some logics to identify stack switches.
+
+Check availability of flashs
 
     - name: Main Block - Copy/Verify/Reboot when switch IOS version is non-compliant
       block:
@@ -251,12 +255,18 @@ Next we start main upgrade block which checks free space, copy ios, set boot var
           commands: "show file systems | include flash"
         register: flash_values
 
+Here is the output on switch CLI,
+
 X-XXX-01-SW1#show file systems | include flash
 *    122185728      52075008         flash     rw  flash: flash1:
      122185728      46614528         flash     rw  flash2:
      122185728      46624768         flash     rw  flash3:
 
-In our enviroment, we have single switches, 2 switch stacks, 3 switch stacks and 4 switch stacks. Before we copy the IOS to each available flash, it should be verified that IOS is not already copied there. To assure that, first we run the command 'show flash: | include {{ ios_file }}' and register the output to a variable. There are 4 tasks here. Each task checks a specific flash. First one checks flash:, next flash1:, then flash2: …etc.
+Skip if IOS is already copied
+
+In our enviroment, we have single switches, 2 switch stacks, 3 switch stacks and 4 switch stacks. Before we copy the IOS to each available flash, it should be verified that IOS is not already copied there. To assure that, first, 'show flash: | include {{ ios_file }}' command is run and register the output to a variable. There are 4 tasks here. Each task checks a specific flash. First one checks flash:, next flash1:, then flash2: …etc.
+
+Check if IOS is already present on the flash
 
       - name: Check if IOS is already present on the flash
         ios_command:
@@ -308,19 +318,23 @@ In our enviroment, we have single switches, 2 switch stacks, 3 switch stacks and
         tags:
           - availabilityofios
 
-There is a when condition added under each task. Each task will only be executed when the conditions under when is satisfied.
+There is a when condition added under each task. Each task will only be executed when the conditions are satisfied.
 
         when:   
           - '"{{ ios_file }}" not in bootvar.stdout[0]'
           - '"flash:"  in flash_values.stdout[0]'
 
-In a previous step, we registered the out put of 'show boot | i BOOT' to a variable.
+In a previous step, output of 'show boot | i BOOT' command was registered to a variable called bootvar.
 
-'"{{ ios_file }}" not in bootvar.stdout[0]' - This condition make sure that task is run only when new ios file name is not in the output of above command. Therefore, if bootvar is already set to new IOS, this task will be skipped as it is unneccessary.
+'"{{ ios_file }}" not in bootvar.stdout[0]' - This condition make sure that task is run only when new IOS file name is not in the output of bootvar variable. Therefore, if boot variable is already set to the new IOS, these tasks will be skipped.
 
-'"flash:"  in flash_values.stdout[0]' - This condition make sure that task is run only when “flash:” word appear in the out put of 'show flash: | include {{ ios_file }}' command. Therefore task is run only on available flashes. 
+'"flash:"  in flash_values.stdout[0]' - This condition makes sure that task is run only when “flash:” word appear in the out put of 'show flash: | include {{ ios_file }}' command. Similarly, '"flash4:"  in flash_values.stdout[0]' condition makes sure that the relevant task will only be run when 'flash4: ' word is in the flash_values output. This assure that commands run on each available on flash in stack switches.
 
 Next we start checking free space to copy the IOS,
+
+Check Free Space
+
+Delete the current IOS if current space is not sufficient
 
       - name: Delete the current IOS if current space is not sufficient 
         cli_command: 
@@ -328,6 +342,8 @@ Next we start checking free space to copy the IOS,
         when:   
           - ansible_net_filesystems_info['flash:']['spacefree_kb'] < {{ ios_size }}
           - '"{{ ios_file }}" not in ios_in_flash0.stdout[0]'
+
+First, existing IOS is deleted if there is no sufficient space to copy the IOS file. A parameter collected from IOS facts collections is used here to build the logic - ansible_net_filesystems_info['flash:']['spacefree_kb'] - is compared against ios_size variable in var file. When condition assures that IOS is deleted only when sufficient space is not there.
 
       - name: Assert that there is enough flash space for upload
         assert:
@@ -340,11 +356,13 @@ Next we start checking free space to copy the IOS,
         tags:
           - enoughflashspace   
 
-In the first task, we delete the exisiting IOS if there is no sufficinet space to copy the IOS file. Here we use a parameter collected from ios facts collections - ansible_net_filesystems_info['flash:']['spacefree_kb'] - to compare it against ios_size. When condition assure that IOS is deleted only when sufficient space is not there.
-
-Next, ansible moduele assert is used to assure that there is enough space to copy the new IOS. If this is not assured, scipt will break and upgrade will stop on current host and move to the next host.
+Next, ansible module assert is used to assure that there is enough space to copy the new IOS. If this is not assured, script will break, upgrade will stop and move to the next host.
 
 Once space check is successfully completed, it starts copying IOS to all available flashes using FTP. 
+
+Copy IOS to flash
+
+Copy new IOS to target device flash
 
       - name: Copy new IOS to target device flash - This could take up to 4 minutes 
         block:
@@ -421,7 +439,9 @@ Once space check is successfully completed, it starts copying IOS to all availab
         when:
           - '"flash4:"  in flash_values.stdout[0]'                                              
 
-Once copying is completed, we again run the previously excuted 'show flash: | include {{ ios_file }}' command on each available flash. Then use ansible assure module to assure that new IOS is now available in each flash.
+Once copying is completed, 'show flash: | include {{ ios_file }}' command is again run on each available flash. Then, it uses ansible assure module to assure that new IOS is now available in each flash.
+
+Check if IOS is now present on the flash
 
       - name: Check if IOS is now present on the flash
         ios_command:
@@ -473,7 +493,8 @@ Once copying is completed, we again run the previously excuted 'show flash: | in
         tags:
           - availabilityofios
 
-# Assert that the new IOS is now available in flash
+
+Assert that the new IOS is now available in flash
 
       - name: Assert that the new IOS is now available in flash
         assert:
@@ -520,8 +541,11 @@ Once copying is completed, we again run the previously excuted 'show flash: | in
           - '"flash4:"  in flash_values.stdout[0]'
           - '"{{ ios_file }}" not in bootvar.stdout[0]'
 
+Check & Verify MD5
 
-Next we move to the MD5 verification. First ios_command module is used to run "verify /md5 flash:{{ ios_file }}" command on each available flash and register the output to a different varable.
+Next we move to the MD5 verification. First ios_command module is used to run "verify /md5 flash:{{ ios_file }}" command on each available flash and register the output to a different variable.
+
+Check MD5 value of copied IOS in flash
 
       - name: Check MD5 value of copied IOS in flash
         ios_command:
@@ -574,7 +598,9 @@ Next we move to the MD5 verification. First ios_command module is used to run "v
           - '"{{ ios_file }}" not in bootvar.stdout[0]'
 
 
-In next five steps, regitered MD5 values are compared against MD5 values mentioned in the variable file. If the MD5 value is not matching, script break and upgrade fail with "MD5 is not matching with original...stopping the upgrade!!!" error messege.
+Then the registered MD5 values have been compared against MD5 values mentioned in the variable file. If the MD5 value is not matching, script breaks and upgrade fails with "MD5 is not matching with original...stopping the upgrade!!!" error message.
+
+Verify MD5 is matching with original IOS
 
 
       - name: Verify MD5 is matching with original IOS - flash
@@ -622,7 +648,11 @@ In next five steps, regitered MD5 values are compared against MD5 values mention
           - '"flash4:"  in flash_values.stdout[0]' 
           - '"{{ ios_file }}" not in bootvar.stdout[0]'
 
-Once all MD5 verifications are passed, switch boot variable is set to new bin file.
+Once all MD5 verifications have been passed, switch boot variable is set to new IOS file.
+
+Change Boot Variable
+
+Change boot variable to new image
 
       - name: Change boot variable to new image 
         ios_config: 
@@ -635,7 +665,9 @@ Once all MD5 verifications are passed, switch boot variable is set to new bin fi
           - ansible_net_version != "{{ ios_version }}"  
           - '"{{ ios_file }}" not in bootvar.stdout[0]'
 
-Once it is configured, and saved, following steps are run to assure that we have accurately changed the bootvariable.
+Once it is configured and saved, following verification steps are run to assure that boot variable have been accurately configured.
+
+Assert that the boot path is set to the new IOS
 
       - name: Check Boot path
         ios_command:
@@ -645,8 +677,6 @@ Once it is configured, and saved, following steps are run to assure that we have
           - ansible_net_version != "{{ ios_version }}"  
         tags:
           - bootvar
-
-# Verify the boot path after changing
 
       - name: Assert that the boot path is set to the new IOS
         assert:
@@ -658,7 +688,11 @@ Once it is configured, and saved, following steps are run to assure that we have
         tags:
           - bootvar
 
-Then we reboot the switch. We delegate localhost to wait and check until switch comes up again - it usually takes around 5-7 mins.
+Reboot the Switch
+
+Then the switch is rebooted. It is delegated to localhost. Localhost will wait and check until switch comes up again - it usually takes around 5-7 mins.
+
+Reload the Device
 
       - name: Reload the Device 
         cli_command: 
@@ -680,9 +714,13 @@ Then we reboot the switch. We delegate localhost to wait and check until switch 
           delay: 240
           timeout: 1800
         delegate_to: localhost
-        connection: local
+        connection: local 
 
-All done!!! Finally once switch is back live, again ios_facts are collected and verify the new version is expected version. For the documentation purpose, a debug output has been added to the script the print the details of upgraded switch on the console.
+Final Verification
+
+Finally, once switch is live, again ios_facts are collected and verify that the new version is expected version. For the documentation purpose, a debug output has been added to the script to print the details of upgraded switch on the console.
+
+Assure that version is correct
 
       - name: Collect IOS facts
         ios_facts:
@@ -705,8 +743,5 @@ All done!!! Finally once switch is back live, again ios_facts are collected and 
           - "IOS VERSION   - {{ ansible_net_version }}"
           - "IMAGE USED    - {{ ansible_net_image }}"
 
- 
+All done!!!
 
-Related Documents
-
-Working with Route Tables in AWS Transit Gateway
